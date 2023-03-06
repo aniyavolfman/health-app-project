@@ -13,6 +13,9 @@ const LazyRegisterPage = lazy(() =>
   import('../pages/RegistrationPage/RegistrationPage')
 );
 const LazyDiaryPage = lazy(() => import('../pages/DiaryPage/DiaryPage'));
+const LazyCalculatorPage = lazy(() =>
+  import('../pages/CalculatorPage/CalculatorPage')
+);
 
 function App() {
   // const dispatch = useDispatch();
@@ -42,4 +45,3 @@ function App() {
 }
 
 export default App;
-
