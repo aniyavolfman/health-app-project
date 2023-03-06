@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import React, { lazy, Suspense } from 'react';
-import { Loader } from './Loader/Loader';
 // import { useDispatch } from 'react-redux';
 // import { getCurrentUserRequest } from 'redux/authOperations';
 import { PublicRoute } from './PublicRoute/PublicRoute';
@@ -25,7 +24,7 @@ function App() {
   //   }, [dispatch]);
 
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense>
       <Routes>
         <Route path="/" element={<LazyLayout />}>
           <Route index element={<LazyHomepage />} />
