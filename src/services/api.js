@@ -1,18 +1,30 @@
-import axios from "axios";
+import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-axios.defaults.baseURL = 'https://slimmom-backend.goit.global/';
+// axios.defaults.baseURL = 'https://slimmom-backend.goit.global/';
+
+const $publicHost = axios.create({
+  baseURL: 'https://slimmom-backend.goit.global/',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+const $privateHost = axios.create({
+  baseURL: 'https://slimmom-backend.goit.global/',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 
 export const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-    return token;
+  set: (token, token_type) => {
+    $privateHost.defaults.headers.common.Authorization = `${token_type} ${token}`;
   },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
+  unSet: () => {
+    $privateHost.defaults.headers.common.Authorization = '';
   },
 };
-
 
 //реєстрація користувача
 
@@ -22,15 +34,10 @@ export const token = {
 //       username: 'Emma',
 //     }
 
-export async function register(credentials) {
-  try {
-      const { data } = await axios.post('/auth/register', credentials);
-    return data;
-  } catch (error) {
-    Notify.failure(error.message);
-  }
+export async function register(userData) {
+  const { data } = await $publicHost.post(`/auth/register`, userData);
+  return data;
 }
-
 
 //логінізація користувача
 
@@ -39,25 +46,16 @@ export async function register(credentials) {
 //       password: 'qwerty123',
 //     }
 
-export async function login(credentials) {
-  try {
-    const { data } = await axios.post('/auth/login', credentials);
-    token.set(data.accessToken);
-    return data;
-  } catch (error) {
-    Notify.failure(error.message);
-  }
+export async function login(userData) {
+  const { data } = await $publicHost.post(`/auth/login`, userData);
+  return data;
 }
 
 //розлогінізація користувача
 
-export async function logout() {
-  try {
-    await axios.post('/auth/logout');
-    token.unset();
-  } catch (error) {
-    Notify.failure(error.message);
-  }
+export async function logOut() {
+  const { data } = await $privateHost.post(`/auth/logout`);
+  return data;
 }
 
 // refresh користувача
@@ -66,15 +64,15 @@ export async function logout() {
 //   "sid": "507f1f77bcf86cd799439011"
 // }
 
-export async function refresh(sid) {
-  try {
-    const { data } = await axios.post('/auth/refresh', sid);
-    return data;
-  } catch (error) {
-    Notify.failure(error.message);
-  }
+export async function refresh(sid, refreshToken) {
+  const { data } = await $privateHost({
+    data: { sid },
+    headers: { Authorization: refreshToken },
+    method: 'post',
+    url: `/auth/refresh`,
+  });
+  return data;
 }
-
 
 // daily-rate
 
@@ -85,7 +83,6 @@ export async function refresh(sid) {
 //   "desiredWeight": 60,
 //   "bloodType": 1
 // }
-
 
 export async function dailyRate(credentials) {
   try {
@@ -114,7 +111,6 @@ export async function dailyRateId(credentials, id) {
     Notify.failure(error.message);
   }
 }
-
 
 // day
 

@@ -12,6 +12,7 @@ export default function DiaryProductsListItem() {
       <li>
         {/* {title}: <span>{weight} </span> <span>{kcal} </span> */}
         <button id={'id'} onClick={deleteProduct}>
+
           X
         </button>
       </li>

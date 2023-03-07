@@ -3,6 +3,7 @@ import { useState } from 'react';
 // import { useDispatch } from 'react-redux';
 
 export default function DiaryAddProductForm() {
+
   //  const dispatch = useDispatch();
   const [data, setData] = useState('');
   const [productId, setProductId] = useState('');
@@ -90,3 +91,4 @@ export default function DiaryAddProductForm() {
 //     debouncedOutput.textContent = eventCounter.debounced;
 //   }, 300)
 // );
+

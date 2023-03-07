@@ -1,3 +1,50 @@
-import DiaryDateCalendar from './DiaryDateСalendar/DiaryDateСalendar';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import React, { lazy, Suspense, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { PublicRoute } from './PublicRoute/PublicRoute';
+import { PrivateRoute } from './PrivateRoute/PrivateRoute';
+import { refreshUserRequest } from 'redux/auth/authOperations';
+import { selectSid } from 'redux/auth/authSelectors';
 
-export const App = () => {};
+const LazyLayout = lazy(() => import('./Layout/Layout'));
+const LazyHomepage = lazy(() => import('../pages/HomePage/HomePage'));
+const LazyLoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
+const LazyRegisterPage = lazy(() =>
+  import('../pages/RegistrationPage/RegistrationPage')
+);
+const LazyDiaryPage = lazy(() => import('../pages/DiaryPage/DiaryPage'));
+const LazyCalculatorPage = lazy(() =>
+  import('../pages/CalculatorPage/CalculatorPage')
+);
+
+function App() {
+  const dispatch = useDispatch();
+  const sid = useSelector(selectSid);
+
+  useEffect(() => {
+    console.log(sid);
+    dispatch(refreshUserRequest(sid));
+  }, [dispatch, sid]);
+
+  return (
+    <Suspense>
+      <Routes>
+        <Route path="/" element={<LazyLayout />}>
+          <Route index element={<LazyHomepage />} />
+          <Route path="/" element={<PublicRoute />}>
+            <Route path="/register" element={<LazyRegisterPage />} />
+            <Route path="/login" element={<LazyLoginPage />} />
+          </Route>
+          <Route path="/" element={<PrivateRoute />}>
+            <Route path="/diary" element={<LazyDiaryPage />} />
+            <Route path="/calculator" element={<LazyCalculatorPage />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/" />} />
+        </Route>
+      </Routes>
+    </Suspense>
+  );
+}
+
+export default App;
+
