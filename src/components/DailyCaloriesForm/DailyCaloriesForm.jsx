@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRecommandations } from 'redux/dailyRate/dailyRateOperations';
+import css from './DailyCaloreisForm.module.css';
 
 export const DailyCaloriesForm = () => {
   const [height, setHeight] = useState('');
@@ -8,7 +9,7 @@ export const DailyCaloriesForm = () => {
   const [weight, setWeight] = useState('');
   const [desiredWeight, setDesiredWeight] = useState('');
   const [bloodType, setBloodType] = useState('1');
-  //const contacts = useSelector(selectContacts);
+  //const isLoggedIn = useSelector();
   const dispatch = useDispatch();
 
   const handleInputChange = event => {
@@ -51,50 +52,48 @@ export const DailyCaloriesForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h2>Calculate your daily calorie intake right now</h2>
-        <label>
-          Height *
-          <input
-            type="number"
-            name="height"
-            value={height}
-            onChange={handleInputChange}
-            autoFocus
-            required
-          />
-        </label>
-        <label>
-          Age *
-          <input
-            type="number"
-            name="age"
-            value={age}
-            onChange={handleInputChange}
-            required
-          />
-        </label>
-        <label>
-          Current weight *
-          <input
-            type="number"
-            name="weight"
-            value={weight}
-            onChange={handleInputChange}
-            required
-          />
-        </label>
-        <label>
-          Desired weight *
-          <input
-            type="number"
-            name="desiredWeight"
-            value={desiredWeight}
-            onChange={handleInputChange}
-            required
-          />
-        </label>
+    <div className={css.wrapper}>
+      <h2 className={css.title}>
+        Calculate your daily calorie intake right now
+      </h2>
+      <form className={css.form} onSubmit={handleSubmit}>
+        <input
+          type="number"
+          name="height"
+          value={height}
+          onChange={handleInputChange}
+          placeholder="Height *"
+          autoFocus
+          required
+        />
+
+        <input
+          type="number"
+          name="age"
+          value={age}
+          onChange={handleInputChange}
+          placeholder="Age *"
+          required
+        />
+
+        <input
+          type="number"
+          name="weight"
+          value={weight}
+          onChange={handleInputChange}
+          placeholder="Current weight *"
+          required
+        />
+
+        <input
+          type="number"
+          name="desiredWeight"
+          value={desiredWeight}
+          onChange={handleInputChange}
+          placeholder="Desired weight *"
+          required
+        />
+
         <p>Blood type *</p>
         <label>
           <input

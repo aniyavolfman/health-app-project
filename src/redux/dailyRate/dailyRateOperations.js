@@ -14,15 +14,15 @@ export const getRecommandations = createAsyncThunk(
   }
 );
 
-// export const getAuthRecommandations = createAsyncThunk(
-//   'dailyRate/auth',
-//   async (userParams, userId, { rejectWithValue }) => {
-//     try {
-//       const response = await dailyRateId(userParams, userId);
+export const getAuthRecommandations = createAsyncThunk(
+  'dailyRate/auth',
+  async (userParams, { rejectWithValue }) => {
+    try {
+      const response = await dailyRateId(userParams);
 
-//       return response;
-//     } catch (error) {
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);

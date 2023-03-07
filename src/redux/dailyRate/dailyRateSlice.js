@@ -17,8 +17,8 @@ export const dailyRateSlice = createSlice({
       .addCase(getRecommandations.pending, pendingHandler)
       .addCase(getRecommandations.fulfilled, (state, action) => {
         state.isLoading = 'false';
-        state.notAllowedProducts = action.payload;
-        state.dailyRate = action.payload;
+        state.notAllowedProducts = action.payload.notAllowedProducts;
+        state.dailyRate = action.payload.dailyRate;
       })
       .addCase(getRecommandations.rejected, rejectHandler),
 });

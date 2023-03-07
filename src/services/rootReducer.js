@@ -2,6 +2,7 @@ import { combineReducers } from '@reduxjs/toolkit';
 import persistReducer from 'redux-persist/es/persistReducer';
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from 'redux/auth/authSlice';
+import { dailyRateReducer } from 'redux/dailyRate/dailyRateSlice';
 
 const persistConfig = {
   key: 'auth',
@@ -13,4 +14,5 @@ const persistedReducer = persistReducer(persistConfig, authReducer);
 
 export const rootReducer = combineReducers({
   auth: persistedReducer,
+  dailyRate: dailyRateReducer,
 });
