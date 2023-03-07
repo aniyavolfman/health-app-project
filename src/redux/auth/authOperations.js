@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { login, logOut, refresh, register, token } from '../../services/api';
+import { getUser, login, logOut, refresh, register, token } from '../../services/api';
 
 export const registerUserRequest = createAsyncThunk(
   'auth/register',
