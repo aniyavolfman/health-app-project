@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, Link } from 'react-router-dom';
 import React, { lazy, Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PublicRoute } from './PublicRoute/PublicRoute';
@@ -39,7 +39,17 @@ function App() {
             <Route path="/diary" element={<LazyDiaryPage />} />
             <Route path="/calculator" element={<LazyCalculatorPage />} />
           </Route>
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route
+            path="*"
+            element={
+              <div >
+                Sorry, page not found.
+                <span >
+                  <Link to="/">Go home</Link>
+                </span>
+              </div>
+            }
+          />
         </Route>
       </Routes>
     </Suspense>
