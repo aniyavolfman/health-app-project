@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-// axios.defaults.baseURL = 'https://slimmom-backend.goit.global/';
-
 const $publicHost = axios.create({
   baseURL: 'https://slimmom-backend.goit.global/',
   headers: {
@@ -74,6 +72,13 @@ export async function refresh(sid, refreshToken) {
   return data;
 }
 
+// getUser
+
+export async function getUser() {
+  const { data } = await $privateHost.get(`/user`);
+  return data;
+}
+
 // daily-rate
 
 // приклад тіла запиту  {
@@ -86,7 +91,7 @@ export async function refresh(sid, refreshToken) {
 
 export async function dailyRate(credentials) {
   try {
-    const { data } = await axios.post('/daily-rate', credentials);
+    const { data } = await $publicHost.post('/daily-rate', credentials);
     return data;
   } catch (error) {
     Notify.failure(error.message);
@@ -105,7 +110,7 @@ export async function dailyRate(credentials) {
 
 export async function dailyRateId(credentials, id) {
   try {
-    const { data } = await axios.post(`/daily-rate/${id}`, credentials);
+    const { data } = await $privateHost.post(`/daily-rate/${id}`, credentials);
     return data;
   } catch (error) {
     Notify.failure(error.message);
@@ -122,7 +127,7 @@ export async function dailyRateId(credentials, id) {
 
 export async function day(credentials) {
   try {
-    const { data } = await axios.post('/day', credentials);
+    const { data } = await $privateHost.post('/day', credentials);
     return data;
   } catch (error) {
     Notify.failure(error.message);
@@ -138,7 +143,7 @@ export async function day(credentials) {
 
 export async function dayDelete(credentials) {
   try {
-    const { data } = await axios.delete('/day', credentials);
+    const { data } = await $privateHost.delete('/day', credentials);
     return data;
   } catch (error) {
     Notify.failure(error.message);
