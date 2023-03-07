@@ -1,9 +1,10 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import React, { lazy, Suspense } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { getCurrentUserRequest } from 'redux/authOperations';
+import React, { lazy, Suspense, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { PublicRoute } from './PublicRoute/PublicRoute';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
+import { refreshUserRequest } from 'redux/auth/authOperations';
+import { selectSid } from 'redux/auth/authSelectors';
 
 const LazyLayout = lazy(() => import('./Layout/Layout'));
 const LazyHomepage = lazy(() => import('../pages/HomePage/HomePage'));
@@ -17,11 +18,13 @@ const LazyCalculatorPage = lazy(() =>
 );
 
 function App() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const sid = useSelector(selectSid);
 
-  //   useEffect(() => {
-  //     dispatch(getCurrentUserRequest());
-  //   }, [dispatch]);
+  useEffect(() => {
+    console.log(sid);
+    dispatch(refreshUserRequest(sid));
+  }, [dispatch, sid]);
 
   return (
     <Suspense>

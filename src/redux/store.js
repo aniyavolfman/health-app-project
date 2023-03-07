@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
-  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -9,28 +8,10 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-// import { contactReducer } from '../redux/contacts/contactsSlice';
-// import { filterReducer } from './filterSlice';
-import { authReducer } from '../redux/auth/authSlice';
-
-//тут може не токен, а якось по іншому як він на беку зберігається..
-const persistConfig = {
-  key: 'auth',
-  version: 1,
-  storage,
-  whitelist: ['token'],
-};
-
-const persistedReducer = persistReducer(persistConfig, authReducer);
+import { rootReducer } from 'services/rootReducer';
 
 export const store = configureStore({
-  reducer: {
-    // contacts: contactReducer,
-    // filter: filterReducer,
-    auth: persistedReducer,
-  },
-
+  reducer: rootReducer,
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
