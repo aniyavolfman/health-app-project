@@ -58,7 +58,7 @@ export const logOutRequest = createAsyncThunk(
     try {
       const { token: savedToken } = thunkAPI.getState().auth;
       const response = await logOut();
-      console.log(response);
+      console.log('saved:', savedToken);
       token.unSet(savedToken);
       return response;
     } catch (error) {
