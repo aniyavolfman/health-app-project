@@ -5,11 +5,11 @@ import { getRecommandations } from 'redux/dailyRate/dailyRateOperations';
 export const DailyCaloriesForm = () => {
   const [height, setHeight] = useState('');
   const [age, setAge] = useState('');
-  const [currentWeight, setCurrentWeight] = useState('');
+  const [weight, setWeight] = useState('');
   const [desiredWeight, setDesiredWeight] = useState('');
   const [bloodType, setBloodType] = useState('1');
   //const contacts = useSelector(selectContacts);
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleInputChange = event => {
     const value = event.target.value;
@@ -22,8 +22,8 @@ export const DailyCaloriesForm = () => {
       case 'age':
         setAge(value);
         break;
-      case 'currentWeight':
-        setCurrentWeight(value);
+      case 'weight':
+        setWeight(value);
         break;
       case 'desiredWeight':
         setDesiredWeight(value);
@@ -39,7 +39,7 @@ export const DailyCaloriesForm = () => {
   const userParams = {
     height,
     age,
-    currentWeight,
+    weight,
     desiredWeight,
     bloodType,
   };
@@ -47,7 +47,7 @@ export const DailyCaloriesForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
     console.log(userParams);
-    //dispatch(getRecommandations(userParams));
+    dispatch(getRecommandations(userParams));
   };
 
   return (
@@ -79,8 +79,8 @@ export const DailyCaloriesForm = () => {
           Current weight *
           <input
             type="number"
-            name="currentWeight"
-            value={currentWeight}
+            name="weight"
+            value={weight}
             onChange={handleInputChange}
             required
           />

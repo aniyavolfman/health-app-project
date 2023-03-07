@@ -2,10 +2,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { dailyRate, dailyRateId } from 'services/api';
 
 export const getRecommandations = createAsyncThunk(
-  '/daily-rate',
-  async (credentials, { rejectWithValue }) => {
+  'dailyRate/user',
+  async (userParams, { rejectWithValue }) => {
     try {
-      const response = await dailyRate(credentials);
+      const response = await dailyRate(userParams);
 
       return response;
     } catch (error) {
@@ -14,15 +14,15 @@ export const getRecommandations = createAsyncThunk(
   }
 );
 
-export const getAuthRecommandations = createAsyncThunk(
-  '/daily-rate',
-  async (credentials, { rejectWithValue }) => {
-    try {
-      const response = await dailyRateId(credentials);
+// export const getAuthRecommandations = createAsyncThunk(
+//   'dailyRate/auth',
+//   async (userParams, userId, { rejectWithValue }) => {
+//     try {
+//       const response = await dailyRateId(userParams, userId);
 
-      return response;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+//       return response;
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
+//   }
+// );
