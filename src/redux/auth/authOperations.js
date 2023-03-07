@@ -1,13 +1,7 @@
-// import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import // getUserDetailsRequest,
-// login,
-// register,
-// token,
-// userLogOutRequest,
-'../../services/api';
 
-import { getUser, login, logOut, refresh, register, token } from '../../services/api';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { login, logOut, refresh, register, token } from '../../services/api';
 
 export const registerUserRequest = createAsyncThunk(
   'auth/register',
@@ -16,6 +10,7 @@ export const registerUserRequest = createAsyncThunk(
       const response = await register(formData);
       return response;
     } catch (error) {
+      Notify.failure('You input data in false format, please try again');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -29,6 +24,7 @@ export const loginUserRequest = createAsyncThunk(
       token.set(response.accessToken, 'Bearer');
       return response;
     } catch (error) {
+      Notify.failure('False login or e-mail, please try again');
       return rejectWithValue(error.message);
     }
   }

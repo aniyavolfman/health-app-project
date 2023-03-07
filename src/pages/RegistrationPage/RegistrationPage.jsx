@@ -37,7 +37,7 @@ const Register = () => {
           />
         </label>
         <button type="submit">Register</button>
-        <NavLink>LogIn</NavLink>
+        <NavLink to="/login">LogIn</NavLink>
       </form>
     </div>
   );
