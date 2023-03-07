@@ -32,7 +32,7 @@ const Login = () => {
           />
         </label>
         <button type="submit">Log In</button>
-        <NavLink>Register</NavLink>
+        <NavLink to="/register">Register</NavLink>
       </form>
     </div>
   );
