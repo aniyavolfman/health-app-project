@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  fetchCurrentUser,
   loginUserRequest,
   logOutRequest,
   refreshUserRequest,
@@ -13,7 +14,9 @@ const initialState = {
   isLoading: false,
   username: '',
   error: null,
-  // email: '',
+  id: null,
+  email: '',
+  userData: null,
 };
 
 const authSlice = createSlice({
@@ -39,9 +42,12 @@ const authSlice = createSlice({
       .addCase(registerUserRequest.pending, state => {
         state.isLoading = true;
       })
-      .addCase(registerUserRequest.fulfilled, state => {
+      .addCase(registerUserRequest.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
+        state.id = action.payload.id;
+        state.email = action.payload.email;
+        state.username = action.payload.username;
       })
       .addCase(registerUserRequest.rejected, (state, action) => {
         state.isLoading = false;
@@ -53,7 +59,7 @@ const authSlice = createSlice({
       })
       .addCase(refreshUserRequest.fulfilled, (state, action) => {
         state.isLoading = false;
-        // state.email = action.payload.email;
+        state.email = action.payload.email;
         state.error = null;
       })
       .addCase(refreshUserRequest.rejected, (state, action) => {
@@ -71,8 +77,31 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
         state.token = null;
-      });
-  },
+      })
+      
+      // ----- get User -----
+      .addCase(fetchCurrentUser.fulfilled, (state, { payload }) => {
+        state.username = payload.username;
+        state.isLoading = false;
+        state.error = null;
+        state.isFetchingCurrentUser = false;
+        state.email = payload.email;
+        state.id = payload.id;
+        state.userData = payload.userData;
+      })
+      .addCase(fetchCurrentUser.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.isLoading = false;
+        state.isLoggedIn = false;
+        state.username = '';
+        state.email = '';
+        state.isFetchingCurrentUser = false;
+      })
+      .addCase(fetchCurrentUser.pending, state => {
+        state.isLoading = true;
+        state.isFetchingCurrentUser= true;
+      })
+  }
 });
 
 export const authReducer = authSlice.reducer;
