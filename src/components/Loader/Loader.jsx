@@ -4,6 +4,8 @@ import { Oval } from 'react-loader-spinner';
 export function Loader () {
   return (
     <>
+     <div style={{position: 'fixed', top: 0, width: '100%', height: '100%', background: 'rgba(0,0,0, 0.5)', }}>
+
       <Oval
         height={80}
         width={80}
@@ -21,6 +23,8 @@ export function Loader () {
         strokeWidth={8}
         strokeWidthSecondary={8}
       />
-    </>
+
+    </div>
+     </>
   );
 };
