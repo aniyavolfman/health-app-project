@@ -3,6 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { getUser, login, logOut, refresh, register, token } from '../../services/api';
 
+
 export const registerUserRequest = createAsyncThunk(
   'auth/register',
   async (formData, thunkAPI) => {
@@ -48,10 +49,11 @@ export const logOutRequest = createAsyncThunk(
   'auth/logout',
   async (_, thunkAPI) => {
     try {
-      const { token: savedToken } = thunkAPI.getState().auth;
-      const response = await logOut();
-      token.unSet(savedToken);
-      return response;
+      console.log(thunkAPI.getState().auth);
+      const {token: accessToken} = thunkAPI.getState().auth;
+      const responce = await logOut();
+      token.unSet(accessToken);
+      return responce;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
