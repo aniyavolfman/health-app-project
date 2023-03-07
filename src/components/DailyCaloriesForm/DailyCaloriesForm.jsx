@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRecommandations } from 'redux/dailyRate/dailyRateOperations';
 import css from './DailyCaloreisForm.module.css';
+import { dailyCalories } from 'redux/dailyRate/dailyRateSelectors';
 
 export const DailyCaloriesForm = () => {
   const [height, setHeight] = useState('');
@@ -11,6 +12,7 @@ export const DailyCaloriesForm = () => {
   const [bloodType, setBloodType] = useState('1');
   //const isLoggedIn = useSelector();
   const dispatch = useDispatch();
+  //const calories = useSelector(dailyCalories);
 
   const handleInputChange = event => {
     const value = event.target.value;
@@ -48,6 +50,7 @@ export const DailyCaloriesForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
     console.log(userParams);
+    //console.log(calories);
     dispatch(getRecommandations(userParams));
   };
 

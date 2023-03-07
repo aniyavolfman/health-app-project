@@ -3,7 +3,7 @@ import { getRecommandations } from './dailyRateOperations';
 
 const initialState = {
   notAllowedProducts: [],
-  dailyRate: '',
+  dailyCalories: '',
   isLoading: false,
   error: null,
 };
