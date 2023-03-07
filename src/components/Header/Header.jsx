@@ -1,5 +1,7 @@
 //import YourSvg from "/path/to/image.svg";
 
+import Navigation from 'components/Navigation/Navigation';
+
 export default function Header() {
   return (
     <>
@@ -8,6 +10,7 @@ export default function Header() {
           {/* <img src={YourSvg} alt="logo" /> */}
           SlimMom
         </a>
+        <Navigation />
       </header>
     </>
   );

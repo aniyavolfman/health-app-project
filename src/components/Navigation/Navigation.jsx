@@ -1,8 +1,9 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default function Navigation() {
   return (
-    <nav className={css.navigation}>
+    <nav>
       <NavLink
         // className={({ isActive }) =>
         //   isActive ? css.active : css.layoutLink
@@ -23,14 +24,6 @@ export default function Navigation() {
         to="/calculator"
       >
         CALCULATOR
-      </NavLink>
-      <NavLink
-        //   className={({ isActive }) =>
-        //     isActive ? css.active : css.layoutLinkLast
-        //   }
-        to="/login"
-      >
-        Login
       </NavLink>
     </nav>
   );

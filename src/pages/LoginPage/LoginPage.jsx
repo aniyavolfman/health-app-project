@@ -1,8 +1,9 @@
 import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { loginUserRequest } from 'redux/auth/authOperations';
 // import css from '../../styles/Contacts.module.css';
 
-export const Login = () => {
+const Login = () => {
   const dispatch = useDispatch();
 
   const handelSubmit = event => {
@@ -17,35 +18,24 @@ export const Login = () => {
   };
   return (
     <div>
-        <form onSubmit={handelSubmit}>
-          <label>
-            Username
-            <input
-              type="text"
-              name="name"
-              placeholder={'Input your name'}
-            />
-          </label>
-          <label>
-            Email
-            <input
-              type="email"
-              name="email"
-              placeholder={'Input your e-mail'}
-            />
-          </label>
-          <label>
-            Password
-            <input
-              type="password"
-              name="password"
-              placeholder={'Input password'}
-            />
-          </label>
-          <button type="submit">
-            Log In
-          </button>
-        </form>
+      <form onSubmit={handelSubmit}>
+        <label>
+          Email
+          <input type="email" name="email" placeholder={'Input your e-mail'} />
+        </label>
+        <label>
+          Password
+          <input
+            type="password"
+            name="password"
+            placeholder={'Input password'}
+          />
+        </label>
+        <button type="submit">Log In</button>
+        <NavLink>Register</NavLink>
+      </form>
     </div>
   );
 };
+
+export default Login;
