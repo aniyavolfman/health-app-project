@@ -10,8 +10,9 @@ export default function DiaryProductsListItem() {
     <div>
       DiaryProductsListItem
       <li>
-        {/* {product}: <span>{grams} </span> <span>{calories} </span> */}
-        <button id={'btnId'} onClick={deleteProduct}>
+        {/* {title}: <span>{weight} </span> <span>{kcal} </span> */}
+        <button id={'id'} onClick={deleteProduct}>
+
           X
         </button>
       </li>
