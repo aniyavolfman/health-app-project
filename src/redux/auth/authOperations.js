@@ -1,12 +1,12 @@
 // import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
-    // getUserDetailsRequest,
-    // login,
-    // register,
-    // token,
-    // userLogOutRequest,
-  } from '../services/api';
+    refresh,
+    login,
+    register,
+    logout,
+    token,
+  } from '../../services/api';
 
   import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -39,13 +39,13 @@ import {
   );
 
   export const refreshUserRequest = createAsyncThunk(
-    'user/current',
+    'auth/refresh',
     async (_, thunkAPI) => {
       try {
         const { token: savedToken } = thunkAPI.getState().auth;
         if (!savedToken) return thunkAPI.rejectWithValue('no token');
         token.set(savedToken);
-        const response = await getUserData();
+        const response = await refresh();
         return response;
       } catch (error) {
         return thunkAPI.rejectWithValue(error.message);
@@ -58,7 +58,7 @@ import {
     async (_, thunkAPI) => {
       try {
         const { token: savedToken } = thunkAPI.getState().auth;
-        const response = await logOut();
+        const response = await logout();
         token.unSet(savedToken);
         return response;
       } catch (error) {
@@ -67,12 +67,3 @@ import {
     }
   );
 
-
-// export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
-//   try {
-//     await instance.post('/auth/logout');
-//     ????????? clearAuthHeader();
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue(error.message);
-//   }
-// });

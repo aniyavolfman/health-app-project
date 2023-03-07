@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { loginUserRequest } from 'redux/auth/authOperations';
 // import css from '../../styles/Contacts.module.css';
 
-export const Login = () => {
+export const LoginPage = () => {
   const dispatch = useDispatch();
 
   const handelSubmit = event => {
@@ -18,14 +18,6 @@ export const Login = () => {
   return (
     <div>
         <form onSubmit={handelSubmit}>
-          <label>
-            Username
-            <input
-              type="text"
-              name="name"
-              placeholder={'Input your name'}
-            />
-          </label>
           <label>
             Email
             <input

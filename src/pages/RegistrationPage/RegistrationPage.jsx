@@ -1,19 +1,21 @@
 import { useDispatch } from 'react-redux';
-import { registerUserRequest } from 'redux/auth/authOperations';
+
+import { registerUserRequest } from '../../redux/auth/authOperations';
 // import css from '../../styles/Contacts.module.css';
 
-export const Register = () => {
+export const RegisterPage = () => {
   const dispatch = useDispatch();
 
   const handelSubmit = event => {
     event.preventDefault();
-    const { name, email, password } = event.target.elements;
+    const { username, email, password } = event.target.elements;
     const user = {
-      name: name.value,
+      username: username.value,
       email: email.value,
       password: password.value,
     };
     dispatch(registerUserRequest(user));
+    console.log(user);
     event.target.reset();
   };
   return (
@@ -21,9 +23,9 @@ export const Register = () => {
         <form onSubmit={handelSubmit}>
           <label>
             Username
-            <Input
+            <input
               type="text"
-              name="name"
+              name="username"
               placeholder={'Input your name'}
             />
           </label>
@@ -46,9 +48,9 @@ export const Register = () => {
           <button type="submit">
             Register
           </button>
-          <NavLink>
+          <button type="submit">
             LogIn
-          </NavLink>
+          </button>
         </form>
     </div>
   );

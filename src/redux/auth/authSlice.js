@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   logOutRequest,
-  refreshUser,
-  userLogin,
-  userRegister,
+  refreshUserRequest,
+  loginUserRequest,
+  registerUserRequest,
 } from './authOperations';
 
 const initialState = {
@@ -18,41 +18,41 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(userLogin.pending, state => {
+      .addCase(loginUserRequest.pending, state => {
         state.isLoading = true;
       })
-      .addCase(userLogin.fulfilled, (state, action) => {
+      .addCase(loginUserRequest.fulfilled, (state, action) => {
         state.isLoading = false;
         state.token = action.payload.token;
         state.email = action.payload.user.email;
         state.error = null;
       })
-      .addCase(userLogin.rejected, (state, action) => {
+      .addCase(loginUserRequest.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
-      .addCase(userRegister.pending, state => {
+      .addCase(registerUserRequest.pending, state => {
         state.isLoading = true;
       })
-      .addCase(userRegister.fulfilled, (state, action) => {
+      .addCase(registerUserRequest.fulfilled, (state, action) => {
         state.isLoading = false;
         state.token = action.payload.token;
         state.error = null;
       })
-      .addCase(userRegister.rejected, (state, action) => {
+      .addCase(registerUserRequest.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
-      // ----- Get current user -----
-      .addCase(refreshUser.pending, state => {
+      // ----- Refresh user -----
+      .addCase(refreshUserRequest.pending, state => {
         state.isLoading = true;
       })
-      .addCase(refreshUser.fulfilled, (state, action) => {
+      .addCase(refreshUserRequest.fulfilled, (state, action) => {
         state.isLoading = false;
         state.email = action.payload.email;
         state.error = null;
       })
-      .addCase(refreshUser.rejected, (state, action) => {
+      .addCase(refreshUserRequest.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
