@@ -1,22 +1,23 @@
-// import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import // getUserDetailsRequest,
-// login,
-// register,
-// token,
-// userLogOutRequest,
-'../../services/api';
 
-import { login, logOut, refresh, register, token } from '../../services/api';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import {
+  getUser,
+  login,
+  logOut,
+  refresh,
+  register,
+  token,
+} from '../../services/api';
 
 export const registerUserRequest = createAsyncThunk(
   'auth/register',
   async (formData, thunkAPI) => {
     try {
       const response = await register(formData);
-      console.log(response);
       return response;
     } catch (error) {
+      Notify.failure('You input data in false format, please try again');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -27,10 +28,10 @@ export const loginUserRequest = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       const response = await login(formData);
-      console.log(response);
-      token.set(response.accessToken, response.refreshToken);
+      token.set(response.accessToken, 'Bearer');
       return response;
     } catch (error) {
+      Notify.failure('False login or e-mail, please try again');
       return rejectWithValue(error.message);
     }
   }
@@ -41,10 +42,8 @@ export const refreshUserRequest = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { sid, refreshToken } = thunkAPI.getState().auth;
-      console.log(sid);
       if (!sid) return thunkAPI.rejectWithValue('no sid');
       const response = await refresh(sid, refreshToken);
-      console.log(response);
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -58,7 +57,9 @@ export const logOutRequest = createAsyncThunk(
     try {
       const { token: savedToken } = thunkAPI.getState().auth;
       const response = await logOut();
+
       console.log('saved:', savedToken);
+
       token.unSet(savedToken);
       return response;
     } catch (error) {
@@ -75,3 +76,21 @@ export const logOutRequest = createAsyncThunk(
 //     return thunkAPI.rejectWithValue(error.message);
 //   }
 // });
+
+export const fetchCurrentUser = createAsyncThunk(
+  'auth/getuser',
+  async (_, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const persistedToken = state.auth.accessToken;
+      if (persistedToken === null) {
+        return;
+      }
+      token.set(persistedToken, 'Bearer');
+      const response = await getUser();
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
