@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { PrivateRoute } from 'components/PrivateRoute/PrivateRoute';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { omit } from 'lodash';
 
@@ -111,15 +110,6 @@ export async function dailyRate(credentials) {
 //   "bloodType": 1
 // }
 
-// export async function dailyRateId(credentials, id) {
-//   try {
-//     const { data } = await $privateHost.post(`/daily-rate/${id}`, credentials);
-//     return data;
-//   } catch (error) {
-//     Notify.failure(error.message);
-//   }
-// }
-
 export async function dailyRateId(credentials) {
   const res = omit(credentials, ['userId']);
   console.log('res', res);
@@ -173,6 +163,22 @@ export async function day(credentials) {
 export async function dayDelete(credentials) {
   try {
     const { data } = await $privateHost.delete('/day', credentials);
+    return data;
+  } catch (error) {
+    Notify.failure(error.message);
+  }
+}
+
+// day info
+
+// приклад тіла запиту  {
+// "date": "2020-12-31"
+// }
+
+
+export async function dayInfo(credentials) {
+  try {
+    const { data } = await $privateHost.post('/day/info', credentials);
     return data;
   } catch (error) {
     Notify.failure(error.message);

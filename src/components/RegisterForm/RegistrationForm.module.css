@@ -1,0 +1,101 @@
+    .formSection {
+    padding-top: 94px;  
+    padding-bottom: 94px;
+    } 
+    .formContainer {
+        width: 100%;
+        max-width: 1200px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin: 0 auto;
+    }
+
+    .labelForm {
+        display: flex;
+        flex-direction: column;
+        margin: 18px 0;  
+    }
+  
+    .inputForm {
+        width: 358px;
+        height: 50px;
+
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 1.25;
+
+        display: flex;
+        align-items: center;
+        border: 1px solid rgba(255,255,255,.3);
+        box-shadow: 0px 4px 4px rgb(0 0 0 / 15%);
+        border-radius: 4px;
+        padding-left: 16px;
+    }
+    .inputForm:focus {
+      color: #212529;
+      background-color: #fff;
+      border-color: #bdbdbd;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+    }
+
+    .btnSubmit, .link {
+    display: flex;
+    width: 120px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    justify-content: center;
+
+    color:  #FFF;
+    background-color: #2196F3;
+
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.88;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border-style: none;
+    border-radius: 4px;
+
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1)
+}
+.btnSubmit:hover, .btnSubmit:focus {
+    background-color:  #1576c5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+  .link {
+    display: flex;
+    width: 120px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    justify-content: center;
+    /* padding: 16px; */
+    /* padding-left: 0; */
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.88;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    
+    color:  #FFF;
+    transition-property: color, background-color, transform;
+    transition-duration: 0.2s;
+    transition-timing-function: cubic-bezier(0, 0.110, 0.35, 2);
+    transform: scale(0.9);
+}
+.link:hover,
+.link:focus {
+    color: #a71313;
+}
+
+.link.active {
+    color: #a71313;
+    border-bottom: 1px solid #a71313;
+    transform: scale(1);
+    pointer-events: none;
+}
+   
