@@ -2,14 +2,20 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   addProductOperations,
   deleteProductOperation,
-  productSearchOperations,
+  // productSearchOperations,
 } from './dayCalendarOperations';
+import { productSearch } from 'services/api';
 
 const initialState = {
   items: [],
   isLoading: false,
   error: null,
-  query:'',
+  query: '',
+  itemTitle: '',
+  itemWeight: '',
+  itemKcal: '',
+  itemId: '',
+  dayId: '',
 };
 
 const productsSlice = createSlice({
@@ -17,27 +23,25 @@ const productsSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      //-------search-----////
-      .addCase(productSearchOperations.pending, pendingHandler)
-      .addCase(productSearchOperations.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.items = action.payload;
-        // console.log(action.payload);
-      })
-      .addCase(productSearchOperations.rejected, rejectHandler)
       //-------add-----////
       .addCase(addProductOperations.pending, pendingHandler)
       .addCase(addProductOperations.fulfilled, (state, action) => {
         state.isLoading = false;
         state.items = [...state.items, action.payload];
+        // state.items = action.payload;
+        state.itemTitle = action.payload.eatenProduct.title;
+        state.itemWeight = action.payload.eatenProduct.weight;
+        state.itemKcal = action.payload.eatenProduct.kcal;
+        state.itemId = action.payload.eatenProduct.id;
+        state.dayId = action.payload.day.id;
       })
+
       .addCase(addProductOperations.rejected, rejectHandler)
       //-------delete-----////
       .addCase(deleteProductOperation.pending, pendingHandler)
       .addCase(deleteProductOperation.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = state.items.filter(item => item.id !== action.payload.id);
-
+        // state.items = state.items.filter(item => item.id !== action.payload.id);
       })
       .addCase(deleteProductOperation.rejected, rejectHandler);
   },

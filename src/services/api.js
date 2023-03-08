@@ -129,7 +129,7 @@ export async function dailyRateId(credentials) {
 export async function productSearch(search) {
   try {
     const { data } = await $privateHost.get(`/product?search=${search}`);
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (error) {
     Notify.failure(error.message);
@@ -147,6 +147,7 @@ export async function productSearch(search) {
 export async function day(credentials) {
   try {
     const { data } = await $privateHost.post('/day', credentials);
+    console.log('cccccc', data);
     return data;
   } catch (error) {
     Notify.failure(error.message);
@@ -160,27 +161,15 @@ export async function day(credentials) {
 //   "eatenProductId": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"
 // }
 
-export async function dayDelete(credentials) {
+export async function dayDelete(dayId, eatenId) {
   try {
-    const { data } = await $privateHost.delete('/day', credentials);
+    console.log(typeof dayId, dayId);
+    const { data } = await $privateHost.delete('/day', {
+      data: { eatenId, dayId },
+    });
     return data;
   } catch (error) {
     Notify.failure(error.message);
   }
 }
-
-// day info
-
-// приклад тіла запиту  {
-// "date": "2020-12-31"
-// }
-
-
-export async function dayInfo(credentials) {
-  try {
-    const { data } = await $privateHost.post('/day/info', credentials);
-    return data;
-  } catch (error) {
-    Notify.failure(error.message);
-  }
-}
+// { data: { dayId, eatenProductId }
