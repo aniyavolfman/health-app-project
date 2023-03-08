@@ -6,9 +6,9 @@ import { useWindowSize } from 'react-use';
 
 import { MdKeyboardReturn } from 'react-icons/md';
 import { createPortal } from 'react-dom';
-import { useSelect } from '@mui/base';
 import { useSelector } from 'react-redux';
 import {
+  selectDailyCalories,
   selectIsLoading,
   selectNotAllowedProducts,
 } from 'redux/dailyRate/dailyRateSelectors';
@@ -21,14 +21,16 @@ console.log('modalRoot', modalRoot);
 
 export function ModalRec({ onClose }) {
   const { width } = useWindowSize();
-  const notAllowedProducts = useSelect(selectNotAllowedProducts);
-  const selectDailyCalories = useSelector(selectDailyCalories);
-
+  const notAllowedProducts = useSelector(selectNotAllowedProducts);
+  const dailyCalories = useSelector(selectDailyCalories);
+  console.log('dailyCalories', dailyCalories);
   const error = useSelector(selectError);
   const isLoading = useSelector(selectIsLoading);
 
   const onBackdropClick = event => {
     if (event.target === event.currentTarget) {
+      // console.log('event.target', event.target);
+      // console.log('event.currentTarget', event.currentTarget);
       onClose();
     }
   };
@@ -47,12 +49,15 @@ export function ModalRec({ onClose }) {
     };
   }, [onClose]);
 
+  // if (!dailyCalories) return;
+
   return createPortal(
     <div className={css.recBackdrop} onClick={onBackdropClick}>
       {isLoading && <Loader />}
-      {error !== null && <p>Ooops... something went wrong</p>}
+      {/* {error !== null && <p>Ooops... something went wrong</p>} */}
       <div className={css.recModal}>
-        <button type="button" className={css.closeBtn} width="20">
+        {width < 768 && <span className={css.recModalEl}></span>}
+        <button type="button" className={css.closeBtn}>
           {width > 768 ? (
             <MdClose width="20" height="20" />
           ) : (
@@ -63,17 +68,17 @@ export function ModalRec({ onClose }) {
           Your recommended daily calorie intake is
         </h2>
         <p className={css.recElText}>
-          {selectDailyCalories && (
-            <span className={css.recEl}>{Math.round(selectDailyCalories)}</span>
+          {dailyCalories && (
+            <span className={css.recEl}>{Math.round(dailyCalories)}</span>
           )}
           <span>ккал</span>
         </p>
 
-        <div className={css.recLine}></div>
+        {/* <div className={css.recLine}></div> */}
         <p className={css.recText}>Foods you should not eat</p>
         <ol className={css.recList}>
           {notAllowedProducts.length > 0 &&
-            notAllowedProducts.map(el => (
+            notAllowedProducts.slice(0, 4).map(el => (
               <li className={css.recItem} key={el}>
                 {el}
               </li>

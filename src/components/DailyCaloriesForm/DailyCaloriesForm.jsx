@@ -19,6 +19,7 @@ export const DailyCaloriesForm = ({ handleOpenModal }) => {
   const [bloodType, setBloodType] = useState(1);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
+
   const calories = useSelector(selectDailyCalories);
   const noProducts = useSelector(selectNotAllowedProducts);
   const userId = useSelector(selectId);
@@ -61,11 +62,14 @@ export const DailyCaloriesForm = ({ handleOpenModal }) => {
     console.log(userParams);
     if (!isLoggedIn) {
       console.log(isLoggedIn);
+      handleOpenModal();
       dispatch(getRecommendations(userParams));
+
+      console.log('userParams', userParams);
     } else {
       dispatch(getAuthRecommendations({ ...userParams, userId }));
-      handleOpenModal();
     }
+
     console.log(userId);
     console.log(userParams);
   };

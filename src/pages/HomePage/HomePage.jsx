@@ -6,8 +6,10 @@ import React, { useState } from 'react';
 
 export default function HomePage() {
   const [isOpenModal, setIsOpenModal] = useState(false);
+  console.log('isOpenModal', isOpenModal);
 
   const handleOpenModal = () => {
+    console.log(1);
     setIsOpenModal(true);
   };
 
