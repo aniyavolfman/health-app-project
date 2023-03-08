@@ -11,7 +11,6 @@ import {
   token,
 } from '../../services/api';
 
-
 export const registerUserRequest = createAsyncThunk(
   'auth/register',
   async (formData, thunkAPI) => {
@@ -62,11 +61,13 @@ export const logOutRequest = createAsyncThunk(
   'auth/logout',
   async (_, thunkAPI) => {
     try {
-      console.log(thunkAPI.getState().auth);
-      const {token: accessToken} = thunkAPI.getState().auth;
-      const responce = await logOut();
-      token.unSet(accessToken);
-      return responce;
+      const { token: savedToken } = thunkAPI.getState().auth;
+      const response = await logOut();
+
+      console.log('saved:', savedToken);
+
+      token.unSet(savedToken);
+      return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

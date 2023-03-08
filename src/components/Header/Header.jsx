@@ -22,7 +22,6 @@ export default function Header() {
         <Navigation />
         {token && <UserInfo />}
       </header>
-
     </>
   );
 }

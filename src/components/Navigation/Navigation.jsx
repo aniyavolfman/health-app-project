@@ -4,9 +4,9 @@ import { NavLink } from 'react-router-dom';
 import { selectAccessToken } from 'redux/auth/authSelectors';
 import css from '../Navigation/Navigation.module.css';
 
-
 export default function Navigation() {
   const token = useSelector(selectAccessToken);
+
   return (
     <nav className={css.navigation}>
       {token ? (
