@@ -76,7 +76,7 @@ export const DailyCaloriesForm = () => {
       </h2>
       <form className={css.form} onSubmit={handleSubmit}>
         <input
-          type="number"
+          type="text"
           name="height"
           value={height}
           onChange={handleInputChange}
