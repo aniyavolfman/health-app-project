@@ -10,15 +10,15 @@
 }
 
 .recModal {
-  margin-top: 40px;
-  padding-top: 40px;
+  // margin-top: 40px;
+  padding-top: 80px;
   padding-bottom: 119px;
   padding-left: 20px;
   padding-right: 20px;
   border: none;
   width: 100%;
   min-width: 280px;
-  min-height: 597px;
+  min-height: 637px;
   background-color: #ffffff;
   z-index: 301;
   border: 1px solid #e0e0e0;
@@ -38,18 +38,28 @@
   }
 }
 
+.recModalEl {
+  width: 100%;
+  height: 40px;
+  background-color: #eff1f3;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
 .closeBtn {
   position: absolute;
   border: none;
   left: 20px;
-  top: -28px;
+  top: 15px;
   background-color: transparent;
   margin: 0;
   padding: 0;
 
   @media (min-width: 768px) {
     right: 20px;
-    top: 20px;
+    top: 17px;
   }
 }
 
@@ -76,6 +86,7 @@
   color: #264061;
   text-align: center;
   margin-bottom: 32px;
+  // margin-top: 80px;
 }
 
 .recEl {
@@ -112,6 +123,8 @@
   // text-align: left;
   color: #212121;
   margin-bottom: 20px;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 20px;
   // margin-left: 171px;
 }
 
@@ -149,6 +162,7 @@
 
 .btnSubmit:hover,
 .btnSubmit:focus {
+  background-color: transparent;
   border: 2px solid #fc842d;
   color: #fc842d;
 }

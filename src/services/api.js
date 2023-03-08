@@ -93,6 +93,7 @@ export async function getUser() {
 export async function dailyRate(credentials) {
   try {
     const { data } = await $publicHost.post('/daily-rate', credentials);
+    console.log('data', data);
     return data;
   } catch (error) {
     Notify.failure(error.message);
