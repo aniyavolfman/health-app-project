@@ -17,6 +17,7 @@ const initialState = {
   id: null,
   email: '',
   userData: null,
+  isLoggedIn: false,
 };
 
 const authSlice = createSlice({
@@ -33,7 +34,9 @@ const authSlice = createSlice({
         state.accessToken = action.payload.accessToken;
         state.refreshToken = action.payload.refreshToken;
         state.sid = action.payload.sid;
+        state.username = action.payload.user.username;
         state.error = null;
+        state.isLoggedIn = true;
       })
       .addCase(loginUserRequest.rejected, (state, action) => {
         state.isLoading = false;
@@ -48,6 +51,7 @@ const authSlice = createSlice({
         state.id = action.payload.id;
         state.email = action.payload.email;
         state.username = action.payload.username;
+        state.isLoggedIn = true;
       })
       .addCase(registerUserRequest.rejected, (state, action) => {
         state.isLoading = false;
@@ -79,29 +83,30 @@ const authSlice = createSlice({
         state.token = null;
       })
 
-    // ----- get User -----
-          .addCase(fetchCurrentUser.fulfilled, (state, { payload }) => {
-            state.username = payload.username;
-            state.isLoading = false;
-            state.error = null;
-            state.isFetchingCurrentUser = false;
-            state.email = payload.email;
-            state.id = payload.id;
-            state.userData = payload.userData;
-          })
-          .addCase(fetchCurrentUser.rejected, (state, { payload }) => {
-            state.error = payload;
-            state.isLoading = false;
-            state.isLoggedIn = false;
-            state.username = '';
-            state.email = '';
-            state.isFetchingCurrentUser = false;
-          })
-          .addCase(fetchCurrentUser.pending, state => {
-            state.isLoading = true;
-            state.isFetchingCurrentUser= true;
-          })
-  }
+      // ----- get User -----
+      .addCase(fetchCurrentUser.fulfilled, (state, { payload }) => {
+        state.username = payload.username;
+        state.isLoading = false;
+        state.error = null;
+        state.isFetchingCurrentUser = false;
+        state.email = payload.email;
+        state.id = payload.id;
+        state.userData = payload.userData;
+        state.isLoggedIn = true;
+      })
+      .addCase(fetchCurrentUser.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.isLoading = false;
+        state.isLoggedIn = false;
+        state.username = '';
+        state.email = '';
+        state.isFetchingCurrentUser = false;
+      })
+      .addCase(fetchCurrentUser.pending, state => {
+        state.isLoading = true;
+        state.isFetchingCurrentUser = true;
+      });
+  },
 });
 
 export const authReducer = authSlice.reducer;
