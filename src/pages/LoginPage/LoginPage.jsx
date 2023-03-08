@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { loginUserRequest } from 'redux/auth/authOperations';
 // import css from '../../styles/Contacts.module.css';
 
-const Login = () => {
+const LoginPage = () => {
   const dispatch = useDispatch();
 
   const handelSubmit = event => {
@@ -32,10 +32,10 @@ const Login = () => {
           />
         </label>
         <button type="submit">Log In</button>
-        <NavLink>Register</NavLink>
+        <NavLink to="/register">Register</NavLink>
       </form>
     </div>
   );
 };
 
-export default Login;
+export default LoginPage;

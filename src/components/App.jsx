@@ -1,9 +1,9 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, Link } from 'react-router-dom';
 import React, { lazy, Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PublicRoute } from './PublicRoute/PublicRoute';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
-import { refreshUserRequest } from 'redux/auth/authOperations';
+import { fetchCurrentUser, refreshUserRequest } from 'redux/auth/authOperations';
 import { selectSid } from 'redux/auth/authSelectors';
 
 const LazyLayout = lazy(() => import('./Layout/Layout'));
@@ -22,8 +22,8 @@ function App() {
   const sid = useSelector(selectSid);
 
   useEffect(() => {
-    console.log(sid);
     dispatch(refreshUserRequest(sid));
+    dispatch(fetchCurrentUser());
   }, [dispatch, sid]);
 
   return (
@@ -39,7 +39,17 @@ function App() {
             <Route path="/diary" element={<LazyDiaryPage />} />
             <Route path="/calculator" element={<LazyCalculatorPage />} />
           </Route>
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route
+            path="*"
+            element={
+              <div >
+                Sorry, page not found.
+                <span >
+                  <Link to="/">Go home</Link>
+                </span>
+              </div>
+            }
+          />
         </Route>
       </Routes>
     </Suspense>
@@ -47,4 +57,3 @@ function App() {
 }
 
 export default App;
-

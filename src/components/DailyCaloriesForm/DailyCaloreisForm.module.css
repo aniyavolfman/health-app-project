@@ -1,0 +1,21 @@
+.wrapper {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 32px;
+}
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 34px;
+  color: var(--modal-primary-color);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
