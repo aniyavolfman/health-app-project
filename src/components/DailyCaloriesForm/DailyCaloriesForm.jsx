@@ -21,7 +21,7 @@ export const DailyCaloriesForm = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
   const calories = useSelector(selectDailyCalories);
-  const products = useSelector(selectNotAllowedProducts);
+  const noProducts = useSelector(selectNotAllowedProducts);
 
   const handleInputChange = event => {
     const value = event.target.value;
@@ -66,7 +66,7 @@ export const DailyCaloriesForm = () => {
     }
 
     console.log(calories);
-    console.log(products);
+    console.log(noProducts);
   };
 
   return (
