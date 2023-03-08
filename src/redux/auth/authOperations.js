@@ -97,4 +97,4 @@ export const fetchCurrentUser = createAsyncThunk(
       return thunkAPI.rejectWithValue(error.message);
     }
   }
-
+)
