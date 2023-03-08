@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { PrivateRoute } from 'components/PrivateRoute/PrivateRoute';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 // axios.defaults.baseURL = 'https://slimmom-backend.goit.global/';
@@ -106,6 +107,17 @@ export async function dailyRate(credentials) {
 export async function dailyRateId(credentials, id) {
   try {
     const { data } = await axios.post(`/daily-rate/${id}`, credentials);
+    return data;
+  } catch (error) {
+    Notify.failure(error.message);
+  }
+}
+
+//Product-search
+export async function productSearch(search) {
+  try {
+    const { data } = await $privateHost.get(`/product?search=${search}`);
+    console.log(data);
     return data;
   } catch (error) {
     Notify.failure(error.message);

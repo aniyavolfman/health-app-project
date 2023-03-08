@@ -6,9 +6,9 @@ export function DiaryProductsList () {
     <div>
       DiaryProductsList
       <ul >
-        {"filterContacts".map(({ id, name, number }) => (
+        {/* {"filterContacts".map(({ id, name, number }) => (
           <DiaryProductsListItem />
-        ))}
+        ))} */}
       </ul>
     </div>
   );
