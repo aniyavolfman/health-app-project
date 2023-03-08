@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import omit from 'lodash';
+import { omit } from 'lodash';
 
 const $publicHost = axios.create({
   baseURL: 'https://slimmom-backend.goit.global/',
@@ -119,6 +119,8 @@ export async function dailyRate(credentials) {
 // }
 
 export async function dailyRateId(credentials) {
+  const res = omit(credentials, ['userId']);
+  console.log('res', res);
   try {
     const { data } = await $privateHost.post(
       `/daily-rate/${credentials.userId}`,
