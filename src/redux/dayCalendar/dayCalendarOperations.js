@@ -6,7 +6,7 @@ export const productSearchOperations = createAsyncThunk(
   'product/searchProduct',
   async (query, thunkAPI) => {
     try {
-      const response = await productSearch(query) ;
+      const response = await productSearch(query);
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
