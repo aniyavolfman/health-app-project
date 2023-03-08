@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 import {
   getUser,
   login,
@@ -59,6 +60,9 @@ export const logOutRequest = createAsyncThunk(
     try {
       const { token: savedToken } = thunkAPI.getState().auth;
       const response = await logOut();
+
+      console.log('saved:', savedToken);
+
       token.unSet(savedToken);
       return response;
     } catch (error) {

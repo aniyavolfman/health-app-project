@@ -34,6 +34,7 @@ const authSlice = createSlice({
         state.accessToken = action.payload.accessToken;
         state.refreshToken = action.payload.refreshToken;
         state.sid = action.payload.sid;
+        state.username = action.payload.user.username;
         state.error = null;
         state.isLoggedIn = true;
       })
