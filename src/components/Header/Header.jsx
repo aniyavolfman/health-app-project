@@ -1,45 +1,26 @@
-import Navigation from 'components/Navigation/Navigation';
-
-import UserInfo from 'components/UserInfo/UserInfo';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { logOutRequest } from 'redux/auth/authOperations';
-import { selectAccessToken, selectUserName } from 'redux/auth/authSelectors';
-import Logo from '../../img/logo.png';
-
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { selectAccessToken } from 'redux/auth/authSelectors';
+import Navigation from 'components/Navigation/Navigation';
+import UserInfo from 'components/UserInfo/UserInfo';
+import Logo from '../../img/logo.png';
+import css from './Header.module.scss';
 
 export default function Header() {
   const token = useSelector(selectAccessToken);
-  const username = useSelector(selectUserName);
-  const dispatch = useDispatch();
-
-  const handleLogOut = () => {
-    dispatch(logOutRequest());
-  };
 
   return (
     <>
-      <header>
+      <header className={css.header}>
         <a href="../../pages/HomePage">
           <img src={Logo} alt="logo" />
         </a>
 
-        <Link to="/">
-          {/* <img src={YourSvg} alt="logo" /> */}
-          SlimMom
+        <Link to="/" className={css.logo}>
+          Slim<span className={css.logoOrange}>Mom</span>
         </Link>
         <Navigation />
-        {token ? (
-          <div>
-            <span>{username}</span>
-            <NavLink to="/login" onClick={handleLogOut}>
-              Exit
-            </NavLink>
-          </div>
-        ) : (
-          <UserInfo />
-        )}
+        {token && <UserInfo />}
       </header>
     </>
   );
