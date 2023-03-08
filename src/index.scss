@@ -1,29 +1,8 @@
 @import '../node_modules/modern-normalize/modern-normalize.css'; /* bring in normalize.css styles */
 
-:root {
-  --primary-color: #e5e5e5;
-  --primary-text-color: #212121;
-  --second-text-color: #9b9faa;
-  --accent-text-color: #fc842d;
-
-  //Бекграунд
-  --page--bg-color: #e5e5e5;
-  --modal-bg-color: #9b9faa;
-  --footer-bg-color: #f0f1f3;
-
-  //Кнопка
-  --active-btn-color: #fc842d;
-  --btn-text-unactive-color: #fc842d;
-  --btn-text-active-color: #ffffff;
-
-  //Модал
-  --modal-primary-color: #212121;
-  --modal-text-color: #9b9faa;
-  --accent-modal-color: #264061;
-
-  //Для анімації
-  --typical-hover-transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
+@import '../src/styles/container';
+@import '../src/styles/vars';
+@import '../src/styles/btn';
 
 *,
 *::before,
