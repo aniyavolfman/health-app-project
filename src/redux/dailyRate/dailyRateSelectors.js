@@ -1,3 +1,4 @@
-export const notAllowedProducts = state => state.DailyRate.notAllowedProducts;
-export const dailyCalories = state => state.DailyRate.dailyCalories;
-const isLoading = state => state.DailyRate.isLoading;
+export const selectNotAllowedProducts = state =>
+  state.dailyRate.notAllowedProducts;
+export const selectDailyCalories = state => state.dailyRate.dailyCalories;
+//export const selectisLoading = state => state.dailyRate.isLoading;

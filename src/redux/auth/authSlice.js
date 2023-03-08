@@ -78,31 +78,31 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
         state.token = null;
-      });
+      })
 
     // ----- get User -----
-    //       .addCase(fetchCurrentUser.fulfilled, (state, { payload }) => {
-    //         state.username = payload.username;
-    //         state.isLoading = false;
-    //         state.error = null;
-    //         state.isFetchingCurrentUser = false;
-    //         state.email = payload.email;
-    //         state.id = payload.id;
-    //         state.userData = payload.userData;
-    //       })
-    //       .addCase(fetchCurrentUser.rejected, (state, { payload }) => {
-    //         state.error = payload;
-    //         state.isLoading = false;
-    //         state.isLoggedIn = false;
-    //         state.username = '';
-    //         state.email = '';
-    //         state.isFetchingCurrentUser = false;
-    //       })
-    //       .addCase(fetchCurrentUser.pending, state => {
-    //         state.isLoading = true;
-    //         state.isFetchingCurrentUser= true;
-    //       })
-  },
+          .addCase(fetchCurrentUser.fulfilled, (state, { payload }) => {
+            state.username = payload.username;
+            state.isLoading = false;
+            state.error = null;
+            state.isFetchingCurrentUser = false;
+            state.email = payload.email;
+            state.id = payload.id;
+            state.userData = payload.userData;
+          })
+          .addCase(fetchCurrentUser.rejected, (state, { payload }) => {
+            state.error = payload;
+            state.isLoading = false;
+            state.isLoggedIn = false;
+            state.username = '';
+            state.email = '';
+            state.isFetchingCurrentUser = false;
+          })
+          .addCase(fetchCurrentUser.pending, state => {
+            state.isLoading = true;
+            state.isFetchingCurrentUser= true;
+          })
+  }
 });
 
 export const authReducer = authSlice.reducer;

@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecommandations } from 'redux/dailyRate/dailyRateOperations';
-import css from './DailyCaloreisForm.module.css';
-import { dailyCalories } from 'redux/dailyRate/dailyRateSelectors';
+import {
+  getAuthRecommendations,
+  getRecommendations,
+} from 'redux/dailyRate/dailyRateOperations';
+import css from './DailyCaloriesForm.module.scss';
+import {
+  selectDailyCalories,
+  selectNotAllowedProducts,
+  //selectisLoading,
+} from 'redux/dailyRate/dailyRateSelectors';
+import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 
 export const DailyCaloriesForm = () => {
   const [height, setHeight] = useState('');
@@ -10,9 +18,10 @@ export const DailyCaloriesForm = () => {
   const [weight, setWeight] = useState('');
   const [desiredWeight, setDesiredWeight] = useState('');
   const [bloodType, setBloodType] = useState('1');
-  //const isLoggedIn = useSelector();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
-  //const calories = useSelector(dailyCalories);
+  const calories = useSelector(selectDailyCalories);
+  const noProducts = useSelector(selectNotAllowedProducts);
 
   const handleInputChange = event => {
     const value = event.target.value;
@@ -50,8 +59,14 @@ export const DailyCaloriesForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
     console.log(userParams);
-    //console.log(calories);
-    dispatch(getRecommandations(userParams));
+    if (!isLoggedIn) {
+      dispatch(getRecommendations(userParams));
+    } else {
+      dispatch(getAuthRecommendations(userParams));
+    }
+
+    console.log(calories);
+    console.log(noProducts);
   };
 
   return (
@@ -61,7 +76,7 @@ export const DailyCaloriesForm = () => {
       </h2>
       <form className={css.form} onSubmit={handleSubmit}>
         <input
-          type="number"
+          type="text"
           name="height"
           value={height}
           onChange={handleInputChange}
@@ -142,7 +157,7 @@ export const DailyCaloriesForm = () => {
           />
           4
         </label>
-
+        <p>{calories}</p>
         <button type="submit">Start losing weight</button>
       </form>
     </div>

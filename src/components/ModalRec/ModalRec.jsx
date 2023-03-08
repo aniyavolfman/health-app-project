@@ -6,7 +6,8 @@ import { MdKeyboardReturn } from 'react-icons/md';
 import { createPortal } from 'react-dom';
 // import { useDispatch } from 'react-redux';
 
-const modalRoot = document.getElementById('modal-root');
+const modalRoot = document.getElementById('modal');
+console.log(modalRoot);
 
 export function ModalRec() {
   // const dispatch = useDispatch();
@@ -49,12 +50,11 @@ export function ModalRec() {
             <li>Milk</li>
           </ol>
 
-          <button type="submit" class={css.btnSubmit}>
+          <button type="submit" className={css.btnSubmit}>
             Start losing weight
           </button>
         </div>
-      </div>
-    ),
-    modalRoot
+      </div>,  modalRoot
+    )
   );
 }
