@@ -45,7 +45,7 @@ export const refreshUserRequest = createAsyncThunk(
       if (!sid) return thunkAPI.rejectWithValue('no sid');
       const response = await refresh(sid, refreshToken);
       token.set(response.newAccessToken, 'Bearer');
-      console.log(response);
+
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
