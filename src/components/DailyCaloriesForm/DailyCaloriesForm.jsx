@@ -8,21 +8,20 @@ import css from './DailyCaloriesForm.module.scss';
 import {
   selectDailyCalories,
   selectNotAllowedProducts,
-  //selectisLoading,
 } from 'redux/dailyRate/dailyRateSelectors';
-import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+import { selectId, selectIsLoggedIn } from 'redux/auth/authSelectors';
 
 export const DailyCaloriesForm = () => {
   const [height, setHeight] = useState('');
   const [age, setAge] = useState('');
   const [weight, setWeight] = useState('');
   const [desiredWeight, setDesiredWeight] = useState('');
-  const [bloodType, setBloodType] = useState('1');
+  const [bloodType, setBloodType] = useState(1);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
   const calories = useSelector(selectDailyCalories);
   const noProducts = useSelector(selectNotAllowedProducts);
-
+  const userId = useSelector(selectId);
   const handleInputChange = event => {
     const value = event.target.value;
     const name = event.target.name;
@@ -41,7 +40,7 @@ export const DailyCaloriesForm = () => {
         setDesiredWeight(value);
         break;
       case 'bloodType':
-        setBloodType(value);
+        setBloodType(Number(value));
         break;
       default:
         break;
@@ -54,19 +53,20 @@ export const DailyCaloriesForm = () => {
     weight,
     desiredWeight,
     bloodType,
+    //userId,
   };
 
   const handleSubmit = event => {
     event.preventDefault();
     console.log(userParams);
     if (!isLoggedIn) {
+      console.log(isLoggedIn);
       dispatch(getRecommendations(userParams));
     } else {
-      dispatch(getAuthRecommendations(userParams));
+      dispatch(getAuthRecommendations({ ...userParams, userId }));
     }
-
-    console.log(calories);
-    console.log(noProducts);
+    console.log(userId);
+    console.log(userParams);
   };
 
   return (
@@ -117,9 +117,9 @@ export const DailyCaloriesForm = () => {
           <input
             type="radio"
             name="bloodType"
-            value="1"
+            value={1}
             onChange={handleInputChange}
-            checked={bloodType === '1'}
+            checked={bloodType === 1}
             required
           />
           1
@@ -128,9 +128,9 @@ export const DailyCaloriesForm = () => {
           <input
             type="radio"
             name="bloodType"
-            value="2"
+            value={2}
             onChange={handleInputChange}
-            checked={bloodType === '2'}
+            checked={bloodType === 2}
             required
           />
           2
@@ -139,9 +139,9 @@ export const DailyCaloriesForm = () => {
           <input
             type="radio"
             name="bloodType"
-            value="3"
+            value={3}
             onChange={handleInputChange}
-            checked={bloodType === '3'}
+            checked={bloodType === 3}
             required
           />
           3
@@ -150,14 +150,15 @@ export const DailyCaloriesForm = () => {
           <input
             type="radio"
             name="bloodType"
-            value="4"
+            value={4}
             onChange={handleInputChange}
-            checked={bloodType === '4'}
+            checked={bloodType === 4}
             required
           />
           4
         </label>
         <p>{calories}</p>
+        {/* <p>{noProducts}</p> */}
         <button type="submit">Start losing weight</button>
       </form>
     </div>

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { PrivateRoute } from 'components/PrivateRoute/PrivateRoute';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { omit } from 'lodash';
 
 const $publicHost = axios.create({
   baseURL: 'https://slimmom-backend.goit.global/',
@@ -109,9 +110,24 @@ export async function dailyRate(credentials) {
 //   "bloodType": 1
 // }
 
-export async function dailyRateId(credentials, id) {
+// export async function dailyRateId(credentials, id) {
+//   try {
+//     const { data } = await $privateHost.post(`/daily-rate/${id}`, credentials);
+//     return data;
+//   } catch (error) {
+//     Notify.failure(error.message);
+//   }
+// }
+
+export async function dailyRateId(credentials) {
+  const res = omit(credentials, ['userId']);
+  console.log('res', res);
   try {
-    const { data } = await $privateHost.post(`/daily-rate/${id}`, credentials);
+    const { data } = await $privateHost.post(
+      `/daily-rate/${credentials.userId}`,
+      omit(credentials, ['userId'])
+    );
+
     return data;
   } catch (error) {
     Notify.failure(error.message);
