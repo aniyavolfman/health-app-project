@@ -6,7 +6,7 @@ export const getRecommendations = createAsyncThunk(
   async (userParams, { rejectWithValue }) => {
     try {
       const response = await dailyRate(userParams);
-      //console.log(response);
+
       return response;
     } catch (error) {
       return rejectWithValue(error.message);
