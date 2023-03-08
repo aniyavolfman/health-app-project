@@ -9,7 +9,7 @@ export default function HomePage() {
     <div>
       <CalculatorСalorieForm />
       <DailyCaloriesForm />
-      <ModalRec />
+      {/* <ModalRec /> */}
     </div>
   );
 }
