@@ -17,6 +17,9 @@ export const registerUserRequest = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const response = await register(formData);
+      thunkAPI.dispatch(
+        loginUserRequest({ email: response.email, password: formData.password })
+      );
       return response;
     } catch (error) {
       Notify.failure('You input data in false format, please try again');
