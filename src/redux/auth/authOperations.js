@@ -16,6 +16,9 @@ export const registerUserRequest = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const response = await register(formData);
+      thunkAPI.dispatch(
+        loginUserRequest({ email: response.email, password: formData.password })
+      );
       return response;
     } catch (error) {
       Notify.failure('You input data in false format, please try again');
@@ -58,13 +61,11 @@ export const logOutRequest = createAsyncThunk(
   'auth/logout',
   async (_, thunkAPI) => {
     try {
-      const { token: savedToken } = thunkAPI.getState().auth;
-      const response = await logOut();
-
-      console.log('saved:', savedToken);
-
-      token.unSet(savedToken);
-      return response;
+      console.log(thunkAPI.getState().auth);
+      const {token: accessToken} = thunkAPI.getState().auth;
+      const responce = await logOut();
+      token.unSet(accessToken);
+      return responce;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -96,4 +97,4 @@ export const fetchCurrentUser = createAsyncThunk(
       return thunkAPI.rejectWithValue(error.message);
     }
   }
-);
+
