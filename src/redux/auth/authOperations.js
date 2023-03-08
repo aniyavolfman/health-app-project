@@ -1,7 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { getUser, login, logOut, refresh, register, token } from '../../services/api';
+import {
+  getUser,
+  login,
+  logOut,
+  refresh,
+  register,
+  token,
+} from '../../services/api';
 
 export const registerUserRequest = createAsyncThunk(
   'auth/register',
@@ -37,6 +44,8 @@ export const refreshUserRequest = createAsyncThunk(
       const { sid, refreshToken } = thunkAPI.getState().auth;
       if (!sid) return thunkAPI.rejectWithValue('no sid');
       const response = await refresh(sid, refreshToken);
+      token.set(response.newAccessToken, 'Bearer');
+      console.log(response);
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -66,7 +75,6 @@ export const logOutRequest = createAsyncThunk(
 //     return thunkAPI.rejectWithValue(error.message);
 //   }
 // });
-
 
 export const fetchCurrentUser = createAsyncThunk(
   'auth/getuser',

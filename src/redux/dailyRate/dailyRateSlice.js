@@ -12,15 +12,14 @@ export const dailyRateSlice = createSlice({
   name: 'dailyRate',
   initialState: initialState,
   reducers: {},
-  extraReducers: builder =>
-    builder
-      .addCase(getRecommandations.pending, pendingHandler)
-      .addCase(getRecommandations.fulfilled, (state, action) => {
-        state.isLoading = 'false';
-        state.notAllowedProducts = action.payload.notAllowedProducts;
-        state.dailyRate = action.payload.dailyRate;
-      })
-      .addCase(getRecommandations.rejected, rejectHandler),
+  extraReducers: builder => builder,
+  // .addCase(getRecommandations.pending, pendingHandler)
+  // .addCase(getRecommandations.fulfilled, (state, action) => {
+  //   state.isLoading = 'false';
+  //   state.notAllowedProducts = action.payload.notAllowedProducts;
+  //   state.dailyRate = action.payload.dailyRate;
+  // })
+  // .addCase(getRecommandations.rejected, rejectHandler),
 });
 
 function pendingHandler(state) {

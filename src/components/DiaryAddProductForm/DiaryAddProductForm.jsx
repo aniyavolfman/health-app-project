@@ -34,8 +34,9 @@ export default function DiaryAddProductForm() {
   console.log(userMap);
   const handleAddProducts = e => {
     const { name, value } = e.target;
+    console.log(name)
     userMap[name](value);
-    console.log(e.target.value);
+  
   };
   console.log(date, product, weight);
 
