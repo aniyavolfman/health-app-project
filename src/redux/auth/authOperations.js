@@ -41,7 +41,6 @@ export const loginUserRequest = createAsyncThunk(
   }
 );
 
-
 export const refreshUserRequest = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
@@ -98,4 +97,4 @@ export const fetchCurrentUser = createAsyncThunk(
       return thunkAPI.rejectWithValue(error.message);
     }
   }
-);
+
