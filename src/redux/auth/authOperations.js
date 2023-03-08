@@ -61,13 +61,11 @@ export const logOutRequest = createAsyncThunk(
   'auth/logout',
   async (_, thunkAPI) => {
     try {
-      const { token: savedToken } = thunkAPI.getState().auth;
-      const response = await logOut();
-
-      console.log('saved:', savedToken);
-
-      token.unSet(savedToken);
-      return response;
+      console.log(thunkAPI.getState().auth);
+      const {token: accessToken} = thunkAPI.getState().auth;
+      const responce = await logOut();
+      token.unSet(accessToken);
+      return responce;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -99,4 +97,4 @@ export const fetchCurrentUser = createAsyncThunk(
       return thunkAPI.rejectWithValue(error.message);
     }
   }
-);
+)
