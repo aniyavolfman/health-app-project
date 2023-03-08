@@ -19,8 +19,8 @@ export const DailyCaloriesForm = () => {
   const [bloodType, setBloodType] = useState(1);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
-  const calories = useSelector(selectDailyCalories);
-  const noProducts = useSelector(selectNotAllowedProducts);
+  // const calories = useSelector(selectDailyCalories);
+  // const noProducts = useSelector(selectNotAllowedProducts);
   const userId = useSelector(selectId);
   const handleInputChange = event => {
     const value = event.target.value;
@@ -53,20 +53,19 @@ export const DailyCaloriesForm = () => {
     weight,
     desiredWeight,
     bloodType,
-    //userId,
+  
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(userParams);
+    
     if (!isLoggedIn) {
       console.log(isLoggedIn);
       dispatch(getRecommendations(userParams));
     } else {
       dispatch(getAuthRecommendations({ ...userParams, userId }));
     }
-    console.log(userId);
-    console.log(userParams);
+   
   };
 
   return (
@@ -75,7 +74,8 @@ export const DailyCaloriesForm = () => {
         Calculate your daily calorie intake right now
       </h2>
       <form className={css.form} onSubmit={handleSubmit}>
-        <input
+        <div className={css.inputsWrapper}>
+        <input className={css.input}
           type="text"
           name="height"
           value={height}
@@ -85,8 +85,8 @@ export const DailyCaloriesForm = () => {
           required
         />
 
-        <input
-          type="number"
+        <input className={css.input}
+          type="text"
           name="age"
           value={age}
           onChange={handleInputChange}
@@ -94,8 +94,8 @@ export const DailyCaloriesForm = () => {
           required
         />
 
-        <input
-          type="number"
+        <input className={css.input}
+          type="text"
           name="weight"
           value={weight}
           onChange={handleInputChange}
@@ -103,18 +103,20 @@ export const DailyCaloriesForm = () => {
           required
         />
 
-        <input
-          type="number"
+        <input className={css.input}
+          type="text"
           name="desiredWeight"
           value={desiredWeight}
           onChange={handleInputChange}
           placeholder="Desired weight *"
           required
         />
+        </div>
 
-        <p>Blood type *</p>
-        <label>
-          <input
+        <p className={css.radioTitle}>Blood type *</p>
+        <div className={css.radioWrapper}>
+        <label className={css.radioLabel}>
+          <input className={css.radioInput}
             type="radio"
             name="bloodType"
             value={1}
@@ -124,8 +126,8 @@ export const DailyCaloriesForm = () => {
           />
           1
         </label>
-        <label>
-          <input
+        <label className={css.radioLabel}>
+          <input className={css.radioInput}
             type="radio"
             name="bloodType"
             value={2}
@@ -135,8 +137,8 @@ export const DailyCaloriesForm = () => {
           />
           2
         </label>
-        <label>
-          <input
+        <label className={css.radioLabel}>
+          <input className={css.radioInput}
             type="radio"
             name="bloodType"
             value={3}
@@ -146,8 +148,8 @@ export const DailyCaloriesForm = () => {
           />
           3
         </label>
-        <label>
-          <input
+        <label className={css.radioLabel}>
+          <input className={css.radioInput}
             type="radio"
             name="bloodType"
             value={4}
@@ -157,9 +159,8 @@ export const DailyCaloriesForm = () => {
           />
           4
         </label>
-        <p>{calories}</p>
-        {/* <p>{noProducts}</p> */}
-        <button type="submit">Start losing weight</button>
+        </div>
+        <button className={css.startBtn}type="submit">Start losing weight</button>
       </form>
     </div>
   );
