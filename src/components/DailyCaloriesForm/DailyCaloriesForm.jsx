@@ -11,7 +11,7 @@ import {
 } from 'redux/dailyRate/dailyRateSelectors';
 import { selectId, selectIsLoggedIn } from 'redux/auth/authSelectors';
 
-export const DailyCaloriesForm = () => {
+export const DailyCaloriesForm = ({ handleOpenModal }) => {
   const [height, setHeight] = useState('');
   const [age, setAge] = useState('');
   const [weight, setWeight] = useState('');
@@ -61,7 +61,10 @@ export const DailyCaloriesForm = () => {
     
     if (!isLoggedIn) {
       console.log(isLoggedIn);
+      handleOpenModal();
       dispatch(getRecommendations(userParams));
+
+      console.log('userParams', userParams);
     } else {
       dispatch(getAuthRecommendations({ ...userParams, userId }));
     }
