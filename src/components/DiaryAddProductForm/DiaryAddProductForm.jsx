@@ -1,43 +1,101 @@
-import React from 'react';
+import { format } from 'date-fns';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
-// import { useDispatch } from 'react-redux';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { TextField } from '@mui/material';
+import dayjs from 'dayjs';
+import { useDispatch } from 'react-redux';
+import { productSearchOperations } from 'redux/dayCalendar/dayCalendarOperations';
+import { productSearch } from 'services/api';
 
 export default function DiaryAddProductForm() {
+  const dispatch = useDispatch();
 
-  //  const dispatch = useDispatch();
-  const [data, setData] = useState('');
-  const [productId, setProductId] = useState('');
+  const [date, setDate] = useState(new Date());
+  const [product, setProduct] = useState('');
   const [weight, setWeight] = useState('');
+  const [query, setQuery] = useState('');
+  const [products, setProducts] = useState('');
+
+  useEffect(() => {
+    productSearch(product).then(console.log);
+  }, [product]);
+
+  console.log(date, format(date, 'yyyy-MM-dd'));
+  const formatDate = format(date, 'yyyy-MM-dd');
   const userMap = {
-    data: setData,
-    productId: setProductId,
+    date: formatDate,
+    product: setProduct,
     weight: setWeight,
   };
+  console.log(userMap);
   const handleAddProducts = e => {
     const { name, value } = e.target;
+    console.log(name)
     userMap[name](value);
+  
   };
+  console.log(date, product, weight);
 
   const handleSubmit = e => {
     e.preventDefault();
-    // dispatch(
-    //   productName({
-    //     title,
-    // weight,
-    //     kcal,
-    //   })
-    // );
+    dispatch(productSearchOperations(query));
     e.target.reset();
   };
+
+  // const handleChange = newDate => {
+  //   const formatDate = format(newDate, 'yyyy-MM-dd');
+  //   setDate(formatDate);
+  //   console.log(newDate);
+  // };
+  // {newValue => {
+  //             setSelectedDate(newValue);
+  //           }
 
   return (
     <div>
       <form autoComplete="off" onSubmit={handleSubmit}>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <DemoContainer components={['DatePicker']}>
+            <DatePicker
+              slots={{ textField: TextField }}
+              slotProps={{ textField: { variant: 'standard' } }}
+              InputProps={{
+                disableUnderline: true,
+              }}
+              sx={{
+                div: {
+                  border: 'none',
+                },
+                '& .MuiInputBase-root': {
+                  border: 'none !important',
+                },
+                '& .MuiInputBase-input': {
+                  fontSize: '16px',
+                  border: 'none !important',
+                },
+              }}
+              format="dd.MM.yyyy"
+              minDate={dayjs('2020-01-01')}
+              maxDate={dayjs(new Date())}
+              value={date}
+              onChange={newValue => {
+                setDate(newValue);
+              }}
+              adapter={AdapterDateFns}
+            />
+          </DemoContainer>
+        </LocalizationProvider>
+
         <label label="Product">
           <input
             type="text"
             name="product"
             placeholder="Enter product name"
+            value={product}
             onChange={handleAddProducts}
           />
         </label>
@@ -46,9 +104,9 @@ export default function DiaryAddProductForm() {
           <input
             type="number"
             min="100"
-            name="grams"
+            name="weight"
             placeholder="Grams"
-            // value="100"
+            value={weight}
             onChange={handleAddProducts}
           />
         </label>
@@ -91,4 +149,3 @@ export default function DiaryAddProductForm() {
 //     debouncedOutput.textContent = eventCounter.debounced;
 //   }, 300)
 // );
-
