@@ -3,7 +3,10 @@ import React, { lazy, Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PublicRoute } from './PublicRoute/PublicRoute';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
-import { fetchCurrentUser, refreshUserRequest } from 'redux/auth/authOperations';
+import {
+  fetchCurrentUser,
+  refreshUserRequest,
+} from 'redux/auth/authOperations';
 import { selectSid } from 'redux/auth/authSelectors';
 
 const LazyLayout = lazy(() => import('./Layout/Layout'));
@@ -22,7 +25,7 @@ function App() {
   const sid = useSelector(selectSid);
 
   useEffect(() => {
-    dispatch(refreshUserRequest(sid));
+    //dispatch(refreshUserRequest(sid));
     dispatch(fetchCurrentUser());
   }, [dispatch, sid]);
 
@@ -42,9 +45,9 @@ function App() {
           <Route
             path="*"
             element={
-              <div >
+              <div>
                 Sorry, page not found.
-                <span >
+                <span>
                   <Link to="/">Go home</Link>
                 </span>
               </div>

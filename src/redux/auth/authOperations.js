@@ -11,15 +11,6 @@ import {
   token,
 } from '../../services/api';
 
-import {
-  getUser,
-  login,
-  logOut,
-  refresh,
-  register,
-  token,
-} from '../../services/api';
-
 export const registerUserRequest = createAsyncThunk(
   'auth/register',
   async (formData, thunkAPI) => {
@@ -54,6 +45,8 @@ export const refreshUserRequest = createAsyncThunk(
       const { sid, refreshToken } = thunkAPI.getState().auth;
       if (!sid) return thunkAPI.rejectWithValue('no sid');
       const response = await refresh(sid, refreshToken);
+      token.set(response.newAccessToken, 'Bearer');
+
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
