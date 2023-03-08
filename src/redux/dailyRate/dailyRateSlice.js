@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getRecommandations } from './dailyRateOperations';
+import { dailyRate } from 'services/api';
+import {
+  getAuthRecommendations,
+  getRecommendations,
+} from './dailyRateOperations';
+//import { selectNotAllowedProduct, selectDailyRate } from './dailyRateSelectors';
 
 const initialState = {
   notAllowedProducts: [],
@@ -12,14 +17,24 @@ export const dailyRateSlice = createSlice({
   name: 'dailyRate',
   initialState: initialState,
   reducers: {},
-  extraReducers: builder => builder,
-  // .addCase(getRecommandations.pending, pendingHandler)
-  // .addCase(getRecommandations.fulfilled, (state, action) => {
-  //   state.isLoading = 'false';
-  //   state.notAllowedProducts = action.payload.notAllowedProducts;
-  //   state.dailyRate = action.payload.dailyRate;
-  // })
-  // .addCase(getRecommandations.rejected, rejectHandler),
+  extraReducers: builder =>
+    builder
+      .addCase(getRecommendations.pending, pendingHandler)
+      .addCase(getRecommendations.fulfilled, (state, action) => {
+        state.isLoading = 'false';
+        state.notAllowedProducts = action.payload.notAllowedProducts;
+        state.dailyCalories = action.payload.dailyRate;
+        console.log(action.payload);
+      })
+      .addCase(getRecommendations.rejected, rejectHandler)
+
+      .addCase(getAuthRecommendations.pending, pendingHandler)
+      .addCase(getAuthRecommendations.fulfilled, (state, action) => {
+        state.isLoading = 'false';
+        state.notAllowedProducts = action.payload.notAllowedProducts;
+        state.dailyCalories = action.payload.dailyRate;
+      })
+      .addCase(getAuthRecommendations.rejected, rejectHandler),
 });
 
 function pendingHandler(state) {
