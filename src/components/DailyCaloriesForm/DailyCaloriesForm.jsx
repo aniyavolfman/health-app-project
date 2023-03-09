@@ -17,11 +17,13 @@ export const DailyCaloriesForm = ({ handleOpenModal }) => {
   const [weight, setWeight] = useState('');
   const [desiredWeight, setDesiredWeight] = useState('');
   const [bloodType, setBloodType] = useState(1);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const dispatch = useDispatch();
   // const calories = useSelector(selectDailyCalories);
   // const noProducts = useSelector(selectNotAllowedProducts);
   const userId = useSelector(selectId);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const handleInputChange = event => {
     const value = event.target.value;
     const name = event.target.name;
@@ -59,11 +61,11 @@ export const DailyCaloriesForm = ({ handleOpenModal }) => {
     event.preventDefault();
 
     if (!isLoggedIn) {
-      console.log(isLoggedIn);
+      // console.log(isLoggedIn);
       handleOpenModal();
       dispatch(getRecommendations(userParams));
 
-      console.log('userParams', userParams);
+      // console.log('userParams', userParams);
     } else {
       dispatch(getAuthRecommendations({ ...userParams, userId }));
     }
@@ -118,61 +120,60 @@ export const DailyCaloriesForm = ({ handleOpenModal }) => {
               placeholder="Desired weight *"
               required
             />
-    
 
-          <div>
-          <p className={css.radioTitle}>Blood type *</p>
-          <div className={css.radioWrapper}>
-            <label className={css.radioLabel}>
-              <input
-                className={css.radioInput}
-                type="radio"
-                name="bloodType"
-                value={1}
-                onChange={handleInputChange}
-                checked={bloodType === 1}
-                required
-              />
-              1
-            </label>
-            <label className={css.radioLabel}>
-              <input
-                className={css.radioInput}
-                type="radio"
-                name="bloodType"
-                value={2}
-                onChange={handleInputChange}
-                checked={bloodType === 2}
-                required
-              />
-              2
-            </label>
-            <label className={css.radioLabel}>
-              <input
-                className={css.radioInput}
-                type="radio"
-                name="bloodType"
-                value={3}
-                onChange={handleInputChange}
-                checked={bloodType === 3}
-                required
-              />
-              3
-            </label>
-            <label className={css.radioLabel}>
-              <input
-                className={css.radioInput}
-                type="radio"
-                name="bloodType"
-                value={4}
-                onChange={handleInputChange}
-                checked={bloodType === 4}
-                required
-              />
-              4
-            </label>
-          </div>
-          </div>
+            <div>
+              <p className={css.radioTitle}>Blood type *</p>
+              <div className={css.radioWrapper}>
+                <label className={css.radioLabel}>
+                  <input
+                    className={css.radioInput}
+                    type="radio"
+                    name="bloodType"
+                    value={1}
+                    onChange={handleInputChange}
+                    checked={bloodType === 1}
+                    required
+                  />
+                  1
+                </label>
+                <label className={css.radioLabel}>
+                  <input
+                    className={css.radioInput}
+                    type="radio"
+                    name="bloodType"
+                    value={2}
+                    onChange={handleInputChange}
+                    checked={bloodType === 2}
+                    required
+                  />
+                  2
+                </label>
+                <label className={css.radioLabel}>
+                  <input
+                    className={css.radioInput}
+                    type="radio"
+                    name="bloodType"
+                    value={3}
+                    onChange={handleInputChange}
+                    checked={bloodType === 3}
+                    required
+                  />
+                  3
+                </label>
+                <label className={css.radioLabel}>
+                  <input
+                    className={css.radioInput}
+                    type="radio"
+                    name="bloodType"
+                    value={4}
+                    onChange={handleInputChange}
+                    checked={bloodType === 4}
+                    required
+                  />
+                  4
+                </label>
+              </div>
+            </div>
           </div>
         </div>
         <button className={css.startBtn} type="submit">

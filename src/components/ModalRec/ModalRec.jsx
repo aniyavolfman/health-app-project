@@ -15,6 +15,7 @@ import {
 import { selectError } from 'redux/auth/authSelectors';
 import { useEffect } from 'react';
 import { Loader } from 'components/Loader/Loader';
+import { Link } from 'react-router-dom';
 
 const modalRoot = document.getElementById('modal');
 console.log('modalRoot', modalRoot);
@@ -28,9 +29,10 @@ export function ModalRec({ onClose }) {
   const isLoading = useSelector(selectIsLoading);
 
   const onBackdropClick = event => {
+    console.log('onBackdropClick event.target', event.target);
+    console.log('onBackdropClick event.currentTarget', event.currentTarget);
     if (event.target === event.currentTarget) {
-      // console.log('event.target', event.target);
-      // console.log('event.currentTarget', event.currentTarget);
+      console.log('onBackdropClick onClose()');
       onClose();
     }
   };
@@ -54,16 +56,24 @@ export function ModalRec({ onClose }) {
   return createPortal(
     <div className={css.recBackdrop} onClick={onBackdropClick}>
       {isLoading && <Loader />}
-      {/* {error !== null && <p>Ooops... something went wrong</p>} */}
+      {error !== null && <p>Ooops... something went wrong</p>}
+
       <div className={css.recModal}>
         {width < 768 && <span className={css.recModalEl}></span>}
         <button type="button" className={css.closeBtn}>
           {width > 768 ? (
-            <MdClose width="20" height="20" />
+            <MdClose
+              style={{ width: 20, height: 20 }}
+              onClick={() => onClose()}
+            />
           ) : (
-            <MdKeyboardReturn width="12" height="7" />
+            <MdKeyboardReturn
+              style={{ width: 12, height: 7 }}
+              onClick={() => onClose()}
+            />
           )}
         </button>
+
         <h2 className={css.recTitle}>
           Your recommended daily calorie intake is
         </h2>
@@ -74,7 +84,6 @@ export function ModalRec({ onClose }) {
           <span>ккал</span>
         </p>
 
-        {/* <div className={css.recLine}></div> */}
         <p className={css.recText}>Foods you should not eat</p>
         <ol className={css.recList}>
           {notAllowedProducts.length > 0 &&
@@ -84,10 +93,12 @@ export function ModalRec({ onClose }) {
               </li>
             ))}
         </ol>
-
-        <button type="submit" className={css.btnSubmit}>
-          Start losing weight
-        </button>
+        {/* куда возврат? */}
+        <Link to="/register">
+          <button type="submit" className={css.btnSubmit}>
+            Start losing weight
+          </button>
+        </Link>
       </div>
     </div>,
     modalRoot
