@@ -10,8 +10,15 @@ import dayjs from 'dayjs';
 import { useDispatch } from 'react-redux';
 
 import { day, productSearch } from 'services/api';
-import { addProductOperations } from 'redux/dayCalendar/dayCalendarOperations';
+import {
+  addProductOperations,
+  createProductListOperations,
+  createProductOperations,
+  userDayInfoOperation,
+} from 'redux/dayCalendar/dayCalendarOperations';
 import moment from 'moment/moment';
+import { DiaryProductsList } from 'components/DiaryProductsList/DiaryProductsList';
+import { fetchCurrentUser } from 'redux/auth/authOperations';
 
 export default function DiaryAddProductForm() {
   const dispatch = useDispatch();
@@ -24,11 +31,13 @@ export default function DiaryAddProductForm() {
   const [productId, setProductId] = useState('');
 
   useEffect(() => {
-    productSearch(product).then(setProducts);
+    if (product) {
+      productSearch(product).then(setProducts);
+    }
   }, [product]);
 
   const handleChangeProduct = e => {
-    console.log(e.target);
+    // console.log(e.target);
     const { value } = e.target;
     setProduct(value);
   };
@@ -36,22 +45,26 @@ export default function DiaryAddProductForm() {
     const { value } = e.target;
     setWeight(value);
   };
-
+  const handleChangeDate = newValue => {
+    setDate(moment(newValue).format('yyyy-MM-DD'));
+    console.log('>>>>>', date, moment(date).format('yyyy-MM-DD'));
+  };
+  useEffect(() => {
+    dispatch(userDayInfoOperation({ date: moment(date).format('yyyy-MM-DD') }));
+  }, [dispatch, date]);
   const newProduct = {
     date,
     productId,
     weight,
   };
-  console.log('date, product, weight', newProduct);
+  // console.log('date, product, weight', newProduct);
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    console.log(newProduct);
-    // const response = await day(newProduct);
-    // console.log(response);
     dispatch(addProductOperations(newProduct));
 
+    // dispatch(createProductListOperations());
     e.target.reset();
   }
 
@@ -82,9 +95,8 @@ export default function DiaryAddProductForm() {
               minDate={dayjs('2020-01-01')}
               maxDate={dayjs(new Date())}
               // value={parseISO(date)}
-              onChange={newValue => {
-                setDate(moment(newValue).format('yyyy-MM-DD'));
-              }}
+              defaultValue={new Date()}
+              onChange={handleChangeDate}
               adapter={AdapterDateFns}
             />
           </DemoContainer>
@@ -130,6 +142,7 @@ export default function DiaryAddProductForm() {
 
         <button type="submit">+</button>
       </form>
+      <DiaryProductsList currentDate={date} />
     </div>
   );
 }

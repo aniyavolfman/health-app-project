@@ -158,26 +158,16 @@ export async function day(credentials) {
 //   "eatenProductId": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"
 // }
 
-export async function dayDelete(dayId, eatenId) {
+export async function dayDelete(dayId) {
   try {
-    console.log(typeof dayId, dayId);
-    const { data } = await $privateHost.delete('/day', {
-      data: { eatenId, dayId },
-    });
+    console.log(dayId);
+    const { data } = await $privateHost.delete('/day', { data: dayId });
     return data;
   } catch (error) {
     Notify.failure(error.message);
   }
 }
 // { data: { dayId, eatenProductId }
-
-// day info
-
-// приклад тіла запиту  {
-// "date": "2020-12-31"
-// }
-
-
 export async function dayInfo(credentials) {
   try {
     const { data } = await $privateHost.post('/day/info', credentials);
