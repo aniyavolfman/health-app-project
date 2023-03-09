@@ -9,10 +9,11 @@ import { createPortal } from 'react-dom';
 import { useSelector } from 'react-redux';
 import {
   selectDailyCalories,
+  selectError,
   selectIsLoading,
   selectNotAllowedProducts,
 } from 'redux/dailyRate/dailyRateSelectors';
-import { selectError } from 'redux/auth/authSelectors';
+
 import { useEffect } from 'react';
 import { Loader } from 'components/Loader/Loader';
 import { Link, useLocation } from 'react-router-dom';
@@ -58,7 +59,7 @@ export function ModalRec({ onClose }) {
   return createPortal(
     <div className={css.recBackdrop} onClick={onBackdropClick}>
       {isLoading && <Loader />}
-      {/* {error && <p>Ooops... something went wrong</p>} */}
+      {error && <p>Ooops... something went wrong</p>}
       <div className={css.recModal}>
         {width < 768 && <span className={css.recModalEl}></span>}
         <button type="button" className={css.closeBtn}>
