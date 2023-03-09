@@ -7,7 +7,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TextField } from '@mui/material';
 import dayjs from 'dayjs';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { day, productSearch } from 'services/api';
 import {
@@ -19,16 +19,17 @@ import {
 import moment from 'moment/moment';
 import { DiaryProductsList } from 'components/DiaryProductsList/DiaryProductsList';
 import { fetchCurrentUser } from 'redux/auth/authOperations';
+import { setDate } from 'redux/dayCalendar/dayCalendarSlice';
 
 export default function DiaryAddProductForm() {
   const dispatch = useDispatch();
 
-  const [date, setDate] = useState(new Date());
   const [product, setProduct] = useState('');
   const [weight, setWeight] = useState('');
   // const [query, setQuery] = useState('');
   const [products, setProducts] = useState([]);
   const [productId, setProductId] = useState('');
+  const date = useSelector(state => state.products.currentDate);
 
   useEffect(() => {
     if (product) {
@@ -46,7 +47,7 @@ export default function DiaryAddProductForm() {
     setWeight(value);
   };
   const handleChangeDate = newValue => {
-    setDate(moment(newValue).format('yyyy-MM-DD'));
+    dispatch(setDate(moment(newValue).format('yyyy-MM-DD')));
     console.log('>>>>>', date, moment(date).format('yyyy-MM-DD'));
   };
   useEffect(() => {
@@ -142,7 +143,7 @@ export default function DiaryAddProductForm() {
 
         <button type="submit">+</button>
       </form>
-      <DiaryProductsList currentDate={date} />
+      <DiaryProductsList />
     </div>
   );
 }

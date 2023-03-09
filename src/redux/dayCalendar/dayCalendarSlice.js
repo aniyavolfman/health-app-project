@@ -7,6 +7,7 @@ import {
 } from './dayCalendarOperations';
 import { productSearch } from 'services/api';
 import { fetchCurrentUser } from 'redux/auth/authOperations';
+import moment from 'moment';
 
 const initialState = {
   items: [],
@@ -19,18 +20,24 @@ const initialState = {
   itemId: '',
   dayId: '',
   days: [],
+  currentDate: moment(new Date()).format('yyyy-MM-DD'),
 };
 
 const productsSlice = createSlice({
   name: 'products',
   initialState,
+  reducers: {
+    setDate: (state, action) => {
+      state.currentDate = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       //-------add-----////
       .addCase(addProductOperations.pending, pendingHandler)
       .addCase(addProductOperations.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = [...state.items, action.payload];
+        state.items = [...state.items, action.payload.eatenProduct];
         // state.items = action.payload;
         state.itemTitle = action.payload.eatenProduct.titчle;
         state.itemWeight = action.payload.eatenProduct.weight;
@@ -54,8 +61,9 @@ const productsSlice = createSlice({
       //-------userInfo-----////
       .addCase(userDayInfoOperation.pending, pendingHandler)
       .addCase(userDayInfoOperation.fulfilled, (state, action) => {
-        state.days = action.payload;
-        console.log(action.payload);
+        state.items = action.payload.eatenProducts;
+        state.dayId = action.payload.id;
+        // console.log( = action.payload);
       });
   },
 });
@@ -70,3 +78,4 @@ export function rejectHandler(state, action) {
 }
 
 export const productsReducer = productsSlice.reducer;
+export const { setDate } = productsSlice.actions;
