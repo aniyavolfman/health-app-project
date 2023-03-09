@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { selectAccessToken } from 'redux/auth/authSelectors';
-import css from '../Navigation/Navigation.module.css';
+import css from '../Navigation/Navigation.module.scss';
 
 export default function Navigation() {
   const token = useSelector(selectAccessToken);

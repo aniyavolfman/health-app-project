@@ -1,6 +1,51 @@
 .header {
   display: flex;
+  flex-wrap: wrap;
+
+  justify-content: space-between;
   align-items: baseline;
   padding-top: 80px;
-  padding-left: 16px;
+  //padding-left: 16px;
+  border-bottom: 2px solid rgba(224, 224, 224, 1);
+  @media (max-width: 1199px) {
+    justify-content: space-between;
+    padding-bottom: 16px;
+  }
+  @media (min-width: 1200px) {
+    border-bottom: none;
+    justify-content: start;
+  }
+}
+.logo {
+  padding-right: 20px;
+  //padding-bottom: 16px;
+  cursor: pointer;
+}
+.logoSize {
+  width: 46px;
+  height: 44px;
+
+  @media (max-width: 1199px) and (min-width: 768px) {
+    width: 162px;
+    height: 44px;
+  }
+  @media (min-width: 1200px) {
+    width: 167px;
+    height: 66px;
+  }
+}
+
+.logoSizeToken {
+  width: 162px;
+  height: 44px;
+}
+
+.logoNav {
+  display: flex;
+  //align-items: center;
+  gap: 32px;
+  @media (max-width: 1199px) {
+    justify-content: space-between;
+    padding-bottom: 16px;
+  }
 }
