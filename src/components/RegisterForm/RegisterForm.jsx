@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { registerUserRequest } from 'redux/auth/authOperations';
-import css from './RegistrationForm.module.css';
+import css from './RegistrationForm.module.scss';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -19,27 +19,37 @@ const RegisterForm = () => {
   };
   
   return (
-      <form className={css.formContainer} onSubmit={handelSubmit}>
-        <label className={css.labelForm}>
-          Username
-          <input className={css.inputForm} type="text" name="name" placeholder={'Input your name'} />
-        </label>
-        <label className={css.labelForm}>
-          Email
-          <input className={css.inputForm} type="email" name="email" placeholder={'Input your e-mail'} />
-        </label>
-        <label className={css.labelForm}>
-          Password
-          <input
-          className={css.inputForm}
+    <div className={css.formSection} >
+      <h2 className={css.formTitle}>register</h2>
+      <form className={css.form} onSubmit={handelSubmit}>
+        
+      <input 
+          className={css.inputForm} 
+          type="text" 
+          name="name" 
+          placeholder={'Name *'} 
+          />
+
+      <input 
+          className={css.inputForm} 
+          type="email" 
+          name="email" 
+          placeholder={'Email *'} 
+          />
+
+        <input 
+            className={css.inputForm}
             type="password"
             name="password"
-            placeholder={'Input password'}
+            placeholder={'Password *'}
           />
-        </label>
+        
+        <div className={css.btnBox}>
         <button className={css.btnSubmit} type="submit">Register</button>
-        <NavLink className={css.link} to="/login">LogIn</NavLink>
+        <NavLink className={css.link} to="/login">Log in</NavLink>
+        </div>
       </form>
+     </div>
   );
 };
 
