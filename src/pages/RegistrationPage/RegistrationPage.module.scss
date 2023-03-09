@@ -1,0 +1,32 @@
+
+.formContainer {
+    width: 100%;
+    min-width: 280px;
+    height: 570px;
+   
+    margin: 0 auto;
+    
+    padding: 40px 20px 175px;
+
+    background-color: var(--btn-text-active-color);
+    @media (min-width: 768px) {
+    height: 944px;
+    padding-top: 160px;
+    padding-left: 32px;
+    background-image: 
+    url('../../img/Layer.png'),
+    url('../../img/strawberry.png'),
+    url('../../img/banan.png'),
+    
+    url('../../img/Vector3.jpeg');
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: top -86px left 330px, top 356px left 944px, top -72px left 778px, top 34px left 678px;
+
+    }
+
+    @media (min-width: 1199px) {
+    height: 697px;
+    padding-top: 153px;
+    padding-left: 16px;
+    }
+}

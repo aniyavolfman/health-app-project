@@ -32,6 +32,7 @@ export const loginUserRequest = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       const response = await login(formData);
+      console.log(response);
       token.set(response.accessToken, 'Bearer');
       return response;
     } catch (error) {
