@@ -12,7 +12,7 @@ import {
   selectIsLoading,
   selectNotAllowedProducts,
 } from 'redux/dailyRate/dailyRateSelectors';
-import { selectError } from 'redux/auth/authSelectors';
+import { selectError } from 'redux/dailyRate/dailyRateSelectors';
 import { useEffect } from 'react';
 import { Loader } from 'components/Loader/Loader';
 import { Link } from 'react-router-dom';
