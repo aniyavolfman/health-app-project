@@ -3,9 +3,7 @@ import {
   addProductOperations,
   deleteProductOperation,
   userDayInfoOperation,
-  // productSearchOperations,
 } from './dayCalendarOperations';
-import { productSearch } from 'services/api';
 import { fetchCurrentUser } from 'redux/auth/authOperations';
 import moment from 'moment';
 
@@ -48,7 +46,6 @@ const productsSlice = createSlice({
       //---------------------------
       .addCase(fetchCurrentUser.fulfilled, (state, { payload }) => {
         state.days = payload.days;
-        console.log(payload);
       })
       .addCase(addProductOperations.rejected, rejectHandler)
       //-------delete-----////
@@ -63,7 +60,6 @@ const productsSlice = createSlice({
       .addCase(userDayInfoOperation.fulfilled, (state, action) => {
         state.items = action.payload.eatenProducts;
         state.dayId = action.payload.id;
-        // console.log( = action.payload);
       });
   },
 });
