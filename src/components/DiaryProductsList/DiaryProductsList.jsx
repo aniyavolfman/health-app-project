@@ -11,14 +11,14 @@ export function DiaryProductsList() {
   const date = useSelector(state => state.products.currentDate);
   const products = useSelector(state => state.products.items);
   const idDay = useSelector(state => state.products.dayId);
- 
+  console.log(products);
+
   const deleteProduct = e => {
-   
     const dayIdObj = {
       dayId: idDay,
       eatenProductId: e.target.id,
     };
-    
+
     localStorage.setItem('dayIdObj', JSON.stringify(dayIdObj));
     dispatch(deleteProductOperation(dayIdObj))
       .unwrap()
@@ -44,5 +44,3 @@ export function DiaryProductsList() {
     </div>
   );
 }
-
-
