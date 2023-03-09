@@ -56,7 +56,7 @@ export function ModalRec({ onClose }) {
   return createPortal(
     <div className={css.recBackdrop} onClick={onBackdropClick}>
       {isLoading && <Loader />}
-      {/* {error !== null && <p>Ooops... something went wrong</p>} */}
+      {error !== null && <p>Ooops... something went wrong</p>}
 
       <div className={css.recModal}>
         {width < 768 && <span className={css.recModalEl}></span>}
