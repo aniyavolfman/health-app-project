@@ -9,8 +9,6 @@ export default function DiaryProductsListItem({
   id,
   deleteProduct,
 }) {
-  console.log('ffff', title, weight, kcal, id, deleteProduct);
-
   return (
     <li>
       {title}: <span>{weight} </span> <span>{kcal} </span>

@@ -5,15 +5,10 @@ import { deleteProductOperation } from 'redux/dayCalendar/dayCalendarOperations'
 
 export function DiaryProductsList() {
   const dispatch = useDispatch();
-  // const products = useSelector(state => state.products.items);
-  // const weight = useSelector(state => state.products.items);
-  // const title = useSelector(state => state.products.itemTitle);
-  // const weight = useSelector(state => state.products.itemWeight);
-  // const kcal = useSelector(state => state.products.itemKcal);
-  // const id = useSelector(state => state.products.itemId);
+
   const products = useSelector(state => state.products.items);
   const idDay = useSelector(state => state.products.dayId);
-  console.log(products);
+
   const deleteProduct = e => {
     console.log(e.target);
     const dayIdObj = {
@@ -21,12 +16,11 @@ export function DiaryProductsList() {
       eatenProductId: e.target.id,
     };
     console.log('cccccccc', e.target.id);
-    dispatch(deleteProductOperation(e.target.id));
+    dispatch(deleteProductOperation(dayIdObj));
   };
 
   return (
     <div>
-      DiaryProductsList
       <ul>
         {products?.map(({ eatenProduct: { id, title, weight, kcal } }) => (
           <DiaryProductsListItem

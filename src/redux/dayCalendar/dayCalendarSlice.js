@@ -2,9 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   addProductOperations,
   deleteProductOperation,
+  userDayInfoOperation,
   // productSearchOperations,
 } from './dayCalendarOperations';
 import { productSearch } from 'services/api';
+import { fetchCurrentUser } from 'redux/auth/authOperations';
 
 const initialState = {
   items: [],
@@ -16,6 +18,7 @@ const initialState = {
   itemKcal: '',
   itemId: '',
   dayId: '',
+  days: [],
 };
 
 const productsSlice = createSlice({
@@ -29,21 +32,31 @@ const productsSlice = createSlice({
         state.isLoading = false;
         state.items = [...state.items, action.payload];
         // state.items = action.payload;
-        state.itemTitle = action.payload.eatenProduct.title;
+        state.itemTitle = action.payload.eatenProduct.titчle;
         state.itemWeight = action.payload.eatenProduct.weight;
         state.itemKcal = action.payload.eatenProduct.kcal;
         state.itemId = action.payload.eatenProduct.id;
         state.dayId = action.payload.day.id;
       })
-
+      //---------------------------
+      .addCase(fetchCurrentUser.fulfilled, (state, { payload }) => {
+        state.days = payload.days;
+        console.log(payload);
+      })
       .addCase(addProductOperations.rejected, rejectHandler)
       //-------delete-----////
       .addCase(deleteProductOperation.pending, pendingHandler)
       .addCase(deleteProductOperation.fulfilled, (state, action) => {
         state.isLoading = false;
-        // state.items = state.items.filter(item => item.id !== action.payload.id);
+        state.items = state.items.filter(item => item.id !== action.payload.id);
       })
-      .addCase(deleteProductOperation.rejected, rejectHandler);
+      .addCase(deleteProductOperation.rejected, rejectHandler)
+      //-------userInfo-----////
+      .addCase(userDayInfoOperation.pending, pendingHandler)
+      .addCase(userDayInfoOperation.fulfilled, (state, action) => {
+        state.days = action.payload;
+        console.log(action.payload);
+      });
   },
 });
 

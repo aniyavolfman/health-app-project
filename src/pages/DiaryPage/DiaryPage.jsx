@@ -1,6 +1,5 @@
 import DiaryAddProductForm from 'components/DiaryAddProductForm/DiaryAddProductForm';
 
-import { DiaryProductsList } from 'components/DiaryProductsList/DiaryProductsList';
 import React from 'react';
 
 export default function DiaryPage() {
@@ -8,7 +7,7 @@ export default function DiaryPage() {
     <div>
       {/* <DiaryDateCalendar /> */}
       <DiaryAddProductForm />
-      <DiaryProductsList />
+      {/* <DiaryProductsList /> */}
     </div>
   );
 }
