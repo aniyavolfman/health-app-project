@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
@@ -7,53 +7,67 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TextField } from '@mui/material';
 import dayjs from 'dayjs';
-import { useDispatch } from 'react-redux';
-import { productSearchOperations } from 'redux/dayCalendar/dayCalendarOperations';
-import { productSearch } from 'services/api';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { day, productSearch } from 'services/api';
+import {
+  addProductOperations,
+  createProductListOperations,
+  createProductOperations,
+  userDayInfoOperation,
+} from 'redux/dayCalendar/dayCalendarOperations';
+import moment from 'moment/moment';
+import { DiaryProductsList } from 'components/DiaryProductsList/DiaryProductsList';
+import { fetchCurrentUser } from 'redux/auth/authOperations';
+import { setDate } from 'redux/dayCalendar/dayCalendarSlice';
 
 export default function DiaryAddProductForm() {
   const dispatch = useDispatch();
 
-  const [date, setDate] = useState(new Date());
   const [product, setProduct] = useState('');
   const [weight, setWeight] = useState('');
-  const [query, setQuery] = useState('');
-  const [products, setProducts] = useState('');
+  // const [query, setQuery] = useState('');
+  const [products, setProducts] = useState([]);
+  const [productId, setProductId] = useState('');
+  const date = useSelector(state => state.products.currentDate);
 
   useEffect(() => {
-    productSearch(product).then(console.log);
+    if (product) {
+      productSearch(product).then(setProducts);
+    }
   }, [product]);
 
-  console.log(date, format(date, 'yyyy-MM-dd'));
-  const formatDate = format(date, 'yyyy-MM-dd');
-  const userMap = {
-    date: formatDate,
-    product: setProduct,
-    weight: setWeight,
+  const handleChangeProduct = e => {
+    // console.log(e.target);
+    const { value } = e.target;
+    setProduct(value);
   };
-  console.log(userMap);
-  const handleAddProducts = e => {
-    const { name, value } = e.target;
-    console.log(name)
-    userMap[name](value);
-  
+  const handleChangeWeight = e => {
+    const { value } = e.target;
+    setWeight(value);
   };
-  console.log(date, product, weight);
+  const handleChangeDate = newValue => {
+    dispatch(setDate(moment(newValue).format('yyyy-MM-DD')));
+    console.log('>>>>>', date, moment(date).format('yyyy-MM-DD'));
+  };
+  useEffect(() => {
+    dispatch(userDayInfoOperation({ date: moment(date).format('yyyy-MM-DD') }));
+  }, [dispatch, date]);
+  const newProduct = {
+    date,
+    productId,
+    weight,
+  };
+  // console.log('date, product, weight', newProduct);
 
-  const handleSubmit = e => {
+  function handleSubmit(e) {
     e.preventDefault();
-    dispatch(productSearchOperations(query));
-    e.target.reset();
-  };
 
-  // const handleChange = newDate => {
-  //   const formatDate = format(newDate, 'yyyy-MM-dd');
-  //   setDate(formatDate);
-  //   console.log(newDate);
-  // };
-  // {newValue => {
-  //             setSelectedDate(newValue);
-  //           }
+    dispatch(addProductOperations(newProduct));
+
+    // dispatch(createProductListOperations());
+    e.target.reset();
+  }
 
   return (
     <div>
@@ -81,10 +95,9 @@ export default function DiaryAddProductForm() {
               format="dd.MM.yyyy"
               minDate={dayjs('2020-01-01')}
               maxDate={dayjs(new Date())}
-              value={date}
-              onChange={newValue => {
-                setDate(newValue);
-              }}
+              // value={parseISO(date)}
+              defaultValue={new Date()}
+              onChange={handleChangeDate}
               adapter={AdapterDateFns}
             />
           </DemoContainer>
@@ -92,27 +105,45 @@ export default function DiaryAddProductForm() {
 
         <label label="Product">
           <input
+            list="listProducts"
             type="text"
             name="product"
             placeholder="Enter product name"
             value={product}
-            onChange={handleAddProducts}
+            onChange={handleChangeProduct}
           />
+
+          {products?.map(({ _id, title }) => (
+            <button
+              type="button"
+              key={_id}
+              value={_id}
+              style={{ display: 'block' }}
+              onClick={() => {
+                setProductId(_id);
+                setProduct(title.ua);
+                setProducts([]);
+              }}
+            >
+              {title.ua}
+            </button>
+          ))}
         </label>
 
         <label label="Grams">
           <input
             type="number"
-            min="100"
+            // min="100"
             name="weight"
             placeholder="Grams"
             value={weight}
-            onChange={handleAddProducts}
+            onChange={handleChangeWeight}
           />
         </label>
 
         <button type="submit">+</button>
       </form>
+      <DiaryProductsList />
     </div>
   );
 }

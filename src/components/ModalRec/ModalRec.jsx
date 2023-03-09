@@ -1,60 +1,108 @@
 import css from './ModalRec.module.scss';
-// import { MdClose } from 'react-icons/md';
-import { MdKeyboardReturn } from 'react-icons/md';
+import React from 'react';
 
-// import React, { useEffect } from 'react';
+import { MdClose } from 'react-icons/md';
+import { useWindowSize } from 'react-use';
+
+import { MdKeyboardReturn } from 'react-icons/md';
 import { createPortal } from 'react-dom';
-// import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import {
+  selectDailyCalories,
+  selectError,
+  selectIsLoading,
+  selectNotAllowedProducts,
+} from 'redux/dailyRate/dailyRateSelectors';
+
+import { useEffect } from 'react';
+import { Loader } from 'components/Loader/Loader';
+import { Link, useLocation } from 'react-router-dom';
 
 const modalRoot = document.getElementById('modal');
-console.log(modalRoot);
+console.log('modalRoot', modalRoot);
 
-export function ModalRec() {
-  // const dispatch = useDispatch();
+export function ModalRec({ onClose }) {
+  const { width } = useWindowSize();
+  const notAllowedProducts = useSelector(selectNotAllowedProducts);
+  const dailyCalories = useSelector(selectDailyCalories);
+  console.log('dailyCalories', dailyCalories);
+  const error = useSelector(selectError);
+  const isLoading = useSelector(selectIsLoading);
 
-  //   useEffect(() => {
-  //     const onEscapeClick = (event) => {
-  // if (event.code === 'Escape') dispatch(closeModal())
-  //     }
+  const location = useLocation();
 
-  //     window.addEventListener('keydown', onEscapeClick);
+  const onBackdropClick = event => {
+    console.log('onBackdropClick event.target', event.target);
+    console.log('onBackdropClick event.currentTarget', event.currentTarget);
+    if (event.target === event.currentTarget) {
+      console.log('onBackdropClick onClose()');
+      onClose();
+    }
+  };
 
-  //     return () => {
-  //       window.removeEventListener('keydown', onEscapeClick)
-  //     }
-  //   }, [dispatch]);
+  useEffect(() => {
+    const onEscapeClick = event => {
+      if (event.code === 'Escape') {
+        onClose();
+      }
+    };
 
-  // const onBackdropClick = event => {
-  //   if (event.target === event.currentTarget) dispatch(closeModal());
-  // };
+    window.addEventListener('keydown', onEscapeClick);
 
-  // onClick = { onBackdropClick };
-  return (
-    createPortal(
-      <div className={css.recBackdrop}>
-        <div className={css.recModal}>
-          <button type="button" className={css.closeBtn} width="20">
-            <MdKeyboardReturn width="12" height="7" />
-          </button>
-          <h2 className={css.recTitle}>
-            Your recommended daily calorie intake is
-          </h2>
-          <p className={css.recElText}>
-            <span className={css.recEl}>2800</span>ккал
-          </p>
+    return () => {
+      window.removeEventListener('keydown', onEscapeClick);
+    };
+  }, [onClose]);
 
-          <div className={css.recLine}></div>
-          <p className={css.recText}>Foods you should not eat</p>
-          <ol className={css.recList}>
-            <li className={css.recItem}>Flour products</li>
-            <li>Milk</li>
-          </ol>
+  // if (!dailyCalories) return;
+  console.log(isLoading);
+  return createPortal(
+    <div className={css.recBackdrop} onClick={onBackdropClick}>
+      {isLoading && <Loader />}
+      {error && <p>Ooops... something went wrong</p>}
+      <div className={css.recModal}>
+        {width < 768 && <span className={css.recModalEl}></span>}
+        <button type="button" className={css.closeBtn}>
+          {width > 768 ? (
+            <MdClose
+              style={{ width: 20, height: 20 }}
+              onClick={() => onClose()}
+            />
+          ) : (
+            <MdKeyboardReturn
+              style={{ width: 20, height: 16 }}
+              onClick={() => onClose()}
+            />
+          )}
+        </button>
 
+        <h2 className={css.recTitle}>
+          Your recommended daily calorie intake is
+        </h2>
+        <p className={css.recElText}>
+          {dailyCalories && (
+            <span className={css.recEl}>{Math.round(dailyCalories)}</span>
+          )}
+          <span>ккал</span>
+        </p>
+
+        <p className={css.recText}>Foods you should not eat</p>
+        <ol className={css.recList}>
+          {notAllowedProducts.length > 0 &&
+            notAllowedProducts.slice(0, 4).map(el => (
+              <li className={css.recItem} key={el}>
+                {el}
+              </li>
+            ))}
+        </ol>
+
+        <Link to="/register">
           <button type="submit" className={css.btnSubmit}>
             Start losing weight
           </button>
-        </div>
-      </div>,  modalRoot
-    )
+        </Link>
+      </div>
+    </div>,
+    modalRoot
   );
 }

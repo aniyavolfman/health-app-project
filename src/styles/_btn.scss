@@ -1,0 +1,22 @@
+.btn {
+  padding: 13px 25px;
+  border-radius: 30px;
+  background-color: #fc842d;
+  box-sizing: border-box;
+  display: block;
+  margin: 0 auto;
+  outline: none;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.21;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+}
+
+.btnSubmit:hover,
+.btnSubmit:focus {
+  background-color: transparent;
+  border: 2px solid #fc842d;
+  color: #fc842d;
+}

@@ -2,34 +2,53 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   addProductOperations,
   deleteProductOperation,
-  productSearchOperations,
+  userDayInfoOperation,
+  // productSearchOperations,
 } from './dayCalendarOperations';
+import { productSearch } from 'services/api';
+import { fetchCurrentUser } from 'redux/auth/authOperations';
+import moment from 'moment';
 
 const initialState = {
   items: [],
   isLoading: false,
   error: null,
-  query:'',
+  query: '',
+  itemTitle: '',
+  itemWeight: '',
+  itemKcal: '',
+  itemId: '',
+  dayId: '',
+  days: [],
+  currentDate: moment(new Date()).format('yyyy-MM-DD'),
 };
 
 const productsSlice = createSlice({
   name: 'products',
   initialState,
+  reducers: {
+    setDate: (state, action) => {
+      state.currentDate = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
-      //-------search-----////
-      .addCase(productSearchOperations.pending, pendingHandler)
-      .addCase(productSearchOperations.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.items = action.payload;
-        // console.log(action.payload);
-      })
-      .addCase(productSearchOperations.rejected, rejectHandler)
       //-------add-----////
       .addCase(addProductOperations.pending, pendingHandler)
       .addCase(addProductOperations.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = [...state.items, action.payload];
+        state.items = [...state.items, action.payload.eatenProduct];
+        // state.items = action.payload;
+        state.itemTitle = action.payload.eatenProduct.titчle;
+        state.itemWeight = action.payload.eatenProduct.weight;
+        state.itemKcal = action.payload.eatenProduct.kcal;
+        state.itemId = action.payload.eatenProduct.id;
+        state.dayId = action.payload.day.id;
+      })
+      //---------------------------
+      .addCase(fetchCurrentUser.fulfilled, (state, { payload }) => {
+        state.days = payload.days;
+        console.log(payload);
       })
       .addCase(addProductOperations.rejected, rejectHandler)
       //-------delete-----////
@@ -37,9 +56,15 @@ const productsSlice = createSlice({
       .addCase(deleteProductOperation.fulfilled, (state, action) => {
         state.isLoading = false;
         state.items = state.items.filter(item => item.id !== action.payload.id);
-
       })
-      .addCase(deleteProductOperation.rejected, rejectHandler);
+      .addCase(deleteProductOperation.rejected, rejectHandler)
+      //-------userInfo-----////
+      .addCase(userDayInfoOperation.pending, pendingHandler)
+      .addCase(userDayInfoOperation.fulfilled, (state, action) => {
+        state.items = action.payload.eatenProducts;
+        state.dayId = action.payload.id;
+        // console.log( = action.payload);
+      });
   },
 });
 
@@ -53,3 +78,4 @@ export function rejectHandler(state, action) {
 }
 
 export const productsReducer = productsSlice.reducer;
+export const { setDate } = productsSlice.actions;
