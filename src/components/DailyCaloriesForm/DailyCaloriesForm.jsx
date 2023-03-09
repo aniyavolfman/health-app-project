@@ -53,12 +53,11 @@ export const DailyCaloriesForm = ({ handleOpenModal }) => {
     weight,
     desiredWeight,
     bloodType,
-  
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    
+
     if (!isLoggedIn) {
       console.log(isLoggedIn);
       handleOpenModal();
@@ -68,7 +67,6 @@ export const DailyCaloriesForm = ({ handleOpenModal }) => {
     } else {
       dispatch(getAuthRecommendations({ ...userParams, userId }));
     }
-   
   };
 
   return (
@@ -78,92 +76,108 @@ export const DailyCaloriesForm = ({ handleOpenModal }) => {
       </h2>
       <form className={css.form} onSubmit={handleSubmit}>
         <div className={css.inputsWrapper}>
-        <input className={css.input}
-          type="text"
-          name="height"
-          value={height}
-          onChange={handleInputChange}
-          placeholder="Height *"
-          autoFocus
-          required
-        />
+          <div className={css.inputsLeft}>
+            <input
+              className={css.input}
+              type="text"
+              name="height"
+              value={height}
+              onChange={handleInputChange}
+              placeholder="Height *"
+              autoFocus
+              required
+            />
 
-        <input className={css.input}
-          type="text"
-          name="age"
-          value={age}
-          onChange={handleInputChange}
-          placeholder="Age *"
-          required
-        />
+            <input
+              className={css.input}
+              type="text"
+              name="age"
+              value={age}
+              onChange={handleInputChange}
+              placeholder="Age *"
+              required
+            />
 
-        <input className={css.input}
-          type="text"
-          name="weight"
-          value={weight}
-          onChange={handleInputChange}
-          placeholder="Current weight *"
-          required
-        />
+            <input
+              className={css.input}
+              type="text"
+              name="weight"
+              value={weight}
+              onChange={handleInputChange}
+              placeholder="Current weight *"
+              required
+            />
+          </div>
+          <div className={css.inputsRight}>
+            <input
+              className={css.input}
+              type="text"
+              name="desiredWeight"
+              value={desiredWeight}
+              onChange={handleInputChange}
+              placeholder="Desired weight *"
+              required
+            />
+    
 
-        <input className={css.input}
-          type="text"
-          name="desiredWeight"
-          value={desiredWeight}
-          onChange={handleInputChange}
-          placeholder="Desired weight *"
-          required
-        />
+          <div>
+          <p className={css.radioTitle}>Blood type *</p>
+          <div className={css.radioWrapper}>
+            <label className={css.radioLabel}>
+              <input
+                className={css.radioInput}
+                type="radio"
+                name="bloodType"
+                value={1}
+                onChange={handleInputChange}
+                checked={bloodType === 1}
+                required
+              />
+              1
+            </label>
+            <label className={css.radioLabel}>
+              <input
+                className={css.radioInput}
+                type="radio"
+                name="bloodType"
+                value={2}
+                onChange={handleInputChange}
+                checked={bloodType === 2}
+                required
+              />
+              2
+            </label>
+            <label className={css.radioLabel}>
+              <input
+                className={css.radioInput}
+                type="radio"
+                name="bloodType"
+                value={3}
+                onChange={handleInputChange}
+                checked={bloodType === 3}
+                required
+              />
+              3
+            </label>
+            <label className={css.radioLabel}>
+              <input
+                className={css.radioInput}
+                type="radio"
+                name="bloodType"
+                value={4}
+                onChange={handleInputChange}
+                checked={bloodType === 4}
+                required
+              />
+              4
+            </label>
+          </div>
+          </div>
+          </div>
         </div>
-
-        <p className={css.radioTitle}>Blood type *</p>
-        <div className={css.radioWrapper}>
-        <label className={css.radioLabel}>
-          <input className={css.radioInput}
-            type="radio"
-            name="bloodType"
-            value={1}
-            onChange={handleInputChange}
-            checked={bloodType === 1}
-            required
-          />
-          1
-        </label>
-        <label className={css.radioLabel}>
-          <input className={css.radioInput}
-            type="radio"
-            name="bloodType"
-            value={2}
-            onChange={handleInputChange}
-            checked={bloodType === 2}
-            required
-          />
-          2
-        </label>
-        <label className={css.radioLabel}>
-          <input className={css.radioInput}
-            type="radio"
-            name="bloodType"
-            value={3}
-            onChange={handleInputChange}
-            checked={bloodType === 3}
-            required
-          />
-          3
-        </label>
-        <label className={css.radioLabel}>
-          <input className={css.radioInput}
-            type="radio"
-            name="bloodType"
-            value={4}
-            onChange={handleInputChange}
-            checked={bloodType === 4}
-            required
-          />
-          4
-        </label>
-        </div>
-        <button className={css.startBtn}type="submit">Start losing weight</button>
+        <button className={css.startBtn} type="submit">
+          Start losing weight
+        </button>
       </form>
     </div>
   );

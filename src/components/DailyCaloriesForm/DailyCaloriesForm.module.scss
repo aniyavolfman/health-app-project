@@ -11,6 +11,13 @@
     padding-top: 100px;
     padding-left: 32px;
     padding-right: 32px;
+    align-items: flex-start;
+  }
+
+  @media (min-width: 1280px) {
+    width: 608px;
+padding-top: 147px;
+padding-left: 13px;
   }
 }
 
@@ -32,6 +39,10 @@
   display: flex;
   flex-direction: column;
   margin-top: 34px;
+
+  @media (min-width: 768px){
+    margin-top: 68px;
+  }
 }
 
 .inputsWrapper {
@@ -40,12 +51,33 @@
   flex-direction: column;
   gap: 32px;
   margin-bottom: 32px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+}
+
+.inputsLeft, .inputsRight {
+  display:flex;
+  flex-direction: column;
+  gap: 32px;
+
+  @media (min-width: 768px) {
+    gap: 40px;
+  }
 }
 
 .input {
   height: 24px;
   border: none;
   border-bottom: 1px solid #e0e0e0;
+  @media (min-width: 768px) {
+    height: 37px;
+    width: 240px;
+  }
+
 }
 
 .input::placeholder {
@@ -56,12 +88,15 @@
   line-height: 1.21;
   letter-spacing: 0.04em;
   text-align: left;
+  @media (min-width: 768px) {
+    padding-bottom: 20px;
+  }
 }
 
 .radioWrapper {
   display: flex;
   gap: 24px;
-  margin-bottom: 40px;
+
 }
 
 .radioTitle {
@@ -72,6 +107,10 @@
   letter-spacing: 0.04em;
   text-align: left;
   margin-bottom: 8px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 28px;
+  }
 }
 
 .radioLabel {
@@ -112,4 +151,8 @@
   box-shadow: 0px 4px 10px 0px #fc842d80;
   border-radius: 30px;
   border: transparent;
+
+  @media (min-width: 1280px) {
+    margin-left: 339px;
+  }
 }

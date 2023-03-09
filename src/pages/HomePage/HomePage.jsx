@@ -1,8 +1,10 @@
-import CalculatorСalorieForm from 'components/CalculatorСalorieForm/CalculatorСalorieForm';
+
 import { DailyCaloriesForm } from 'components/DailyCaloriesForm/DailyCaloriesForm';
 
 import { ModalRec } from 'components/ModalRec/ModalRec';
 import React, { useState } from 'react';
+import css from './HomePage.module.scss';
+
 
 export default function HomePage() {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -18,8 +20,7 @@ export default function HomePage() {
   };
 
   return (
-    <div>
-      <CalculatorСalorieForm />
+    <div className={css.pageWrapper}>
       <DailyCaloriesForm handleOpenModal={handleOpenModal} />
 
       {isOpenModal && <ModalRec onClose={onClose} />}

@@ -1,0 +1,22 @@
+
+
+
+.pageWrapper {
+    background-color: var(--btn-text-active-color);
+    
+
+    background-image: 
+    url('../../img/Layer.png'),
+    url('../../img/strawberry.png'),
+    url('../../img/banan.png'),
+    
+    url('../../img/Vector3.jpeg');
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: top -86px left 330px, top 356px left 944px, top -72px left 778px, top 34px left 678px;
+  //background-size: 50px, cover;
+
+
+   
+}
+// //import img from 'images/telephone-g427e92d31_1280-min.jpeg';
+//background-image: url(${img});
