@@ -17,12 +17,13 @@ export const DailyCaloriesForm = ({ handleOpenModal }) => {
   const [weight, setWeight] = useState('');
   const [desiredWeight, setDesiredWeight] = useState('');
   const [bloodType, setBloodType] = useState(1);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const dispatch = useDispatch();
 
   const calories = useSelector(selectDailyCalories);
   const noProducts = useSelector(selectNotAllowedProducts);
   const userId = useSelector(selectId);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const handleInputChange = event => {
     const value = event.target.value;
@@ -69,7 +70,6 @@ export const DailyCaloriesForm = ({ handleOpenModal }) => {
       // console.log('userParams', userParams);
     } else {
       dispatch(getAuthRecommendations({ ...userParams, userId }));
-      handleOpenModal();
     }
 
     console.log('userId', userId);
@@ -164,7 +164,7 @@ export const DailyCaloriesForm = ({ handleOpenModal }) => {
           />
           4
         </label>
-        {/* <p>{calories}</p> */}
+        <p>{calories}</p>
         {/* <p>{noProducts}</p> */}
         <button type="submit">Start losing weight</button>
       </form>

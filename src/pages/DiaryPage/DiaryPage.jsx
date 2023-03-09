@@ -1,10 +1,12 @@
-import DiaryDateCalendar from 'components/DiaryDateСalendar/DiaryDateСalendar';
+import DiaryAddProductForm from 'components/DiaryAddProductForm/DiaryAddProductForm';
+
 import React from 'react';
 
 export default function DiaryPage() {
   return (
     <div>
-      <DiaryDateCalendar />
+      {/* <DiaryDateCalendar /> */}
+      <DiaryAddProductForm />
     </div>
   );
 }
