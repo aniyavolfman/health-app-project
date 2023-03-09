@@ -1,5 +1,5 @@
 import React from 'react';
-import css from './DiaryProductsListItem.module.scss'
+import css from './DiaryProductsListItem.module.scss';
 export default function DiaryProductsListItem({
   title,
   weight,
@@ -9,17 +9,19 @@ export default function DiaryProductsListItem({
 }) {
   return (
     <li>
-      <span className={css.titleProduct}>{title} </span>{' '}
-      <span className={css.weightProduct}>{weight} g</span>{' '}
-      <span className={css.kcalProduct}>{kcal} kcal </span>
-      <button
-        className={css.btnProduct}
-        id={id}
-        type="button"
-        onClick={deleteProduct}
-      >
-        X
-      </button>
+      <span className={css.singleLi}>
+        <span className={css.titleProduct}>{title} </span>{' '}
+        <span className={css.weightProduct}>{weight} g</span>{' '}
+        <span className={css.kcalProduct}>{kcal} kcal </span>
+        <button
+          className={css.btnProduct}
+          id={id}
+          type="button"
+          onClick={deleteProduct}
+        >
+          X
+        </button>
+      </span>
     </li>
   );
 }
