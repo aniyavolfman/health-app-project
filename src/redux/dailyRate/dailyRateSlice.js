@@ -21,16 +21,15 @@ export const dailyRateSlice = createSlice({
     builder
       .addCase(getRecommendations.pending, pendingHandler)
       .addCase(getRecommendations.fulfilled, (state, action) => {
-        state.isLoading = 'false';
+        state.isLoading = false;
         state.notAllowedProducts = action.payload.notAllowedProducts;
         state.dailyCalories = action.payload.dailyRate;
-        console.log(action.payload);
       })
       .addCase(getRecommendations.rejected, rejectHandler)
 
       .addCase(getAuthRecommendations.pending, pendingHandler)
       .addCase(getAuthRecommendations.fulfilled, (state, action) => {
-        state.isLoading = 'false';
+        state.isLoading = false;
         state.notAllowedProducts = action.payload.notAllowedProducts;
         state.dailyCalories = action.payload.dailyRate;
       })
@@ -39,10 +38,10 @@ export const dailyRateSlice = createSlice({
 
 function pendingHandler(state) {
   state.error = null;
-  state.isLoading = 'true';
+  state.isLoading = true;
 }
 function rejectHandler(state, action) {
-  state.isLoding = 'false';
+  state.isLoading = false;
   state.error = action.payload;
 }
 
