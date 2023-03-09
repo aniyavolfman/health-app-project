@@ -26,7 +26,7 @@ export default function DiaryAddProductForm() {
   const [products, setProducts] = useState([]);
   const [productId, setProductId] = useState('');
   const date = useSelector(state => state.products.currentDate);
- 
+
   useEffect(() => {
     if (product) {
       productSearch(product).then(setProducts);
