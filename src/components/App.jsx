@@ -5,7 +5,6 @@ import { PublicRoute } from './PublicRoute/PublicRoute';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
 import {
   fetchCurrentUser,
-  refreshUserRequest,
 } from 'redux/auth/authOperations';
 import { selectSid } from 'redux/auth/authSelectors';
 

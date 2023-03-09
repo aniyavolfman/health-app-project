@@ -6,7 +6,6 @@ import { selectAccessToken, selectUserName } from 'redux/auth/authSelectors';
 
 export default function UserInfo() {
   const token = useSelector(selectAccessToken);
-  // const navigate = useNavigate();
   const username = useSelector(selectUserName);
   const dispatch = useDispatch();
 
@@ -14,14 +13,8 @@ export default function UserInfo() {
     dispatch(logOutRequest());
   };
   useEffect(() => {
-    console.log(token);
     if (token) return;
-
-    // navigate('/login');
-  }, [
-    token,
-    // navigate
-  ]);
+  }, [token]);
 
   return (
     <div>
