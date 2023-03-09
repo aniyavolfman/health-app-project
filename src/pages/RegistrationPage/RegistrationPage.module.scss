@@ -1,4 +1,3 @@
-
 .formContainer {
     width: 100%;
     min-width: 280px;
@@ -17,10 +16,10 @@
     url('../../img/Layer.png'),
     url('../../img/strawberry.png'),
     url('../../img/banan.png'),
-    
     url('../../img/Vector3.jpeg');
-  background-repeat: no-repeat, no-repeat, no-repeat;
-  background-position: top -86px left 330px, top 356px left 944px, top -72px left 778px, top 34px left 678px;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: bottom 300px right 1px, bottom 219px right -77px, bottom -100px right 1px, bottom -161px right -50px;
+    background-size: 746px 820px, 307px 302px, 480px 450px, 553px 750px;
 
     }
 
@@ -28,5 +27,13 @@
     height: 697px;
     padding-top: 153px;
     padding-left: 16px;
+    background-image: 
+    url('../../img/Layer.png'),
+    url('../../img/strawberry.png'),
+    url('../../img/banan.png'),
+    
+    url('../../img/Vector3.jpeg');
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: top -56px right 131px, top 410px right -41px, top -32px right 1px, top 34px right 1px;
     }
 }
