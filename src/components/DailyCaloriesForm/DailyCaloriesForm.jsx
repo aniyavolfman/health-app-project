@@ -5,10 +5,7 @@ import {
   getRecommendations,
 } from 'redux/dailyRate/dailyRateOperations';
 import css from './DailyCaloriesForm.module.scss';
-import {
-  selectDailyCalories,
-  selectNotAllowedProducts,
-} from 'redux/dailyRate/dailyRateSelectors';
+
 import { selectId, selectIsLoggedIn } from 'redux/auth/authSelectors';
 
 export const DailyCaloriesForm = ({ handleOpenModal }) => {
@@ -19,8 +16,6 @@ export const DailyCaloriesForm = ({ handleOpenModal }) => {
   const [bloodType, setBloodType] = useState(1);
 
   const dispatch = useDispatch();
-  // const calories = useSelector(selectDailyCalories);
-  // const noProducts = useSelector(selectNotAllowedProducts);
   const userId = useSelector(selectId);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
@@ -49,23 +44,22 @@ export const DailyCaloriesForm = ({ handleOpenModal }) => {
     }
   };
 
-  const userParams = {
-    height,
-    age,
-    weight,
-    desiredWeight,
-    bloodType,
+   const userParams = {
+     height,
+     age,
+     weight,
+     desiredWeight,
+     bloodType,
   };
+  
+
+  localStorage.setItem('userParams', JSON.stringify(userParams));
 
   const handleSubmit = event => {
     event.preventDefault();
-
     if (!isLoggedIn) {
-      // console.log(isLoggedIn);
       handleOpenModal();
       dispatch(getRecommendations(userParams));
-
-      // console.log('userParams', userParams);
     } else {
       dispatch(getAuthRecommendations({ ...userParams, userId }));
     }

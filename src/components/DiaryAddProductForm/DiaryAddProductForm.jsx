@@ -1,4 +1,3 @@
-import { format, parseISO } from 'date-fns';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
@@ -9,16 +8,13 @@ import { TextField } from '@mui/material';
 import dayjs from 'dayjs';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { day, productSearch } from 'services/api';
+import { productSearch } from 'services/api';
 import {
   addProductOperations,
-  createProductListOperations,
-  createProductOperations,
   userDayInfoOperation,
 } from 'redux/dayCalendar/dayCalendarOperations';
 import moment from 'moment/moment';
 import { DiaryProductsList } from 'components/DiaryProductsList/DiaryProductsList';
-import { fetchCurrentUser } from 'redux/auth/authOperations';
 import { setDate } from 'redux/dayCalendar/dayCalendarSlice';
 
 export default function DiaryAddProductForm() {
@@ -30,7 +26,7 @@ export default function DiaryAddProductForm() {
   const [products, setProducts] = useState([]);
   const [productId, setProductId] = useState('');
   const date = useSelector(state => state.products.currentDate);
-
+ 
   useEffect(() => {
     if (product) {
       productSearch(product).then(setProducts);
@@ -38,7 +34,6 @@ export default function DiaryAddProductForm() {
   }, [product]);
 
   const handleChangeProduct = e => {
-    // console.log(e.target);
     const { value } = e.target;
     setProduct(value);
   };
@@ -48,7 +43,6 @@ export default function DiaryAddProductForm() {
   };
   const handleChangeDate = newValue => {
     dispatch(setDate(moment(newValue).format('yyyy-MM-DD')));
-    console.log('>>>>>', date, moment(date).format('yyyy-MM-DD'));
   };
   useEffect(() => {
     dispatch(userDayInfoOperation({ date: moment(date).format('yyyy-MM-DD') }));
@@ -58,14 +52,15 @@ export default function DiaryAddProductForm() {
     productId,
     weight,
   };
-  // console.log('date, product, weight', newProduct);
 
   function handleSubmit(e) {
     e.preventDefault();
+    dispatch(addProductOperations(newProduct))
+      .unwrap()
+      .then(() => {
+        dispatch(userDayInfoOperation({ date }));
+      });
 
-    dispatch(addProductOperations(newProduct));
-
-    // dispatch(createProductListOperations());
     e.target.reset();
   }
 
@@ -95,7 +90,6 @@ export default function DiaryAddProductForm() {
               format="dd.MM.yyyy"
               minDate={dayjs('2020-01-01')}
               maxDate={dayjs(new Date())}
-              // value={parseISO(date)}
               defaultValue={new Date()}
               onChange={handleChangeDate}
               adapter={AdapterDateFns}
@@ -133,7 +127,6 @@ export default function DiaryAddProductForm() {
         <label label="Grams">
           <input
             type="number"
-            // min="100"
             name="weight"
             placeholder="Grams"
             value={weight}
@@ -147,23 +140,6 @@ export default function DiaryAddProductForm() {
     </div>
   );
 }
-
-// day
-
-// приклад тіла запиту  {
-//   "date": "2020-12-31",
-//   "productId": "5d51694802b2373622ff552c",
-//   "weight": 100
-// }
-
-// export async function day(credentials) {
-//   try {
-//     const { data } = await axios.post('/day', credentials);
-//     return data;
-//   } catch (error) {
-//     Notify.failure(error.message);
-//   }
-// }
 
 // document.addEventListener(
 //   'scroll',

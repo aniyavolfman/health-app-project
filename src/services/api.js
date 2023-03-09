@@ -160,7 +160,6 @@ export async function day(credentials) {
 
 export async function dayDelete(dayId) {
   try {
-    console.log(dayId);
     const { data } = await $privateHost.delete('/day', { data: dayId });
     return data;
   } catch (error) {

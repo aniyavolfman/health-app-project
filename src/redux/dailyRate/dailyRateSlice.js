@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { dailyRate } from 'services/api';
 import {
   getAuthRecommendations,
   getRecommendations,
@@ -11,12 +10,18 @@ const initialState = {
   dailyCalories: '',
   isLoading: false,
   error: null,
+  summaries: null,
+  userInfo: null,
 };
 
 export const dailyRateSlice = createSlice({
   name: 'dailyRate',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    setUser: (state, action) => {
+      state.userInfo = action.payload;
+    },
+  },
   extraReducers: builder =>
     builder
       .addCase(getRecommendations.pending, pendingHandler)
@@ -32,6 +37,7 @@ export const dailyRateSlice = createSlice({
         state.isLoading = false;
         state.notAllowedProducts = action.payload.notAllowedProducts;
         state.dailyCalories = action.payload.dailyRate;
+        state.summaries = action.payload.summaries;
       })
       .addCase(getAuthRecommendations.rejected, rejectHandler),
 });
@@ -46,3 +52,4 @@ function rejectHandler(state, action) {
 }
 
 export const dailyRateReducer = dailyRateSlice.reducer;
+export const { setUser } = dailyRateSlice.actions;
