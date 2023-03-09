@@ -67,7 +67,10 @@ export const userDayInfoOperation = createAsyncThunk(
     try {
       // const state = thunkAPI.getState();
       // const idDay = state.products.dayId;
+      // console.log('2', day);
       const response = await dayInfo(day);
+      console.log('1', response);
+
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
