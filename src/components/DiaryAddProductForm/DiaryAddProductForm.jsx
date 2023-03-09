@@ -15,6 +15,7 @@ import {
 } from 'redux/dayCalendar/dayCalendarOperations';
 import moment from 'moment/moment';
 import { DiaryProductsList } from 'components/DiaryProductsList/DiaryProductsList';
+import { setDate } from 'date-fns';
 
 export default function DiaryAddProductForm() {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ export default function DiaryAddProductForm() {
   const [products, setProducts] = useState([]);
   const [productId, setProductId] = useState('');
   const date = useSelector(state => state.products.currentDate);
- 
+
   useEffect(() => {
     if (product) {
       productSearch(product).then(setProducts);
