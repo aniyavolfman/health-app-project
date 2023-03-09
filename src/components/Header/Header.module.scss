@@ -4,18 +4,27 @@
 
   justify-content: space-between;
   align-items: baseline;
-  padding-top: 80px;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
   //padding-left: 16px;
   border-bottom: 2px solid rgba(224, 224, 224, 1);
   @media (max-width: 1199px) {
     justify-content: space-between;
     padding-bottom: 16px;
+    padding-top: 20px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
   @media (min-width: 1200px) {
     border-bottom: none;
     justify-content: start;
+    padding-top: 80px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }
+
 .logo {
   padding-right: 20px;
   //padding-bottom: 16px;
