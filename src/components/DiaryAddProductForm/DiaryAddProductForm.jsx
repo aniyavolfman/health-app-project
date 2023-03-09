@@ -15,7 +15,6 @@ import {
 } from 'redux/dayCalendar/dayCalendarOperations';
 import moment from 'moment/moment';
 import { DiaryProductsList } from 'components/DiaryProductsList/DiaryProductsList';
-import { setDate } from 'redux/dayCalendar/dayCalendarSlice';
 
 export default function DiaryAddProductForm() {
   const dispatch = useDispatch();
