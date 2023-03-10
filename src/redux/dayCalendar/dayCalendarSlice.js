@@ -58,8 +58,8 @@ const productsSlice = createSlice({
       //-------userInfo-----////
       .addCase(userDayInfoOperation.pending, pendingHandler)
       .addCase(userDayInfoOperation.fulfilled, (state, action) => {
-        state.items = action.payload.eatenProducts;
-        state.dayId = action.payload.id;
+        state.items = action.payload?.eatenProducts;
+        state.dayId = action.payload?.id;
       });
   },
 });
