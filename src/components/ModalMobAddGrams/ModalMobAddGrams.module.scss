@@ -1,0 +1,48 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  background: rgba(239, 241, 243, 0.5);
+  transition: opacity 150ms liner, visibility 150ms liner;
+  z-index: 300;
+}
+
+.modal {
+  // margin-top: 40px;
+  padding-top: 80px;
+  padding-bottom: 119px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: none;
+  width: 100%;
+  min-width: 280px;
+  min-height: 637px;
+  background-color: #ffffff;
+  z-index: 301;
+  border: 1px solid #e0e0e0;
+  position: absolute;
+  transition: transform 150ms liner;
+}
+
+.modalEl {
+  width: 100%;
+  height: 40px;
+  background-color: #eff1f3;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.closeBtn {
+  position: absolute;
+  border: none;
+  left: 20px;
+  top: 15px;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+}

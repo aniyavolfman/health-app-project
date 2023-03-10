@@ -16,26 +16,21 @@ import {
 
 import { useEffect } from 'react';
 import { Loader } from 'components/Loader/Loader';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const modalRoot = document.getElementById('modal');
-console.log('modalRoot', modalRoot);
+// console.log('modalRoot', modalRoot);
 
 export function ModalRec({ onClose }) {
   const { width } = useWindowSize();
   const notAllowedProducts = useSelector(selectNotAllowedProducts);
   const dailyCalories = useSelector(selectDailyCalories);
-  console.log('dailyCalories', dailyCalories);
+
   const error = useSelector(selectError);
   const isLoading = useSelector(selectIsLoading);
 
-  const location = useLocation();
-
   const onBackdropClick = event => {
-    console.log('onBackdropClick event.target', event.target);
-    console.log('onBackdropClick event.currentTarget', event.currentTarget);
     if (event.target === event.currentTarget) {
-      console.log('onBackdropClick onClose()');
       onClose();
     }
   };
@@ -54,8 +49,6 @@ export function ModalRec({ onClose }) {
     };
   }, [onClose]);
 
-  // if (!dailyCalories) return;
-  console.log(isLoading);
   return createPortal(
     <div className={css.recBackdrop} onClick={onBackdropClick}>
       {isLoading && <Loader />}
