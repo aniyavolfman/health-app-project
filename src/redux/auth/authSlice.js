@@ -16,7 +16,7 @@ const initialState = {
   error: null,
   id: null,
   email: '',
-  userData: null,
+  userData: [],
   isLoggedIn: false,
 };
 

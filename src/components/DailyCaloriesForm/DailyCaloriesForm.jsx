@@ -53,7 +53,7 @@ export const DailyCaloriesForm = ({ handleOpenModal }) => {
   };
   
 
-  localStorage.setItem('userParams', JSON.stringify(userParams));
+  // localStorage.setItem('userParams', JSON.stringify(userParams));
 
   const handleSubmit = event => {
     event.preventDefault();
