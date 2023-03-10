@@ -26,17 +26,6 @@
   transition: transform 150ms liner;
 }
 
-.modalEl {
-  width: 100%;
-  height: 40px;
-  background-color: #eff1f3;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-
 .closeBtn {
   position: absolute;
   border: none;
@@ -51,4 +40,10 @@
   display: flex;
   flex-direction: column;
   margin-top: 34px;
+}
+
+.btnOpenModalProduct {
+}
+
+.iconAddProduct {
 }
