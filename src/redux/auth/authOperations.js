@@ -32,7 +32,6 @@ export const loginUserRequest = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       const response = await login(formData);
-      console.log(response);
       token.set(response.accessToken, 'Bearer');
       return response;
     } catch (error) {
@@ -62,7 +61,6 @@ export const logOutRequest = createAsyncThunk(
   'auth/logout',
   async (_, thunkAPI) => {
     try {
-      console.log(thunkAPI.getState().auth);
       const {token: accessToken} = thunkAPI.getState().auth;
       const responce = await logOut();
       token.unSet(accessToken);

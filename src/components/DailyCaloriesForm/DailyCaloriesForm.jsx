@@ -40,7 +40,6 @@ export const DailyCaloriesForm = ({ handleOpenModal }) => {
 
     if (!isLoggedIn) {
       handleOpenModal();
-      console.log(values);
       dispatch(getRecommendations(values));
     } else {
       dispatch(getAuthRecommendations({ ...values, userId }));

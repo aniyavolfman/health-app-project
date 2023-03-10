@@ -19,6 +19,7 @@ export function DiaryProductsList() {
       eatenProductId: e.target.id,
     };
 
+    console.log(e.target);
     localStorage.setItem('dayIdObj', JSON.stringify(dayIdObj));
     dispatch(deleteProductOperation(dayIdObj))
       .unwrap()
