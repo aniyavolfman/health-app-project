@@ -19,7 +19,9 @@ import moment from 'moment/moment';
 import { DiaryProductsList } from 'components/DiaryProductsList/DiaryProductsList';
 import { setDate } from 'redux/dayCalendar/dayCalendarSlice';
 import { fetchCurrentUser } from 'redux/auth/authOperations';
+
 import debounce from 'lodash/debounce';
+
 
 const defaulDate = new Date();
 
@@ -48,11 +50,13 @@ export default function DiaryAddProductForm({
     }, 1000)
   );
 
+
   // useEffect(() => {
   //   if (product) {
   //     productSearch(product).then(setProducts);
   //   }
   // }, [product]);
+
 
   const handleChangeProduct = e => {
     const { value } = e.target;
