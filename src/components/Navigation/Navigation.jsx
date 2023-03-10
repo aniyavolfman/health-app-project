@@ -9,7 +9,6 @@ import css from '../Navigation/Navigation.module.scss';
 export default function Navigation() {
   const token = useSelector(selectAccessToken);
   const [nav, setNav] = useState(false);
-  // nav =open
 
   return (
     <nav className={css.navigation}>
@@ -22,7 +21,7 @@ export default function Navigation() {
               }
               to="/diary"
             >
-              DIARY
+              ЩОДЕННИК
             </NavLink>
             <NavLink
               to="/calculator"
@@ -30,7 +29,7 @@ export default function Navigation() {
                 isActive ? css.active : css.navigationLink
               }
             >
-              CALCULATOR
+              ПІДРАХУНОК
             </NavLink>
           </div>
           <div onClick={() => setNav(!nav)} className={css.mobile_btn}>
@@ -45,7 +44,7 @@ export default function Navigation() {
             }
             to="/login"
           >
-            LOG IN
+            ВХІД
           </NavLink>
           <NavLink
             className={({ isActive }) =>
@@ -53,7 +52,7 @@ export default function Navigation() {
             }
             to="/register"
           >
-            REGISTRATION
+            РЕЄСТРАЦІЯ
           </NavLink>
         </div>
       )}
