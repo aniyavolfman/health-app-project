@@ -77,4 +77,6 @@ body {
   cursor: url('./img/cursor-ice.png'), auto;
 }
 
-
+.MuiStack-root {
+  overflow: hidden !important;
+}
