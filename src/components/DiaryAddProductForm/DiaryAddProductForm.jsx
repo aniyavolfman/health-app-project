@@ -16,7 +16,8 @@ import {
 import moment from 'moment/moment';
 import { DiaryProductsList } from 'components/DiaryProductsList/DiaryProductsList';
 import { setDate } from 'redux/dayCalendar/dayCalendarSlice';
-
+import { fetchCurrentUser } from 'redux/auth/authOperations';
+const defaulDate = new Date();
 export default function DiaryAddProductForm() {
   const dispatch = useDispatch();
 
@@ -53,14 +54,21 @@ export default function DiaryAddProductForm() {
     weight,
   };
 
+  const reset = () => {
+    setProduct('');
+    setWeight('');
+  };
+
+
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(addProductOperations(newProduct))
       .unwrap()
       .then(() => {
+        dispatch(fetchCurrentUser());
         dispatch(userDayInfoOperation({ date }));
       });
-
+    reset();
     e.target.reset();
   }
 
@@ -90,7 +98,7 @@ export default function DiaryAddProductForm() {
               format="dd.MM.yyyy"
               minDate={dayjs('2020-01-01')}
               maxDate={dayjs(new Date())}
-              defaultValue={new Date()}
+              defaultValue={defaulDate}
               onChange={handleChangeDate}
               adapter={AdapterDateFns}
             />
