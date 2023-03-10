@@ -9,13 +9,14 @@ import { createPortal } from 'react-dom';
 import { useSelector } from 'react-redux';
 import {
   selectDailyCalories,
+  selectError,
   selectIsLoading,
   selectNotAllowedProducts,
 } from 'redux/dailyRate/dailyRateSelectors';
-import { selectError } from 'redux/dailyRate/dailyRateSelectors';
+
 import { useEffect } from 'react';
 import { Loader } from 'components/Loader/Loader';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const modalRoot = document.getElementById('modal');
 console.log('modalRoot', modalRoot);
@@ -27,6 +28,8 @@ export function ModalRec({ onClose }) {
   console.log('dailyCalories', dailyCalories);
   const error = useSelector(selectError);
   const isLoading = useSelector(selectIsLoading);
+
+  const location = useLocation();
 
   const onBackdropClick = event => {
     console.log('onBackdropClick event.target', event.target);
@@ -52,12 +55,11 @@ export function ModalRec({ onClose }) {
   }, [onClose]);
 
   // if (!dailyCalories) return;
-
+  console.log(isLoading);
   return createPortal(
     <div className={css.recBackdrop} onClick={onBackdropClick}>
       {isLoading && <Loader />}
-      {error !== null && <p>Ooops... something went wrong</p>}
-
+      {error && <p>Ooops... something went wrong</p>}
       <div className={css.recModal}>
         {width < 768 && <span className={css.recModalEl}></span>}
         <button type="button" className={css.closeBtn}>
@@ -68,7 +70,7 @@ export function ModalRec({ onClose }) {
             />
           ) : (
             <MdKeyboardReturn
-              style={{ width: 12, height: 7 }}
+              style={{ width: 20, height: 16 }}
               onClick={() => onClose()}
             />
           )}
@@ -93,7 +95,7 @@ export function ModalRec({ onClose }) {
               </li>
             ))}
         </ol>
-        {/* куда возврат? */}
+
         <Link to="/register">
           <button type="submit" className={css.btnSubmit}>
             Start losing weight

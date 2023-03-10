@@ -1,9 +1,9 @@
-import css from './RegistrationPage.module.css';
+import css from './RegistrationPage.module.scss';
 import RegisterForm from 'components/RegisterForm/RegisterForm';
 
 const RegisterPage = () => {  
   return (
-    <div className={css.formSection}>
+    <div className={css.formContainer}>
       <RegisterForm />
     </div>
   );
