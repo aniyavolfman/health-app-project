@@ -26,7 +26,7 @@ export default function Header() {
   return (
     <>
       <header className={css.header}>
-        <Link to="/" className={css.logo}>
+        <Link to={token ? '/diary' : '/'} className={css.logo}>
           <img
             src={getLogo()}
             alt="logo"

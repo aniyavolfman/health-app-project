@@ -19,7 +19,6 @@ import { Loader } from 'components/Loader/Loader';
 import { Link } from 'react-router-dom';
 
 const modalRoot = document.getElementById('modal');
-// console.log('modalRoot', modalRoot);
 
 export function ModalRec({ onClose }) {
   const { width } = useWindowSize();
