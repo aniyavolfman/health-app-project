@@ -30,7 +30,6 @@ const authSlice = createSlice({
       })
       .addCase(loginUserRequest.fulfilled, (state, action) => {
         state.isLoading = false;
-        console.log(action.payload);
         state.accessToken = action.payload.accessToken;
         state.refreshToken = action.payload.refreshToken;
         state.sid = action.payload.sid;

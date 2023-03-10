@@ -36,18 +36,18 @@ const productsSlice = createSlice({
       .addCase(addProductOperations.fulfilled, (state, action) => {
         state.isLoading = false;
         state.items = [...state.items, action.payload.eatenProduct];
-        // state.items = action.payload;
-        state.itemTitle = action.payload.eatenProduct.titчle;
+        state.itemTitle = action.payload.eatenProduct.title;
         state.itemWeight = action.payload.eatenProduct.weight;
         state.itemKcal = action.payload.eatenProduct.kcal;
         state.itemId = action.payload.eatenProduct.id;
         state.dayId = action.payload.day.id;
       })
+      .addCase(addProductOperations.rejected, rejectHandler)
       //---------------------------
       .addCase(fetchCurrentUser.fulfilled, (state, { payload }) => {
         state.days = payload.days;
+        state.isLoading = false;
       })
-      .addCase(addProductOperations.rejected, rejectHandler)
       //-------delete-----////
       .addCase(deleteProductOperation.pending, pendingHandler)
       .addCase(deleteProductOperation.fulfilled, (state, action) => {
@@ -60,6 +60,10 @@ const productsSlice = createSlice({
       .addCase(userDayInfoOperation.fulfilled, (state, action) => {
         state.items = action.payload?.eatenProducts;
         state.dayId = action.payload?.id;
+        state.isLoading = false;
+      })
+      .addCase(userDayInfoOperation.rejected, state => {
+        state.isLoading = false;
       });
   },
 });
