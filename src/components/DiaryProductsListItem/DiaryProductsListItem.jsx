@@ -1,5 +1,6 @@
 import React from 'react';
 import { IoIosClose } from 'react-icons/io';
+import { GrClose } from 'react-icons/gr';
 import css from './DiaryProductsListItem.module.scss';
 export default function DiaryProductsListItem({
   title,
@@ -11,18 +12,26 @@ export default function DiaryProductsListItem({
   return (
     <li className={css.liProduct}>
       <span className={css.singleSpan}>
-        <span className={css.titleProduct}>{title} </span>{' '}
-        <span className={css.weightProduct}>{weight} g</span>{' '}
-        <span className={css.kcalProduct}>{kcal} kcal </span>
+        <span className={css.titleProduct}>{title} </span>
+        <span className={css.weightProduct}>{weight} г</span>
+        <span className={css.kcalProduct}>{kcal} ккал </span>
         <button
           className={css.btnProduct}
           id={id}
           type="button"
           onClick={deleteProduct}
         >
-          <IoIosClose className={css.iconProduct} />
+          <div style={{ background: 'white', color: '#9b9faa' }}>
+            <GrClose
+              style={{ background: 'white', color: '#9b9faa' }}
+              className={css.iconProduct}
+              id={id}
+            />
+          </div>
         </button>
       </span>
     </li>
   );
 }
+
+

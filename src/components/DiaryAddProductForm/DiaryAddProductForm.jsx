@@ -19,8 +19,9 @@ import moment from 'moment/moment';
 import { DiaryProductsList } from 'components/DiaryProductsList/DiaryProductsList';
 import { setDate } from 'redux/dayCalendar/dayCalendarSlice';
 import { fetchCurrentUser } from 'redux/auth/authOperations';
-
 import debounce from 'lodash/debounce';
+
+
 
 
 const defaulDate = new Date();

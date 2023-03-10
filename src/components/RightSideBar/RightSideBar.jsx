@@ -10,22 +10,19 @@ export default function RightSideBar() {
   );
   const summaries = useSelector(state => state.dailyRate.summaries);
 
-  const shortProducts = notAllowedProducts?.slice(0, 9);
+  const shortProducts = notAllowedProducts?.slice(0, 4);
 
   return (
     <div className={css.SidebarSection}>
       <div className={css.SidebarWrap}>
         <div className={css.SidebarRecomend}>
-          <h2 className={css.userInfoTitle}>Summary for {date}</h2>
+          <h2 className={css.userInfoTitle}>Підсумок на {date}</h2>
           <ul className={css.SidebarList}>
             <li className={css.SidebarItem}>
               <p className={css.SidebarText}>Залишилось</p>
               <p className={css.SidebarText}>
                 {summaries?.kcalLeft.toFixed(2)} ккал
               </p>
-              {/* <span className={css.userInfoData}>
-            {summaries?.kcalLeft.toFixed(2)} ккал
-          </span> */}
             </li>
             <li className={css.SidebarItem}>
               <p className={css.SidebarText}>Спожито</p>
