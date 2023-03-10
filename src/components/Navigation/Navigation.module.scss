@@ -2,7 +2,13 @@
   display: flex;
   gap: 24px;
   align-items: center;
-  margin-left: 20px;
+  /* margin-left: 20px; */
+  @media (min-width: 1200px) {
+    padding-left: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-left: 2px solid rgba(224, 224, 224, 1);
+  }
 }
 
 .navigationLink {
@@ -19,10 +25,11 @@
 }
 
 .active {
-  composes: navigationLink;
+  // composes: navigationLink;
   color: #212121;
   cursor: pointer;
 }
+
 /* добавила стилі модалки */
 
 .menu {
@@ -131,3 +138,5 @@
     }
   }
 }
+
+

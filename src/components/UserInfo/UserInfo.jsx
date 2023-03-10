@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { logOutRequest } from 'redux/auth/authOperations';
 import { selectAccessToken, selectUserName } from 'redux/auth/authSelectors';
+import css from './UserInfo.module.scss';
 
 export default function UserInfo() {
   const token = useSelector(selectAccessToken);
@@ -17,10 +18,10 @@ export default function UserInfo() {
   }, [token]);
 
   return (
-    <div>
-      <span>{username}</span>
+    <div className={css.userInfo}>
+      <span className={css.userName}>{username}</span>
       <NavLink to="/login" onClick={handleLogOut}>
-        Exit
+        <span className={css.userExit}> Exit</span>
       </NavLink>
     </div>
   );

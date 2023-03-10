@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { userDayInfoOperation } from 'redux/dayCalendar/dayCalendarOperations';
 import {
   getAuthRecommendations,
   getRecommendations,
@@ -37,9 +38,11 @@ export const dailyRateSlice = createSlice({
         state.isLoading = false;
         state.notAllowedProducts = action.payload.notAllowedProducts;
         state.dailyCalories = action.payload.dailyRate;
-        state.summaries = action.payload.summaries;
       })
-      .addCase(getAuthRecommendations.rejected, rejectHandler),
+      .addCase(getAuthRecommendations.rejected, rejectHandler)
+      .addCase(userDayInfoOperation.fulfilled, (state, action) => {
+        state.summaries = action.payload?.daySummary;
+      })
 });
 
 function pendingHandler(state) {
