@@ -3,9 +3,9 @@ import { dailyRate, dailyRateId } from 'services/api';
 
 export const getRecommendations = createAsyncThunk(
   'dailyRate/user',
-  async (userParams, { rejectWithValue }) => {
+  async (values, { rejectWithValue }) => {
     try {
-      const response = await dailyRate(userParams);
+      const response = await dailyRate(values);
 
       return response;
     } catch (error) {
@@ -16,9 +16,9 @@ export const getRecommendations = createAsyncThunk(
 
 export const getAuthRecommendations = createAsyncThunk(
   'dailyRate/auth',
-  async (userParams, { rejectWithValue }) => {
+  async (values, { rejectWithValue }) => {
     try {
-      const response = await dailyRateId(userParams);
+      const response = await dailyRateId(values);
 
       return response;
     } catch (error) {
