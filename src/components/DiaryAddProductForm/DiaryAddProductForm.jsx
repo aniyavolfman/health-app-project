@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
+import { IoIosAdd } from 'react-icons/io';
 import { useState } from 'react';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -7,9 +8,8 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TextField } from '@mui/material';
 import dayjs from 'dayjs';
 import { useDispatch, useSelector } from 'react-redux';
-
+import css from './DiaryAddProductForm.module.scss';
 import { useWindowSize } from 'react-use';
-
 import { productSearch } from 'services/api';
 import {
   addProductOperations,
@@ -19,7 +19,9 @@ import moment from 'moment/moment';
 import { DiaryProductsList } from 'components/DiaryProductsList/DiaryProductsList';
 import { setDate } from 'redux/dayCalendar/dayCalendarSlice';
 import { fetchCurrentUser } from 'redux/auth/authOperations';
-import { debounce } from 'lodash';
+
+import debounce from 'lodash/debounce';
+
 
 const defaulDate = new Date();
 
@@ -30,26 +32,36 @@ export default function DiaryAddProductForm({
   isInModal,
 }) {
   const { width } = useWindowSize();
-
   const dispatch = useDispatch();
-
   const [product, setProduct] = useState('');
   const [weight, setWeight] = useState('');
   // const [query, setQuery] = useState('');
   const [products, setProducts] = useState([]);
   const [productId, setProductId] = useState('');
   const date = useSelector(state => state.products.currentDate);
+  const getProducts = useCallback(
+    debounce(query => {
+      if (!query) {
+        return;
+      }
+      productSearch(query).then(data => {
+        setProducts(data);
+      });
+    }, 1000)
+  );
 
-  useEffect(() => {
-    if (product) {
-      productSearch(product).then(setProducts);
-    }
-  }, [product]);
-  
+
+  // useEffect(() => {
+  //   if (product) {
+  //     productSearch(product).then(setProducts);
+  //   }
+  // }, [product]);
+
 
   const handleChangeProduct = e => {
     const { value } = e.target;
     setProduct(value);
+    getProducts(product);
   };
   const handleChangeWeight = e => {
     const { value } = e.target;
@@ -93,14 +105,19 @@ export default function DiaryAddProductForm({
     return false;
   };
   return (
-    <div>
+    <div className={css.FormDiv}>
       {shouldRender() && (
-        <form autoComplete="off" onSubmit={handleSubmit}>
+        <form className={css.Form} autoComplete="off" onSubmit={handleSubmit}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DemoContainer components={['DatePicker']}>
               <DatePicker
                 slots={{ textField: TextField }}
-                slotProps={{ textField: { variant: 'standard' } }}
+                slotProps={{
+                  textField: {
+                    variant: 'standard',
+                    overflow: 'auto !important',
+                  },
+                }}
                 InputProps={{
                   disableUnderline: true,
                 }}
@@ -109,10 +126,10 @@ export default function DiaryAddProductForm({
                     border: 'none',
                   },
                   '& .MuiInputBase-root': {
-                    border: 'none !important',
+                    border: 'none',
                   },
                   '& .MuiInputBase-input': {
-                    fontSize: '16px',
+                    fontSize: '34px',
                     border: 'none !important',
                   },
                 }}
@@ -125,48 +142,55 @@ export default function DiaryAddProductForm({
               />
             </DemoContainer>
           </LocalizationProvider>
+          <div className={css.inputProductTwo}>
+            <label label="Product" className={css.inputProductLabel}>
+              <input
+                className={css.inputProduct}
+                list="listProducts"
+                type="text"
+                name="product"
+                placeholder="Введіть назву продукту"
+                value={product}
+                onChange={handleChangeProduct}
+              />
 
-          <label label="Product">
-            <input
-              list="listProducts"
-              type="text"
-              name="product"
-              placeholder="Enter product name"
-              value={product}
-              onChange={handleChangeProduct}
-            />
-
-            {products?.map(({ _id, title }) => (
-              <button
-                type="button"
-                key={_id}
-                value={_id}
-                style={{ display: 'block' }}
-                onClick={() => {
-                  setProductId(_id);
-                  setProduct(title.ua);
-                  setProducts([]);
-                }}
-              >
-                {title.ua}
-              </button>
-            ))}
-          </label>
-
-          <label label="Grams">
-            <input
-              type="number"
-              name="weight"
-              placeholder="Grams"
-              value={weight}
-              onChange={handleChangeWeight}
-            />
-          </label>
-
-          <button type="submit">{width > 768 ? '+' : 'відправити'}</button>
+              {products?.map(({ _id, title }) => (
+                <button
+                  // className={css.inputProductTwo}
+                  type="button"
+                  key={_id}
+                  value={_id}
+                  style={{ display: 'block' }}
+                  onClick={() => {
+                    setProductId(_id);
+                    setProduct(title.ua);
+                    setProducts([]);
+                  }}
+                >
+                  {title.ua}
+                </button>
+              ))}
+            </label>
+            <label label="Grams" className={css.inputProductGrams}>
+              <input
+                className={css.inputGrams}
+                type="number"
+                name="weight"
+                placeholder="Грами"
+                value={weight}
+                onChange={handleChangeWeight}
+              />
+            </label>
+          </div>
+          <button className={css.btnAddProduct} type="submit">
+            {width > 768 ? (
+              <IoIosAdd className={css.iconAddProduct} />
+            ) : (
+              'відправити'
+            )}
+          </button>
         </form>
       )}
-
       {!isInModal && <DiaryProductsList />}
       {width <= 768 && !isOpenModal && (
         <button type="button" onClick={handleOpenModal}>
@@ -176,19 +200,3 @@ export default function DiaryAddProductForm({
     </div>
   );
 }
-
-// document.addEventListener(
-//   'scroll',
-//   _.throttle(() => {
-//     eventCounter.throttled += 1;
-//     throttledOutput.textContent = eventCounter.throttled;
-//   }, 300)
-// );
-
-// document.addEventListener(
-//   'scroll',
-//   _.debounce(() => {
-//     eventCounter.debounced += 1;
-//     debouncedOutput.textContent = eventCounter.debounced;
-//   }, 300)
-// );
