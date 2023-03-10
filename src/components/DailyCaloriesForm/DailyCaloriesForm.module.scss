@@ -45,6 +45,8 @@ padding-left: 13px;
   }
 }
 
+
+
 .inputsWrapper {
   width: 240px;
   display: flex;
@@ -77,7 +79,11 @@ padding-left: 13px;
     height: 37px;
     width: 240px;
   }
-
+}
+.inputError
+ {
+  @extend .input;
+  border-color: #fc8181;
 }
 
 .input::placeholder {
@@ -91,6 +97,12 @@ padding-left: 13px;
   @media (min-width: 768px) {
     padding-bottom: 20px;
   }
+}
+.error {
+  color: #fc8181;
+  font-size: 0.75rem;
+  text-align: left;
+  margin-top: 0.25rem;
 }
 
 .radioWrapper {
@@ -156,3 +168,5 @@ padding-left: 13px;
     margin-left: 339px;
   }
 }
+
+
