@@ -100,7 +100,22 @@ body {
 }
 
 .MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-formControl.MuiInputBase-adornedEnd.css-v4u5dn-MuiInputBase-root-MuiInput-root::before {
-  border-style: none;
+  border-style: none!important;
+   @media screen and (min-width: 768px) {
+     border-style: none !important;
+  }
+  @media screen and (min-width: 1280px) {
+     border-style: none !important;
+  }
+}
+.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-formControl.MuiInputBase-adornedEnd.css-v4u5dn-MuiInputBase-root-MuiInput-root::after {
+  border-style: none !important;
+   @media screen and (min-width: 768px) {
+     border-style: none !important; 
+  }
+  @media screen and (min-width: 1280px) {
+     border-style: none !important;
+  }
 }
 
 .MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-formControl.MuiInputBase-adornedEnd.css-v4u5dn-MuiInputBase-root-MuiInput-root:focus {
