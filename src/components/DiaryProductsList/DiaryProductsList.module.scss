@@ -1,0 +1,37 @@
+.burgerList {
+  min-width: 280px;
+  font-family: 'Verdana';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+
+  @media (min-width: 768px) {
+    width: 395px;
+    align-items: start;
+    padding-left: 32px;
+    margin-top: 60px;
+    margin-bottom: 55px;
+  }
+  @media (min-width: 1199px) {
+    padding-left: 20px;
+    align-items: start;
+    margin-top: 60px;
+    margin-bottom: 55px;
+  }
+}
+
+.scrolList {
+  min-width: 280px;
+  max-height: 150px;
+  overflow-x: auto;
+  @media (min-width: 768px) {
+    max-height: 200px;
+    overflow-x: auto;
+  }
+  @media (min-width: 1199px) {
+    max-height: 280px;
+    overflow-x: auto;
+  }
+}
