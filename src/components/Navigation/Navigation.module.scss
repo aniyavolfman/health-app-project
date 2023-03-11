@@ -96,6 +96,9 @@
 }
 
 @media (max-width: 768px) {
+  body {
+    overflow-y: hidden ;
+  }
   .mobile_btn {
     display: block;
     position: absolute;
