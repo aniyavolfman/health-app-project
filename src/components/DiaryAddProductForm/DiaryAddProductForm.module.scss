@@ -107,7 +107,7 @@
   border-bottom: 1px solid #e0e0e0;
   display: inline-flex;
   justify-content: left;
-   width: 107px;
+  width: 107px;
   height: 36px;
   @media screen and (min-width: 320px) {
     display: inline-flex;
@@ -122,14 +122,14 @@
     justify-content: left;
     height: 36px;
     padding-right: 10px;
-     width: 107px;
+    width: 107px;
   }
   @media screen and (min-width: 1280px) {
     display: inline-flex;
     justify-content: left;
     height: 36px;
     padding-right: 10px;
-     width: 107px;
+    width: 107px;
   }
 }
 .inputGrams:focus,
@@ -189,11 +189,28 @@
 
 .btnAddProduct {
   border-style: none;
-  border-radius: 50%;
+  border-radius: 5px;
   background-color: #fc842d;
-  width: 100%;
+  width: 240px;
   height: 100%;
   padding: 0;
+  color: var(--input-bgcolor-white);
+  @media screen and (min-width: 768px) {
+    border-style: none;
+    border-radius: 50%;
+    background-color: #fc842d;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+  @media screen and (min-width: 1280px) {
+    border-style: none;
+    border-radius: 50%;
+    background-color: #fc842d;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
 }
 .divAddProduct {
   margin: 2px 0 2px 0;
