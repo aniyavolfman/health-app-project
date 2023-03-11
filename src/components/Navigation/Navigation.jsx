@@ -32,7 +32,12 @@ export default function Navigation() {
               ПІДРАХУНОК
             </NavLink>
           </div>
-          <div onClick={() => setNav(!nav)} className={css.mobile_btn}>
+          <div
+            onClick={() => {
+              setNav(!nav);
+            }}
+            className={css.mobile_btn}
+          >
             {nav ? <AiOutlineClose size={14} /> : <AiOutlineMenu size={18} />}
           </div>
         </>
