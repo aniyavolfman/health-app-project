@@ -21,7 +21,7 @@ export default function UserInfo() {
     <div className={css.userInfo}>
       <span className={css.userName}>{username}</span>
       <NavLink to="/login" onClick={handleLogOut}>
-        <span className={css.userExit}> Exit</span>
+        <span className={css.userExit}> Вихід</span>
       </NavLink>
     </div>
   );

@@ -1,22 +1,117 @@
-.userInfo {
-    color: black;
+.SidebarSection {
+  width: 100%;
+  background-color: #f0f1f3;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  @media screen and (min-width: 768px) {
+    width: 100%;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 763px;
+  }
 }
 
-.userInfoTitle {
-    color: 212121;
+@media screen and (min-width: 1280px) {
+  .SidebarSection {
+    width: 517px;
+    position: fixed;
+    height: 100%;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    box-shadow: 40px 1px 55px #e2e2e2;
+    margin: 0 auto; 
+  text-align: center;
+  }
 }
 
-.userInfoList {
-    color: 9B9FAA;
+.SidebarWrap {
+  width: 100vw;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  
 }
-.userInfoItem {
-    color: 9B9FAA;
+@media screen and (min-width: 768px) {
+  .SidebarWrap {
+    padding: 91px 87px;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 96px;
+    background-image: url(./RightSideBarImg/leaves-tab-1x.png);
+    background-repeat: no-repeat;
+    background-size: 370px 350px;
+    background-position: right 0 bottom 0;
+  }
 }
 
-.userInfoData {
-    color: 9B9FAA;
+@media screen and (min-width: 1280px) {
+  .SidebarWrap {
+    width: 588px;
+    height: auto;
+    padding: 292px 123px 0 106px;
+    flex-direction: column;
+    gap: 60px;
+    background-image: url(./RightSideBarImg/leaves-desk-1x.png);
+
+    background-repeat: no-repeat;
+    background-size: 517px auto;
+    background-position: right 0 top 20px;
+  }
+}
+.SidebarRecomend {
+  display: flex;
+  flex-direction: column;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
-.userInfoDescription {
-    color: 9B9FAA;
+.SidebarNotRecomend {
+  display: flex;
+  flex-direction: column;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.SidebarTitle {
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  color: #212121;
+}
+
+.SidebarText {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  color: #9b9faa;
+}
+
+.SidebarList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 270px;
+}
+
+.SidebarItem {
+  display: flex;
+  justify-content: space-between;
 }

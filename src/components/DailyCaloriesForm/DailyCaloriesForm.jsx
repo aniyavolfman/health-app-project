@@ -12,8 +12,8 @@ import { selectId, selectIsLoggedIn } from 'redux/auth/authSelectors';
 
 export const DailyCaloriesForm = ({ handleOpenModal }) => {
   const dispatch = useDispatch();
-const userId = useSelector(selectId);
-const isLoggedIn = useSelector(selectIsLoggedIn);
+  const userId = useSelector(selectId);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
 
 const onSubmit = (values, {resetForm}) => {
@@ -35,7 +35,13 @@ const onSubmit = (values, {resetForm}) => {
           </h2>
 
       <Formik
-        initialValues={{ height: '', age: '', weight: '', desiredWeight: '', bloodType: 1}}
+        initialValues={{
+          height: '',
+          age: '',
+          weight: '',
+          desiredWeight: '',
+          bloodType: 1,
+        }}
         validationSchema={schema}
         onSubmit={onSubmit}
       >
@@ -102,7 +108,6 @@ const onSubmit = (values, {resetForm}) => {
                         className={css.radioInput}
                         type="radio"
                         name="bloodType"
-                        title="bloodType"
                         value='1'
                         required
                       />
@@ -113,7 +118,6 @@ const onSubmit = (values, {resetForm}) => {
                         className={css.radioInput}
                         type="radio"
                         name="bloodType"
-                        title="bloodType"
                         value='2'
                         required
                       />
@@ -124,10 +128,8 @@ const onSubmit = (values, {resetForm}) => {
                         className={css.radioInput}
                         type="radio"
                         name="bloodType"
-                        title="bloodType"
                         value='3'
                         required
-                        
                       />
                       3
                     </label>
@@ -136,24 +138,22 @@ const onSubmit = (values, {resetForm}) => {
                         className={css.radioInput}
                         type="radio"
                         name="bloodType"
-                        title="bloodType"
                         value='4'
                         required
-                        
                       />
                       4
                     </label>
                   </div>
                   {errors.bloodType && touched.bloodType && <p className="error">{errors.bloodType}</p>}
                 </div>
-              </div> 
+              </div>
             </div>
             <button className={css.startBtn} type="submit">
               Start losing weight
             </button>
           </Form>
-          )}
-          </Formik>
-        </div>
-      ); 
-  }
+        )}
+      </Formik>
+    </div>
+  );
+};

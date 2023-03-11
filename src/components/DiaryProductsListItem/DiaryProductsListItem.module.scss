@@ -1,6 +1,9 @@
-.singleLi {
+.singleSpan {
   display: flex;
   gap: 30px;
+
+  justify-content: center;
+  align-items: center;
 }
 
 .titleProduct {
@@ -8,40 +11,110 @@
   font-size: 14px;
   line-height: 1.2;
   border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 6px;
+  // padding-bottom: 6px;
+  height: 40px;
   color: #212121;
+  width: 240px;
+  display: inline-flex;
+  align-items: center;
+  @media screen and (min-width: 768px) {
+    width: 240px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 240px;
+  }
 }
 .weightProduct {
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2;
   border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 6px;
+  height: 40px;
+  // padding-bottom: 6px;
   color: #212121;
+  width: 49px;
+  text-align: right;
+  display: inline-flex;
+  text-align: right;
+  align-items: center;
+  justify-content: right;
+  @media screen and (min-width: 768px) {
+    width: 107px;
+    text-align: right;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 107px;
+    text-align: right;
+  }
 }
 .kcalProduct {
+  font-family: 'Jost';
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2;
   border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 6px;
+  // padding-bottom: 6px;
   color: #212121;
+  width: 58px;
+  text-align: right;
+  height: 40px;
+  display: inline-flex;
+  justify-content: right;
+  align-items: center;
+  @media screen and (min-width: 768px) {
+    align-items: right;
+    width: 107px;
+    text-align: right;
+  }
+  @media screen and (min-width: 1280px) {
+    align-items: right;
+    width: 107px;
+    text-align: right;
+  }
 }
 .liProduct {
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2;
-  border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 6px;
+  align-items: center;
+  // border-bottom: 1px solid #e0e0e0;
+  // padding-bottom: 6px;
   color: #212121;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  //   @media screen and (min-width: 768px) {
+  //     display: flex;
+  //     align-items: center;
+  //     margin-top: 53px;
+  //     padding-top: 0;
+  //     padding-left: 32px;
+  //     padding-right: 0;
+  // }
+
+  // @media screen and (min-width: 1280px) {
+  //     margin-top: 60px;
+  //     padding-left: 16px;
+  // }
 }
 
-// .btnProduct {
-//   border-style:none;
-//   /* border-radius: 50%;
-//   background-color: #fc842d; */
-// }
+.btnProduct {
+  border-style: none;
+  background-color: #ffff;
+  // border-radius: 50%;
+}
 
+.iconProduct {
+  color: #9b9faa;
+  width: 20px;
+  height: 20px;
+  stroke:#e0e0e0;
+}
+
+.liProduct {
+  list-style: none;
+  margin-bottom: nth-child(10px);
+}
 // .DivCtnterd {
 //     padding: 30px 0;
 //     display: flex;
@@ -50,27 +123,6 @@
 // .icon {
 //     width: 20px;
 //     height:20px;
-// }
-// .Form {
-//     padding-top: 80px;
-//     padding-left: 20px;
-//     padding-right: 20px;
-
-//     @media screen and (min-width: 768px) {
-//         display: flex;
-//         align-items: center;
-//         margin-top: 53px;
-//         padding-top: 0;
-//         padding-left: 32px;
-//         padding-right: 0;
-//     }
-
-//     @media screen and (min-width: 1280px) {
-//         margin-top: 60px;
-//         padding-left: 16px;
-//     }
-
-//     align-items: center;
 // }
 
 // .FieldProduct {

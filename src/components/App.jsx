@@ -3,21 +3,15 @@ import React, { lazy, Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PublicRoute } from './PublicRoute/PublicRoute';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
-import {
-  fetchCurrentUser,
-} from 'redux/auth/authOperations';
+import { fetchCurrentUser } from 'redux/auth/authOperations';
 import { selectSid } from 'redux/auth/authSelectors';
 
 const LazyLayout = lazy(() => import('./Layout/Layout'));
 const LazyHomepage = lazy(() => import('../pages/HomePage/HomePage'));
 const LazyLoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
-const LazyRegisterPage = lazy(() =>
-  import('../pages/RegistrationPage/RegistrationPage')
-);
+const LazyRegisterPage = lazy(() =>import('../pages/RegistrationPage/RegistrationPage'));
 const LazyDiaryPage = lazy(() => import('../pages/DiaryPage/DiaryPage'));
-const LazyCalculatorPage = lazy(() =>
-  import('../pages/CalculatorPage/CalculatorPage')
-);
+const LazyCalculatorPage = lazy(() =>import('../pages/CalculatorPage/CalculatorPage'));
 
 function App() {
   const dispatch = useDispatch();
@@ -45,9 +39,9 @@ function App() {
             path="*"
             element={
               <div>
-                Sorry, page not found.
+                Вибачте, сторінка не знайдена.
                 <span>
-                  <Link to="/">Go home</Link>
+                  <Link to="/">Додому</Link>
                 </span>
               </div>
             }
