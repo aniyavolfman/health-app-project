@@ -1,5 +1,4 @@
 import React from 'react';
-import { IoIosClose } from 'react-icons/io';
 import { GrClose } from 'react-icons/gr';
 import css from './DiaryProductsListItem.module.scss';
 export default function DiaryProductsListItem({
