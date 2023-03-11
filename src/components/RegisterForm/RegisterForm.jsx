@@ -40,12 +40,12 @@ const RegisterForm = () => {
           className={css.inputForm}
           type="password"
           name="password"
-          placeholder={'Пароль*'}
+          placeholder={'Пароль *'}
         />
 
         <div className={css.btnBox}>
           <button className={css.btnSubmit} type="submit">
-            Рєстрація
+            Реєстрація
           </button>
           <NavLink className={css.link} to="/login">
             Вхід

@@ -35,7 +35,7 @@ const productsSlice = createSlice({
       .addCase(addProductOperations.pending, pendingHandler)
       .addCase(addProductOperations.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = [...state.items, action.payload.eatenProduct];
+        state.items = [...state.items, action.payload?.eatenProduct];
         state.itemTitle = action.payload.eatenProduct.title;
         state.itemWeight = action.payload.eatenProduct.weight;
         state.itemKcal = action.payload.eatenProduct.kcal;

@@ -87,7 +87,7 @@ export default function DiaryAddProductForm({
       .unwrap()
       .then(() => {
         dispatch(fetchCurrentUser());
-        onClose();
+        if(width < 768 && isInModal) { onClose();}
         dispatch(userDayInfoOperation({ date }));
       });
     reset();
@@ -192,7 +192,7 @@ export default function DiaryAddProductForm({
                   // <IoIosAdd style={{ alignItems: "center" }} className={css.iconAddProduct} />
                   <VscAdd className={css.iconAddProduct} />
                 ) : (
-                  'відправити'
+                  'Відправити'
                 )}
               </button>
             </div>
@@ -201,9 +201,15 @@ export default function DiaryAddProductForm({
       )}
       {!isInModal && <DiaryProductsList />}
       {width <= 768 && !isOpenModal && (
-        <button type="button" onClick={handleOpenModal}>
-          💙
-        </button>
+        <div className={css.divAddProduct}>
+          <button
+            type="button"
+            className={css.btnAddProductMob}
+            onClick={handleOpenModal}
+          >
+            <VscAdd className={css.iconAddProduct} />
+          </button>
+        </div>
       )}
     </div>
   );

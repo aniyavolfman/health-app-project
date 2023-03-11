@@ -95,7 +95,7 @@ export async function dailyRate(credentials) {
     const { data } = await $publicHost.post('/daily-rate', credentials);
     return data;
   } catch (error) {
-    Notify.failure(error.message);
+    console.log(error.message);
   }
 }
 
@@ -110,8 +110,7 @@ export async function dailyRate(credentials) {
 // }
 
 export async function dailyRateId(credentials) {
-  const res = omit(credentials, ['userId']);
-  console.log('res', res);
+  
   try {
     const { data } = await $privateHost.post(
       `/daily-rate/${credentials.userId}`,
@@ -120,7 +119,7 @@ export async function dailyRateId(credentials) {
 
     return data;
   } catch (error) {
-    Notify.failure(error.message);
+    console.log(error.message);
   }
 }
 
@@ -130,7 +129,7 @@ export async function productSearch(search) {
     const { data } = await $privateHost.get(`/product?search=${search}`);
     return data;
   } catch (error) {
-    Notify.failure(error.message);
+    console.log(error.message);
   }
 }
 
@@ -147,7 +146,8 @@ export async function day(credentials) {
     const { data } = await $privateHost.post('/day', credentials);
     return data;
   } catch (error) {
-    Notify.failure(error.message);
+    console.log(error.message);
+    alert('перейдіть')
   }
 }
 
@@ -163,15 +163,15 @@ export async function dayDelete(dayId) {
     const { data } = await $privateHost.delete('/day', { data: dayId });
     return data;
   } catch (error) {
-    Notify.failure(error.message);
+    console.log(error.message);
   }
 }
-// { data: { dayId, eatenProductId }
+
 export async function dayInfo(credentials) {
   try {
     const { data } = await $privateHost.post('/day/info', credentials);
     return data;
   } catch (error) {
-    Notify.failure(error.message);
+    Notify.warning('Заповніть, будь ласка, форму на сторінці підрахунку!');
   }
 }
