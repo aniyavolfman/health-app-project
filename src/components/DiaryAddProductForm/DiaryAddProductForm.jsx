@@ -45,7 +45,7 @@ export default function DiaryAddProductForm({
       productSearch(query).then(data => {
         setProducts(data);
       });
-    }, 1000)
+    }, 500)
   );
 
   // useEffect(() => {
