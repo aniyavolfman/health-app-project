@@ -25,7 +25,8 @@
   @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: column;
-    align-items: start;
+
+    align-items: flex-start;
     margin-top: 53px;
     padding-top: 0;
     padding-left: 32px;

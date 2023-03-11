@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect } from 'react';
+
+import React, { useEffect, useMemo } from 'react';
 import { VscAdd } from 'react-icons/vsc';
 import { useState } from 'react';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
@@ -37,22 +38,38 @@ export default function DiaryAddProductForm({
   const [products, setProducts] = useState([]);
   const [productId, setProductId] = useState('');
   const date = useSelector(state => state.products.currentDate);
-  const getProducts = useCallback(
-    debounce(query => {
-      if (!query) {
-        return;
-      }
-      productSearch(query).then(data => {
-        setProducts(data);
-      });
-    }, 500)
-  );
+
+  // const getProducts = useCallback(
+  //   debounce(query => {
+  //     if (!query) {
+  //       return;
+  //     }
+  //     productSearch(query).then(data => {
+  //       setProducts(data);
+  //     });
+  //   }, 500, []),
+  // );
 
   // useEffect(() => {
   //   if (product) {
   //     productSearch(product).then(setProducts);
   //   }
   // }, [product]);
+
+
+
+  const getProducts = useMemo(
+    () =>
+      debounce(query => {
+        if (!query) {
+          return;
+        }
+        productSearch(query).then(data => {
+          setProducts(data);
+        });
+      }, 500),
+    []
+  );
 
   const handleChangeProduct = e => {
     const { value } = e.target;
