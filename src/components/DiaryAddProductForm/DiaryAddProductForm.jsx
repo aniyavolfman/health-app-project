@@ -1,3 +1,4 @@
+
 import React, { useEffect, useMemo } from 'react';
 import { VscAdd } from 'react-icons/vsc';
 import { useState } from 'react';
@@ -37,6 +38,7 @@ export default function DiaryAddProductForm({
   const [products, setProducts] = useState([]);
   const [productId, setProductId] = useState('');
   const date = useSelector(state => state.products.currentDate);
+
   // const getProducts = useCallback(
   //   debounce(query => {
   //     if (!query) {
@@ -53,6 +55,7 @@ export default function DiaryAddProductForm({
   //     productSearch(product).then(setProducts);
   //   }
   // }, [product]);
+
 
 
   const getProducts = useMemo(
