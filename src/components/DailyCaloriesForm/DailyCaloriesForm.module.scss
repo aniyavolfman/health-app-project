@@ -195,7 +195,7 @@ padding-left: 13px;
 .startBtn {
   width: 210px;
   height: 43px;
-  padding: 13px 24px;
+  padding: 13px 4px;
   font-family: Verdana;
   font-size: 14px;
   font-weight: 700;
@@ -206,10 +206,16 @@ padding-left: 13px;
   box-shadow: 0px 4px 10px 0px #fc842d80;
   border-radius: 30px;
   border: transparent;
+  transition: transform var(--btn-hover-transform),
+    box-shadow var(--typical-hover-transition);
 
   @media (min-width: 1280px) {
     margin-left: 339px;
   }
+}
+.startBtn:hover, .startBtn:focus {
+  box-shadow: 0px 4px 4px var(--btn-hover-shadow);
+  transform: scale(1.1);
 }
 
 
