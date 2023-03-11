@@ -1,0 +1,218 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 20px 100px;
+
+  @media (min-width: 768px) {
+    padding-top: 100px;
+    padding-left: 32px;
+    padding-right: 32px;
+    align-items: flex-start;
+  }
+
+  @media (min-width: 1280px) {
+    width: 608px;
+    padding-top: 153px;
+    padding-left: 13px;
+  }
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+  font-family: Jost;
+  color: var(--primary-text-color);
+  text-align: left;
+  width: 280px;
+  @media (min-width: 768px) {
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.41;
+    width: 554px;
+  }
+  @media (min-width: 1280px) {
+    width: 608px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 34px;
+
+  @media (min-width: 768px) {
+    margin-top: 68px;
+  }
+}
+
+.inputsWrapper {
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-bottom: 32px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+}
+
+.inputsLeft,
+.inputsRight {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  @media (min-width: 768px) {
+    gap: 40px;
+  }
+}
+
+.input {
+  height: 24px;
+  width: 240px;
+  border: none;
+  font-size: 14;
+  font-weight: 700;
+  color: var(--second-text-color);
+  border-bottom: 1px solid #e0e0e0;
+  @media (min-width: 768px) {
+    height: 37px;
+  }
+}
+.input:focus {
+  outline: none;
+}
+.inputError {
+  @extend .input;
+  border-color: var(--accent-text-color);
+  color: var(--accent-text-color);
+}
+
+.input::placeholder {
+  color: var(--second-text-color);
+  font-family: Jost;
+  font-size: 14x;
+  font-weight: 700;
+  line-height: 1.21;
+  letter-spacing: 0.04em;
+  text-align: left;
+  @media (min-width: 768px) {
+    padding-bottom: 20px;
+  }
+}
+.error {
+  color: var(--accent-text-color);
+  font-size: 0.75rem;
+  text-align: left;
+  margin-top: 0.25rem;
+}
+
+.radioWrapper {
+  display: flex;
+  gap: 24px;
+}
+
+.radioTitle {
+  font-family: Jost;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.21;
+  letter-spacing: 0.04em;
+  text-align: left;
+  margin-bottom: 8px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 28px;
+  }
+
+  @media (min-width: 1280px) {
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 20px;
+  }
+}
+
+.radioLabel {
+  font-family: Jost;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.21;
+  letter-spacing: 0.04em;
+  text-align: left;
+  display: flex;
+  gap: 8px;
+}
+
+.radioLabel:checked {
+  color: var(--accent-text-color);
+}
+.radioLabel:focus-within {
+  color: var(--accent-text-color);
+}
+
+.radioInput {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #e0e0e0;
+  background-color: white;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: var(--accent-text-color);
+  width: 22px;
+  height: 22px;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.radioInput::before {
+  content: '';
+  width: 0.65em;
+  height: 0.65em;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--accent-text-color);
+  background-color: CanvasText;
+}
+.radioInput:checked::before {
+  transform: scale(1);
+}
+.radioInput:focus {
+  outline: 1px solid #e0e0e0;
+}
+
+.startBtn {
+  width: 210px;
+  height: 43px;
+  padding: 13px 4px;
+  font-family: Jost;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.21;
+  letter-spacing: 0.04em;
+  color: var(--btn-text-active-color);
+  background-color: var(--active-btn-color);
+  box-shadow: 0px 4px 10px 0px #fc842d80;
+  border-radius: 30px;
+  border: transparent;
+  transition: transform var(--btn-hover-transform),
+    box-shadow var(--typical-hover-transition);
+
+  @media (min-width: 1280px) {
+    margin-left: 339px;
+  }
+}
+.startBtn:hover,
+.startBtn:focus {
+  box-shadow: 0px 4px 4px var(--btn-hover-shadow);
+  transform: scale(1.1);
+}

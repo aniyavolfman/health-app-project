@@ -1,0 +1,32 @@
+
+.pageWrapper {
+  width: 100%;
+  min-width: 280px;
+  height: 570px;
+  margin: 0 auto;
+  background-color: var(--btn-text-active-color);
+
+  @media (min-width: 768px) {
+  height: 944px;
+  padding-bottom: 0;
+  background-image: 
+  url('../../img/Layer-tb.png'),
+  url('../../img/strawberry.png'),
+  url('../../img/banan.png'),
+  url('../../img/Vector3.jpeg');
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: bottom -50px right 160px, bottom 149px right -7px, bottom -100px right 30px, bottom -200px right -60px;
+  }
+
+  @media (min-width: 1199px) {
+  height: 697px;
+  padding-left: 16px;
+  background-image: 
+  url('../../img/Layer.png'),
+  url('../../img/strawberry.png'),
+  url('../../img/banan.png'),
+  url('../../img/Vector3.jpeg');
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: top -76px right 231px, top 410px right -41px, top -32px right 1px, top 34px right 1px;
+  }
+}

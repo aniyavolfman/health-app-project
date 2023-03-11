@@ -1,0 +1,129 @@
+@import '../node_modules/modern-normalize/modern-normalize.css'; /* bring in normalize.css styles */
+
+@import '../src/styles/container';
+@import '../src/styles/vars';
+@import '../src/styles/btn';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+address {
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+}
+
+.list {
+  list-style: none;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: 'Jost', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--second-text-color);
+  background-color: var(--page-bg-color);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.21;
+  cursor: url('./img/cursor-ice.png'), auto;
+}
+
+.MuiStack-root {
+  overflow: hidden !important;
+  border: none !important;
+}
+
+.css-1x51dt5-MuiInputBase-input-MuiInput-input {
+  background: none;
+  margin: 0;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  padding: 0;
+  border: none;
+  // font-size: 34px;
+  // font-weight: 700;
+  // line-height: 1.2;
+}
+.css-i4bv87-MuiSvgIcon-root {
+  margin-right: 5px;
+  flex-shrink: 0;
+}
+
+.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-formControl.MuiInputBase-adornedEnd.css-v4u5dn-MuiInputBase-root-MuiInput-root::before {
+  border-style: none!important;
+   @media screen and (min-width: 768px) {
+     border-style: none !important;
+  }
+  @media screen and (min-width: 1280px) {
+     border-style: none !important;
+  }
+}
+.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-formControl.MuiInputBase-adornedEnd.css-v4u5dn-MuiInputBase-root-MuiInput-root::after {
+  border-style: none !important;
+   @media screen and (min-width: 768px) {
+     border-style: none !important; 
+  }
+  @media screen and (min-width: 1280px) {
+     border-style: none !important;
+  }
+}
+
+.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-formControl.MuiInputBase-adornedEnd.css-v4u5dn-MuiInputBase-root-MuiInput-root:focus {
+  border: none;
+  color: #fc842d;
+}
+
+.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-formControl.MuiInputBase-adornedEnd.css-v4u5dn-MuiInputBase-root-MuiInput-root{
+width: 260px;
+padding: 0;
+}
