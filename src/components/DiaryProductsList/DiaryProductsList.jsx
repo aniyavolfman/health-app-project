@@ -1,3 +1,4 @@
+import css from './DiaryProductsList.module.scss';
 import DiaryProductsListItem from 'components/DiaryProductsListItem/DiaryProductsListItem';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,14 +12,13 @@ export function DiaryProductsList() {
   const date = useSelector(state => state.products.currentDate);
   const products = useSelector(state => state.products.items);
   const idDay = useSelector(state => state.products.dayId);
- 
+
   const deleteProduct = e => {
-   
     const dayIdObj = {
       dayId: idDay,
       eatenProductId: e.target.id,
     };
-    
+
     console.log(e.target);
     localStorage.setItem('dayIdObj', JSON.stringify(dayIdObj));
     dispatch(deleteProductOperation(dayIdObj))
@@ -29,8 +29,8 @@ export function DiaryProductsList() {
   };
 
   return (
-    <div>
-      <ul>
+    <div className={css.burgerList}>
+      <ul className={css.scrolList}>
         {products?.map(({ id, title, weight, kcal }) => (
           <DiaryProductsListItem
             key={id}
@@ -45,5 +45,3 @@ export function DiaryProductsList() {
     </div>
   );
 }
-
-

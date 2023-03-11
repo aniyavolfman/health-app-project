@@ -179,7 +179,7 @@ export default function DiaryAddProductForm({
             <label label="Grams">
               <input
                 className={css.inputGrams}
-                type="number"
+                type="text"
                 name="weight"
                 placeholder="Грами "
                 value={weight}
