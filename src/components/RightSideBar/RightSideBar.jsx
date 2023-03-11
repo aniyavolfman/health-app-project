@@ -16,7 +16,7 @@ export default function RightSideBar() {
     <div className={css.SidebarSection}>
       <div className={css.SidebarWrap}>
         <div className={css.SidebarRecomend}>
-          <h2 className={css.userInfoTitle}>Підсумок на {date}</h2>
+          <h2 className={css.SidebarTitle}>Підсумок на {date}</h2>
           <ul className={css.SidebarList}>
             <li className={css.SidebarItem}>
               <p className={css.SidebarText}>Залишилось</p>
@@ -45,16 +45,16 @@ export default function RightSideBar() {
           </ul>
         </div>
         <div className={css.SidebarNotRecomend}>
-          <h2 className={css.userInfoTitle}>Не рекомендовані продукти</h2>
+          <h2 className={css.SidebarTitle}>Не рекомендовані продукти</h2>
           {!shortProducts && (
             <p className={css.userInfoDescription}>
               Your diet will be displayed here
             </p>
           )}
-          <ul>
+          <ul className={css.SidebarList}>
             {shortProducts?.map(el => (
-              <li key={nanoid()}>
-                <span>{el}</span>
+              <li className={css.SidebarItem} key={nanoid()}>
+                <p className={css.SidebarText}>{el}</p>
               </li>
             ))}
           </ul>

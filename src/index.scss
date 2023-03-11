@@ -79,4 +79,36 @@ body {
 
 .MuiStack-root {
   overflow: hidden !important;
+  border: none !important;
+}
+
+.css-1x51dt5-MuiInputBase-input-MuiInput-input {
+  background: none;
+  margin: 0;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  padding: 0;
+  border: none;
+  // font-size: 34px;
+  // font-weight: 700;
+  // line-height: 1.2;
+}
+.css-i4bv87-MuiSvgIcon-root {
+  margin-right: 5px;
+  flex-shrink: 0;
+}
+
+.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-formControl.MuiInputBase-adornedEnd.css-v4u5dn-MuiInputBase-root-MuiInput-root::before {
+  border-style: none;
+}
+
+.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-formControl.MuiInputBase-adornedEnd.css-v4u5dn-MuiInputBase-root-MuiInput-root:focus {
+  border: none;
+  color: #fc842d;
+}
+
+.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-formControl.MuiInputBase-adornedEnd.css-v4u5dn-MuiInputBase-root-MuiInput-root{
+width: 260px;
+padding: 0;
 }

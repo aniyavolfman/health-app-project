@@ -2,7 +2,6 @@
   display: flex;
   gap: 24px;
   align-items: center;
-  /* margin-left: 20px; */
   @media (min-width: 1200px) {
     padding-left: 20px;
     padding-top: 8px;
@@ -25,7 +24,6 @@
 }
 
 .active {
-  // composes: navigationLink;
   color: #212121;
   cursor: pointer;
 }

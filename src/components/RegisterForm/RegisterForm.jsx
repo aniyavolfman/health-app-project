@@ -19,37 +19,40 @@ const RegisterForm = () => {
   };
   
   return (
-    <div className={css.formSection} >
-      <h2 className={css.formTitle}>register</h2>
+    <div className={css.formSection}>
+      <h2 className={css.formTitle}>Реєстрація</h2>
       <form className={css.form} onSubmit={handelSubmit}>
-        
-      <input 
-          className={css.inputForm} 
-          type="text" 
-          name="name" 
-          placeholder={'Name *'} 
-          />
+        <input
+          className={css.inputForm}
+          type="text"
+          name="name"
+          placeholder={'Логін *' 	}
+        />
 
-      <input 
-          className={css.inputForm} 
-          type="email" 
-          name="email" 
-          placeholder={'Email *'} 
-          />
+        <input
+          className={css.inputForm}
+          type="email"
+          name="email"
+          placeholder={'Пошта *'}
+        />
 
-        <input 
-            className={css.inputForm}
-            type="password"
-            name="password"
-            placeholder={'Password *'}
-          />
-        
+        <input
+          className={css.inputForm}
+          type="password"
+          name="password"
+          placeholder={'Пароль*'}
+        />
+
         <div className={css.btnBox}>
-        <button className={css.btnSubmit} type="submit">Register</button>
-        <NavLink className={css.link} to="/login">Log in</NavLink>
+          <button className={css.btnSubmit} type="submit">
+            Рєстрація
+          </button>
+          <NavLink className={css.link} to="/login">
+            Вхід
+          </NavLink>
         </div>
       </form>
-     </div>
+    </div>
   );
 };
 

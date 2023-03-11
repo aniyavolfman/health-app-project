@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { IoIosAdd } from 'react-icons/io';
+import { VscAdd } from 'react-icons/vsc';
 import { useState } from 'react';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -20,9 +20,6 @@ import { DiaryProductsList } from 'components/DiaryProductsList/DiaryProductsLis
 import { setDate } from 'redux/dayCalendar/dayCalendarSlice';
 import { fetchCurrentUser } from 'redux/auth/authOperations';
 import debounce from 'lodash/debounce';
-
-
-
 
 const defaulDate = new Date();
 
@@ -51,13 +48,11 @@ export default function DiaryAddProductForm({
     }, 1000)
   );
 
-
   // useEffect(() => {
   //   if (product) {
   //     productSearch(product).then(setProducts);
   //   }
   // }, [product]);
-
 
   const handleChangeProduct = e => {
     const { value } = e.target;
@@ -109,40 +104,49 @@ export default function DiaryAddProductForm({
     <div className={css.FormDiv}>
       {shouldRender() && (
         <form className={css.Form} autoComplete="off" onSubmit={handleSubmit}>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DemoContainer components={['DatePicker']}>
-              <DatePicker
-                slots={{ textField: TextField }}
-                slotProps={{
-                  textField: {
-                    variant: 'standard',
-                    overflow: 'auto !important',
-                  },
-                }}
-                InputProps={{
-                  disableUnderline: true,
-                }}
-                sx={{
-                  div: {
+          <div
+            style={({ width: '260px' }, { float: 'left' }, { border: 'none' })}
+          >
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DemoContainer components={['DatePicker']}>
+                <DatePicker
+                  slots={{ textField: TextField }}
+                  slotProps={{
+                    textField: {
+                      variant: 'standard',
+                      overflow: 'auto !important',
+                      border: 'none',
+                    },
+                  }}
+                  InputProps={{
+                    disableUnderline: true,
                     border: 'none',
-                  },
-                  '& .MuiInputBase-root': {
-                    border: 'none',
-                  },
-                  '& .MuiInputBase-input': {
-                    fontSize: '34px',
-                    border: 'none !important',
-                  },
-                }}
-                format="dd.MM.yyyy"
-                minDate={dayjs('2020-01-01')}
-                maxDate={dayjs(new Date())}
-                defaultValue={defaulDate}
-                onChange={handleChangeDate}
-                adapter={AdapterDateFns}
-              />
-            </DemoContainer>
-          </LocalizationProvider>
+                  }}
+                  sx={{
+                    div: {
+                      border: 'transparent',
+                    },
+                    '& .MuiInputBase-root': {
+                      border: 'none',
+                    },
+                    '& .MuiInputBase-input': {
+                      border: 'none',
+                      fontSize: '34px',
+                      fontWeight: '700',
+                      lineHeight: '1.2',
+                      padding: '0',
+                    },
+                  }}
+                  format="dd.MM.yyyy"
+                  minDate={dayjs('2020-01-01')}
+                  maxDate={dayjs(new Date())}
+                  defaultValue={defaulDate}
+                  onChange={handleChangeDate}
+                  adapter={AdapterDateFns}
+                />
+              </DemoContainer>
+            </LocalizationProvider>
+          </div>
           <div className={css.inputProductTwo}>
             <label label="Product" className={css.inputProductLabel}>
               <input
@@ -172,24 +176,27 @@ export default function DiaryAddProductForm({
                 </button>
               ))}
             </label>
-            <label label="Grams" className={css.inputProductGrams}>
+            <label label="Grams">
               <input
                 className={css.inputGrams}
-                type="number"
+                type="text"
                 name="weight"
-                placeholder="Грами"
+                placeholder="Грами "
                 value={weight}
                 onChange={handleChangeWeight}
               />
             </label>
+            <div className={css.divAddProduct}>
+              <button className={css.btnAddProduct} type="submit">
+                {width > 768 ? (
+                  // <IoIosAdd style={{ alignItems: "center" }} className={css.iconAddProduct} />
+                  <VscAdd className={css.iconAddProduct} />
+                ) : (
+                  'відправити'
+                )}
+              </button>
+            </div>
           </div>
-          <button className={css.btnAddProduct} type="submit">
-            {width > 768 ? (
-              <IoIosAdd className={css.iconAddProduct} />
-            ) : (
-              'відправити'
-            )}
-          </button>
         </form>
       )}
       {!isInModal && <DiaryProductsList />}

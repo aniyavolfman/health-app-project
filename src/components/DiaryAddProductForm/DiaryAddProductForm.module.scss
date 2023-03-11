@@ -1,10 +1,17 @@
 .FormDiv {
   width: 100%;
+  min-width: 280px;
   @media screen and (min-width: 768px) {
     width: 100%;
+    display: inline-flex;
+    justify-content: left;
+    flex-direction: column;
   }
   @media screen and (min-width: 1280px) {
     width: 763px;
+    display: inline-flex;
+    justify-content: left;
+    flex-direction: column;
   }
 }
 
@@ -18,11 +25,13 @@
   @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
     margin-top: 53px;
     padding-top: 0;
     padding-left: 32px;
     padding-right: 0;
+    display: inline-flex;
+    justify-content: left;
   }
 
   @media screen and (min-width: 1280px) {
@@ -37,18 +46,17 @@
 
 .inputProductTwo {
   padding-right: 20px;
-
   @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: row;
-    width: 256px;
     gap: 22px;
+    margin-top: 60px;
   }
-
   @media screen and (min-width: 1280px) {
     display: flex;
     flex-direction: row;
     gap: 48px;
+    margin-top: 60px;
   }
 }
 .inputProduct {
@@ -57,14 +65,37 @@
   line-height: 1.2;
   border-style: none;
   border-bottom: 1px solid #e0e0e0;
-  weight: 240px;
+  width: 240px;
+  height: 36px;
   @media screen and (min-width: 768px) {
     weight: 240px;
+    height: 36px;
   }
   @media screen and (min-width: 1280px) {
-    weight: 240px;
+    width: 280px;
+    height: 36px;
+  }
+
+  .inputProduct::placeholder {
+    width: 280px;
+    @media screen and (min-width: 768px) {
+      weight: 107px;
+    }
+    @media screen and (min-width: 1280px) {
+      weight: 107px;
+    }
   }
 }
+
+.inputProduct:focus,
+.inputProduct:hover {
+  outline: 0;
+  border: 2px solid var(--btn-text-unactive-color);
+  border-radius: 5px;
+  transition: transform var(--btn-hover-transform);
+  transform: scale(1.1);
+}
+
 .inputGrams {
   font-weight: 400;
   font-size: 14px;
@@ -72,41 +103,99 @@
   border-style: none;
   border-bottom: 1px solid #e0e0e0;
   display: inline-flex;
-  justify-content: right;
-  weight: 107px;
-  @media screen and (min-width: 768px) {
-    display: inline-flex;
-    justify-content: right;
-  }
-  @media screen and (min-width: 1280px) {
-    display: inline-flex;
-    justify-content: right;
-  }
-}
-.css.inputProductGrams {
-  display: inline-flex;
   justify-content: left;
+  width: 107px;
+  height: 36px;
+
   @media screen and (min-width: 768px) {
     display: inline-flex;
     justify-content: left;
+    height: 36px;
+    padding-right: 10px;
   }
   @media screen and (min-width: 1280px) {
-    weight: 240px;
     display: inline-flex;
     justify-content: left;
+    height: 36px;
+    padding-right: 10px;
   }
 }
+.inputGrams:focus,
+.inputGrams:hover {
+  outline: 0;
+  border: 2px solid var(--btn-text-unactive-color);
+  border-radius: 5px;
+  transition: transform var(--btn-hover-transform);
+  transform: scale(1.1);
+}
+
+.inputGrams::placeholder {
+  text-align: right;
+  width: 280px;
+  @media screen and (min-width: 768px) {
+    text-align: right;
+    width: 107px;
+    padding-right: 10px;
+  }
+  @media screen and (min-width: 1280px) {
+    text-align: right;
+    width: 107px;
+    padding-right: 10px;
+  }
+}
+///
+.inputForm {
+  width: 280px;
+  height: 36px;
+
+  text-align: start;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: calc(17 / 14);
+  letter-spacing: 0.04em;
+
+  border: none;
+  border-bottom: 1px solid var(--input-border-unactive);
+
+  color: var(--input-label-text-color);
+
+  @media (min-width: 768px) {
+    width: 240px;
+  }
+}
+
+//
+.inputForm:focus,
+.inputForm:hover {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem var(--input-box-shadow);
+  color: var(--input-activetext-color);
+  background-color: var(--input-bgcolor-white);
+  border-color: var(--input-border-color);
+}
+///
 
 .btnAddProduct {
   border-style: none;
   border-radius: 50%;
   background-color: #fc842d;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+.divAddProduct {
+  margin: 2px 0 2px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
 }
 
 .iconAddProduct {
   color: #e0e0e0;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 
 .MuiStack-root.css-1xhypcz-MuiStack-root {

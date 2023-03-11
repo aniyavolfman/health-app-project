@@ -19,24 +19,24 @@ const LoginForm = () => {
 
   return (
     <div className={css.formSection} >
-        <h2 className={css.formTitle}>log in</h2>
+        <h2 className={css.formTitle}>Вхід</h2>
         <form className={css.form} onSubmit={handelSubmit}>
         <input 
           className={css.inputForm} 
           type="email" 
           name="email" 
-          placeholder={'Email *'} 
+          placeholder={'Пошта*'} 
           />
 
         <input 
             className={css.inputForm}
             type="password"
             name="password"
-            placeholder={'Password *'}
+            placeholder={'Пароль *'}
           />
           <div className={css.btnBox}>
-          <button  className={css.btnSubmit} type="submit">Log in</button>
-              <NavLink className={css.link} to="/register">Register</NavLink>  
+          <button  className={css.btnSubmit} type="submit">Вхід </button>
+              <NavLink className={css.link} to="/register">Реєстрація</NavLink>  
           </div>          
           </form>
     </div>
