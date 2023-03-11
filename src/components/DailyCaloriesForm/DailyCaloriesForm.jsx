@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
-import * as Yup from 'yup';
+import {schema} from './schema'
 
 import {
   getAuthRecommendations,
@@ -10,42 +10,22 @@ import {
 import css from './DailyCaloriesForm.module.scss';
 import { selectId, selectIsLoggedIn } from 'redux/auth/authSelectors';
 
-const schema = Yup.object().shape({
-  height: Yup.number('Значення має бути числом')
-  .min(100, 'Мінімальне значення 100 см')
-  .max(260, 'Максимальне значення 250 см')
-  .required('Поле обовʼязкове'),
-age: Yup.number('Значення має бути числом')
-.min(18, 'Мінімальне значення 18')
-.max(100, 'Максимальне значення 100')
-.required('Поле обовʼязкове'),
-weight: Yup.number('Значення має бути числом')
-.min(20, 'Мінімальне значення 20 кг')
-.max(500, 'Максимальне значення 500 кг')
-.required('Поле обовʼязкове'),
-desiredWeight: Yup.number('Значення має бути числом')
-.min(20, 'Мінімальне значення 20 кг')
-.max(500, 'Максимальне значення 500 кг')
-.required('Поле обовʼязкове'),
-bloodType: Yup.number().required('Поле обовʼязкове'),
-})
-
 export const DailyCaloriesForm = ({ handleOpenModal }) => {
   const dispatch = useDispatch();
 const userId = useSelector(selectId);
 const isLoggedIn = useSelector(selectIsLoggedIn);
 
 
-const onSubmit = (values) => {
+const onSubmit = (values, {resetForm}) => {
   values.bloodType = Number(values.bloodType);
 
       if (!isLoggedIn) { 
         handleOpenModal();
-        console.log(values);
         dispatch(getRecommendations(values));  
       } else {
         dispatch(getAuthRecommendations({ ...values, userId }));
       }
+      resetForm();
     };
 
     return (
@@ -60,20 +40,18 @@ const onSubmit = (values) => {
         onSubmit={onSubmit}
       >
           {({errors, touched}) => (
-          <Form className={css.form} 
-          
+          <Form className={css.form} noValidate
           >
             <div className={css.inputsWrapper}>
               <div className={css.inputsLeft}>
                 <div>
                 <Field
-                  type="number"
+                  type="text"
                   name="height"
-                  min="100"
-                    max="250"
+                  min="120"
+                    max="220"
                     required
-                  placeholder="Height *"
-                  autoFocus
+                  placeholder="Зріст *"
                   className={errors.height && touched.height ? css.inputError : css.input}
                 />
     {errors.height && touched.height && <p className="error">{errors.height}</p>}
@@ -81,11 +59,11 @@ const onSubmit = (values) => {
                 <div>
                 <Field
                   className={errors.age && touched.age ? css.inputError : css.input}
-                  type="number"
+                  type="text"
                   name="age"
                   min="18"
                     max="100"
-                  placeholder="Age *"
+                  placeholder="Вік *"
                   required
                 />
     {errors.age && touched.age && <p className="error">{errors.age}</p>}
@@ -93,11 +71,11 @@ const onSubmit = (values) => {
                 <div>
                 <Field
                   className={errors.weight && touched.weight ? css.inputError : css.input}
-                  type="number"
+                  type="text"
                   name="weight"
-                  min="20"
-                  max="500"
-                  placeholder="Current weight *"
+                  min="40"
+                  max="200"
+                  placeholder="Вага *"
                   required
                 />
                 {errors.weight && touched.weight && <p className="error">{errors.weight}</p>}
@@ -107,11 +85,11 @@ const onSubmit = (values) => {
                 <div>
                 <Field
                   className={errors.desiredWeight && touched.desiredWeight ? css.inputError : css.input}
-                  type="number"
+                  type="text"
                   name="desiredWeight"
-                  min="20"
-                    max="500"
-                  placeholder="Desired weight *"
+                  min="40"
+                    max="200"
+                  placeholder="Бажана вага *"
                   required
                 />
     {errors.desiredWeight && touched.desiredWeight && <p className="error">{errors.desiredWeight}</p>}
@@ -124,6 +102,7 @@ const onSubmit = (values) => {
                         className={css.radioInput}
                         type="radio"
                         name="bloodType"
+                        title="bloodType"
                         value='1'
                         required
                       />
@@ -134,6 +113,7 @@ const onSubmit = (values) => {
                         className={css.radioInput}
                         type="radio"
                         name="bloodType"
+                        title="bloodType"
                         value='2'
                         required
                       />
@@ -144,6 +124,7 @@ const onSubmit = (values) => {
                         className={css.radioInput}
                         type="radio"
                         name="bloodType"
+                        title="bloodType"
                         value='3'
                         required
                         
@@ -155,6 +136,7 @@ const onSubmit = (values) => {
                         className={css.radioInput}
                         type="radio"
                         name="bloodType"
+                        title="bloodType"
                         value='4'
                         required
                         
@@ -162,6 +144,7 @@ const onSubmit = (values) => {
                       4
                     </label>
                   </div>
+                  {errors.bloodType && touched.bloodType && <p className="error">{errors.bloodType}</p>}
                 </div>
               </div> 
             </div>
