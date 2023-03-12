@@ -40,7 +40,7 @@ const productsSlice = createSlice({
         state.itemWeight = action.payload.eatenProduct.weight;
         state.itemKcal = action.payload.eatenProduct.kcal;
         state.itemId = action.payload.eatenProduct.id;
-        state.dayId = action.payload.day.id;
+        state.dayId = action.payload?.day?.id;
       })
       .addCase(addProductOperations.rejected, rejectHandler)
       //---------------------------
@@ -71,6 +71,7 @@ const productsSlice = createSlice({
 export function pendingHandler(state) {
   state.isLoading = true;
   state.error = null;
+  state.items = [];
 }
 export function rejectHandler(state, action) {
   state.isLoading = false;

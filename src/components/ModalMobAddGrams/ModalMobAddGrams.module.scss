@@ -1,8 +1,8 @@
 .backdrop {
   position: fixed;
-  top: 120px;
+  top: 135px;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   pointer-events: auto;
   background: rgba(239, 241, 243, 0.5);
   transition: opacity 150ms liner, visibility 150ms liner;
@@ -18,7 +18,7 @@
   border: none;
   width: 100%;
   min-width: 280px;
-  min-height: 637px;
+  height: 100vh;
   background-color: #ffffff;
   z-index: 301;
   border: 1px solid #e0e0e0;
@@ -47,3 +47,7 @@
 
 .iconAddProduct {
 }
+
+  body {
+    overflow-y: hidden ;
+  }

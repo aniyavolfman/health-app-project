@@ -71,7 +71,7 @@
     background-color: #264061;
     color: #9b9faa;
     font-size: 24px;
-    z-index: 10;
+    z-index: 310;
     transition: left 1s;
   }
 
@@ -96,6 +96,9 @@
 }
 
 @media (max-width: 768px) {
+  body {
+    overflow-y: hidden ;
+  }
   .mobile_btn {
     display: block;
     position: absolute;
@@ -120,7 +123,7 @@
     background-color: #264061;
     color: #9b9faa;
     font-size: 24px;
-    z-index: 10;
+    z-index: 310;
     transition: left 1s;
   }
 

@@ -16,6 +16,7 @@ export default function Navigation() {
         <>
           <div className={nav ? [css.menu, css.activeNav].join(' ') : css.menu}>
             <NavLink
+              onClick={() => setNav(!nav)}
               className={({ isActive }) =>
                 isActive ? css.active : css.navigationLink
               }
@@ -24,6 +25,7 @@ export default function Navigation() {
               ЩОДЕННИК
             </NavLink>
             <NavLink
+              onClick={() => setNav(!nav)}
               to="/calculator"
               className={({ isActive }) =>
                 isActive ? css.active : css.navigationLink
@@ -32,7 +34,12 @@ export default function Navigation() {
               ПІДРАХУНОК
             </NavLink>
           </div>
-          <div onClick={() => setNav(!nav)} className={css.mobile_btn}>
+          <div
+            onClick={() => {
+              setNav(!nav);
+            }}
+            className={css.mobile_btn}
+          >
             {nav ? <AiOutlineClose size={14} /> : <AiOutlineMenu size={18} />}
           </div>
         </>

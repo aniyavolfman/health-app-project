@@ -2,12 +2,13 @@
 .pageWrapper {
   width: 100%;
   min-width: 280px;
-  height: 570px;
+  // height: 570px;
   margin: 0 auto;
   background-color: var(--btn-text-active-color);
 
   @media (min-width: 768px) {
-  height: 944px;
+  // height: 944px;
+  min-height: 91.5vh;
   padding-bottom: 0;
   background-image: 
   url('../../img/Layer-tb.png'),
@@ -15,11 +16,12 @@
   url('../../img/banan.png'),
   url('../../img/Vector3.jpeg');
   background-repeat: no-repeat, no-repeat, no-repeat;
-  background-position: bottom -50px right 160px, bottom 149px right -7px, bottom -100px right 30px, bottom -200px right -60px;
+  background-position: bottom -50px right 160px, bottom 149px right -7px, bottom -100px right 1px, bottom -161px right -50px;
   }
 
-  @media (min-width: 1199px) {
-  height: 697px;
+  @media (min-width: 1280px) {
+    min-height: 82vh;
+  // height: 697px;
   padding-left: 16px;
   background-image: 
   url('../../img/Layer.png'),
