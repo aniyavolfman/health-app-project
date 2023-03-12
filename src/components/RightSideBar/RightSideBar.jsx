@@ -46,10 +46,8 @@ export default function RightSideBar() {
         </div>
         <div className={css.SidebarNotRecomend}>
           <h2 className={css.SidebarTitle}>Не рекомендовані продукти</h2>
-          {!shortProducts && (
-            <p className={css.userInfoDescription}>
-              Your diet will be displayed here
-            </p>
+          {shortProducts.length===0 && (
+            <p className={css.SidebarText}>Ваша дієта буде тут</p>
           )}
           <ul className={css.SidebarList}>
             {shortProducts?.map(el => (
@@ -63,3 +61,9 @@ export default function RightSideBar() {
     </div>
   );
 }
+
+//  {
+//    !shortProducts && (
+//      <p className={css.userInfoDescription}>Your diet will be displayed here</p>
+//    );
+//  }

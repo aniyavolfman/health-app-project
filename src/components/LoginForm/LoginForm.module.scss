@@ -2,7 +2,7 @@
   width: 100%;
   min-width: 280px;
 
-  font-family: 'Verdana';
+  font-family: 'Jost';
 
   display: flex;
   flex-direction: column;
@@ -14,14 +14,12 @@
   @media (min-width: 768px) {
     width: 395px;
     align-items: start;
-    
   }
-  @media (min-width: 1199px) {
-    
+  @media (min-width: 1280px) {
   }
 }
 .formTitle {
-  font-family: 'Verdana';
+  font-family: 'Jost';
   font-weight: 700;
   line-height: calc(17 / 14);
   letter-spacing: 0.04em;
@@ -32,10 +30,9 @@
 
   margin-bottom: 55px;
   @media (min-width: 768px) {
-  margin-left: 0;
+    margin-left: 0;
   }
-  @media (min-width: 1199px) {
-  
+  @media (min-width: 1280px) {
   }
 }
 .form {
@@ -47,8 +44,7 @@
   @media (min-width: 768px) {
     width: 395px;
   }
-  @media (min-width: 1199px) {
-   
+  @media (min-width: 1280px) {
   }
 }
 
@@ -66,11 +62,10 @@
   border-bottom: 1px solid var(--input-border-unactive);
 
   color: var(--input-label-text-color);
- 
+
   @media (min-width: 768px) {
     width: 240px;
-        }
-
+  }
 }
 
 .inputForm:focus {
@@ -87,11 +82,11 @@
   align-items: center;
   justify-content: center;
 
-    @media (min-width: 768px) {
-        display: flex;
-        flex-direction: row;
-        gap: 32px;
-    }
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+  }
 }
 .btnSubmit {
   width: 182px;
@@ -117,9 +112,9 @@
   transition: transform var(--btn-hover-transform),
     box-shadow var(--typical-hover-transition);
 
-    @media (min-width: 768px) {
+  @media (min-width: 768px) {
     margin-bottom: 0;
-    }
+  }
 }
 
 .btnSubmit:hover,
@@ -140,7 +135,7 @@
   justify-content: center;
 
   color: var(--btn-text-unactive-color);
-  background-color:  var(--btn-unactive-color);
+  background-color: var(--btn-unactive-color);
 
   padding: 13px 37px;
 
@@ -149,7 +144,6 @@
 
   transition: transform var(--btn-hover-transform),
     box-shadow var(--typical-hover-transition);
-
 }
 
 .link:hover,

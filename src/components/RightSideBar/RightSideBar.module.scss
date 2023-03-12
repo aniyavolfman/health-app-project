@@ -21,18 +21,18 @@
     top: 0;
     right: 0;
     box-shadow: 40px 1px 55px #e2e2e2;
-    margin: 0 auto; 
-  text-align: center;
+    margin: 0 auto;
+    text-align: center;
   }
 }
 
 .SidebarWrap {
+  align-items: center;
   width: 100vw;
   padding: 40px 20px;
   display: flex;
   flex-direction: column;
   gap: 60px;
-  
 }
 @media screen and (min-width: 768px) {
   .SidebarWrap {
@@ -40,7 +40,7 @@
     flex-direction: row;
     align-items: flex-start;
     gap: 96px;
-    background-image: url(./RightSideBarImg/leaves-tab-1x.png);
+    background-image: url(../../img/RightSideBarImg/leaves-tab-1x.png);
     background-repeat: no-repeat;
     background-size: 370px 350px;
     background-position: right 0 bottom 0;
@@ -54,7 +54,7 @@
     padding: 292px 123px 0 106px;
     flex-direction: column;
     gap: 60px;
-    background-image: url(./RightSideBarImg/leaves-desk-1x.png);
+    background-image: url(../../img/RightSideBarImg/leaves-desk-1x.png);
 
     background-repeat: no-repeat;
     background-size: 517px auto;

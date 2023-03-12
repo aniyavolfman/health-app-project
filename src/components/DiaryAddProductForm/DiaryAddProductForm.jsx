@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect } from 'react';
+
+import React, { useEffect, useMemo } from 'react';
 import { VscAdd } from 'react-icons/vsc';
 import { useState } from 'react';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
@@ -37,22 +38,38 @@ export default function DiaryAddProductForm({
   const [products, setProducts] = useState([]);
   const [productId, setProductId] = useState('');
   const date = useSelector(state => state.products.currentDate);
-  const getProducts = useCallback(
-    debounce(query => {
-      if (!query) {
-        return;
-      }
-      productSearch(query).then(data => {
-        setProducts(data);
-      });
-    }, 1000)
-  );
+
+  // const getProducts = useCallback(
+  //   debounce(query => {
+  //     if (!query) {
+  //       return;
+  //     }
+  //     productSearch(query).then(data => {
+  //       setProducts(data);
+  //     });
+  //   }, 500, []),
+  // );
 
   // useEffect(() => {
   //   if (product) {
   //     productSearch(product).then(setProducts);
   //   }
   // }, [product]);
+
+
+
+  const getProducts = useMemo(
+    () =>
+      debounce(query => {
+        if (!query) {
+          return;
+        }
+        productSearch(query).then(data => {
+          setProducts(data);
+        });
+      }, 500),
+    []
+  );
 
   const handleChangeProduct = e => {
     const { value } = e.target;
@@ -87,7 +104,7 @@ export default function DiaryAddProductForm({
       .unwrap()
       .then(() => {
         dispatch(fetchCurrentUser());
-        onClose();
+        if(width < 768 && isInModal) { onClose();}
         dispatch(userDayInfoOperation({ date }));
       });
     reset();
@@ -192,7 +209,7 @@ export default function DiaryAddProductForm({
                   // <IoIosAdd style={{ alignItems: "center" }} className={css.iconAddProduct} />
                   <VscAdd className={css.iconAddProduct} />
                 ) : (
-                  'відправити'
+                  'Відправити'
                 )}
               </button>
             </div>
@@ -201,9 +218,15 @@ export default function DiaryAddProductForm({
       )}
       {!isInModal && <DiaryProductsList />}
       {width <= 768 && !isOpenModal && (
-        <button type="button" onClick={handleOpenModal}>
-          💙
-        </button>
+        <div className={css.divAddProduct}>
+          <button
+            type="button"
+            className={css.btnAddProductMob}
+            onClick={handleOpenModal}
+          >
+            <VscAdd className={css.iconAddProduct} />
+          </button>
+        </div>
       )}
     </div>
   );

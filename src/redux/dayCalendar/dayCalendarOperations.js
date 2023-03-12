@@ -5,7 +5,6 @@ import { day, dayDelete, dayInfo } from 'services/api';
 export const addProductOperations = createAsyncThunk(
   'day/addProduct',
   async (dataObj, thunkAPI) => {
-    console.log('response', dataObj);
     try {
       const response = await day(dataObj);
       return response;
@@ -30,7 +29,6 @@ export const deleteProductOperation = createAsyncThunk(
   'day/deleteProduct',
   async (dayId, thunkAPI) => {
     try {
-      console.log(dayId)
       const response = await dayDelete(dayId);
       return response;
     } catch (error) {

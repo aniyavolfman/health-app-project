@@ -31,7 +31,7 @@ const onSubmit = (values, {resetForm}) => {
     return (
       <div className={css.wrapper}>
           <h2 className={css.title}>
-            Calculate your daily calorie intake right now
+            Розрахувати денну норму калорій
           </h2>
 
       <Formik
@@ -101,7 +101,7 @@ const onSubmit = (values, {resetForm}) => {
     {errors.desiredWeight && touched.desiredWeight && <p className="error">{errors.desiredWeight}</p>}
     </div>
                 <div>
-                  <p className={css.radioTitle}>Blood type *</p>
+                  <p className={css.radioTitle}>Група крові *</p>
                   <div className={css.radioWrapper}>
                     <label className={css.radioLabel}>
                       <Field
@@ -149,7 +149,7 @@ const onSubmit = (values, {resetForm}) => {
               </div>
             </div>
             <button className={css.startBtn} type="submit">
-              Start losing weight
+              Розпочати схуднення
             </button>
           </Form>
         )}

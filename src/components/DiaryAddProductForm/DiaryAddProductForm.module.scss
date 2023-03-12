@@ -25,7 +25,8 @@
   @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: column;
-    align-items: start;
+
+    align-items: flex-start;
     margin-top: 53px;
     padding-top: 0;
     padding-left: 32px;
@@ -45,7 +46,10 @@
 }
 
 .inputProductTwo {
+  display: flex;
+  flex-direction: column;
   padding-right: 20px;
+  gap: 20px;
   @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: row;
@@ -106,18 +110,27 @@
   justify-content: left;
   width: 107px;
   height: 36px;
+  @media screen and (min-width: 320px) {
+    display: inline-flex;
+    justify-content: left;
+    width: 240px;
+    height: 36px;
+    padding-right: 10px;
+  }
 
   @media screen and (min-width: 768px) {
     display: inline-flex;
     justify-content: left;
     height: 36px;
     padding-right: 10px;
+    width: 107px;
   }
   @media screen and (min-width: 1280px) {
     display: inline-flex;
     justify-content: left;
     height: 36px;
     padding-right: 10px;
+    width: 107px;
   }
 }
 .inputGrams:focus,
@@ -130,7 +143,7 @@
 }
 
 .inputGrams::placeholder {
-  text-align: right;
+  text-align: left;
   width: 280px;
   @media screen and (min-width: 768px) {
     text-align: right;
@@ -176,15 +189,61 @@
 ///
 
 .btnAddProduct {
+  transition: transform var(--btn-hover-transform),
+    box-shadow var(--typical-hover-transition);
+  border-style: none;
+  border-radius: 30px;
+  background-color: #fc842d;
+  // width: 240px;
+  // height: 100%;
+  padding: 13px 46px;
+  color: var(--input-bgcolor-white);
+  @media screen and (min-width: 768px) {
+    border-style: none;
+    border-radius: 50%;
+    background-color: #fc842d;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    padding-bottom: 2px;
+  }
+  @media screen and (min-width: 1280px) {
+    border-style: none;
+    border-radius: 50%;
+    background-color: #fc842d;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+}
+.btnAddProduct:hover,
+.btnAddProduct:focus {
+  box-shadow: 0px 4px 4px var(--btn-hover-shadow);
+  transform: scale(1.1);
+}
+
+.btnAddProductMob {
+  transition: transform var(--btn-hover-transform),
+    box-shadow var(--typical-hover-transition);
   border-style: none;
   border-radius: 50%;
   background-color: #fc842d;
-  width: 100%;
-  height: 100%;
-  padding: 0;
+  padding: 5px;
+  padding-bottom: 2px;
 }
+
+.btnAddProductMob:hover,
+.btnAddProductMob:focus {
+  box-shadow: 0px 4px 4px var(--btn-hover-shadow);
+  transform: scale(1.1);
+}
+
 .divAddProduct {
-  margin: 2px 0 2px 0;
+  margin: 60px auto;
+  @media screen and (min-width: 768px) {
+    margin: 0 auto;
+  }
+
   display: flex;
   align-items: center;
   justify-content: center;
