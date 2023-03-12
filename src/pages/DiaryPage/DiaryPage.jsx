@@ -25,12 +25,11 @@ export default function DiaryPage() {
   return (
     <div className={css.diaryPage}>
       {(isLoadingProduct || isLoadingUser) && <Loader />}
-      <div>
-        <DiaryAddProductForm handleOpenModal={handleOpenModal} />
-      </div>
-      <div>
-        <RightSideBar />
-      </div>
+
+      <DiaryAddProductForm handleOpenModal={handleOpenModal} />
+
+      <RightSideBar />
+
       {isOpenModal && (
         <ModalMobAddGrams onClose={onClose} isOpenModal={isOpenModal} />
       )}

@@ -46,7 +46,7 @@ export default function RightSideBar() {
         </div>
         <div className={css.SidebarNotRecomend}>
           <h2 className={css.SidebarTitle}>Не рекомендовані продукти</h2>
-          {shortProducts.length===0 && (
+          {shortProducts?.length===0 && (
             <p className={css.SidebarText}>Ваша дієта буде тут</p>
           )}
           <ul className={css.SidebarList}>

@@ -1,7 +1,6 @@
 .header {
   display: flex;
   flex-wrap: wrap;
-
   justify-content: space-between;
   align-items: baseline;
   padding-top: 20px;
@@ -16,9 +15,7 @@
   border-bottom: 2px solid rgba(224, 224, 224, 1);
   @media (min-width: 768px) {
     justify-content: space-between;
-
     align-items: center;
-
     padding-bottom: 16px;
     padding-top: 20px;
     padding-left: 32px;
@@ -33,9 +30,47 @@
   }
 }
 
+.headerUnReg {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+   padding-right: 20px;
+  // padding-left: 20px;
+  // padding-right: 20px;
+  // @media (min-width: 1280px) {
+  //   padding-top: 20px;
+  //   padding-left: 20px;
+  //   padding-right: 20px;
+  // }
+
+  border-bottom: 2px solid rgba(224, 224, 224, 1);
+  @media (min-width: 768px) {
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 16px;
+    padding-top: 20px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  @media (min-width: 1280px) {
+    border-bottom: none;
+    justify-content: start;
+    align-items: baseline;
+    padding-top: 80px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
 .logo {
+  @media (max-width: 767px) {
+    margin-left: 16px;
+    padding-bottom: 16px;
+  }
   padding-right: 20px;
-  //padding-bottom: 16px;
+  
   cursor: pointer;
 }
 .logoSize {
@@ -68,27 +103,22 @@
 }
 
 .wrapper {
+  gap: 50px;
   display: flex;
-  // @media  (min-width: 768px) {
-  //    align-items:center;
-  //   }
-  //    @media (min-width: 1280px) {
-  //     align-items: baseline;
-  //   }
-  @media (min-width: 768px) {
-    align-items: center;
-  }
+  align-items: center;
   @media (min-width: 1280px) {
     align-items: baseline;
+    gap: 0px;
   }
 }
 
 .navWrap {
+  display: flex;
   @media (min-width: 768px) {
     align-items: center;
   }
   @media (min-width: 1280px) {
-    align-items: center;
+    align-items:baseline;
   }
 }
 // }

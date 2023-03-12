@@ -117,6 +117,14 @@ export default function DiaryAddProductForm({
     }
     return false;
   };
+
+  // const shouldRender = () => {
+  //   if ((width < 768 && isInModal) || (width > 767 && !isInModal)) {
+  //     return true;
+  //   }
+  //   return false;
+  // };
+
   return (
     <div className={css.FormDiv}>
       {shouldRender() && (
@@ -126,41 +134,44 @@ export default function DiaryAddProductForm({
           >
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DemoContainer components={['DatePicker']}>
-                <DatePicker
-                  slots={{ textField: TextField }}
-                  slotProps={{
-                    textField: {
-                      variant: 'standard',
-                      overflow: 'auto !important',
+                {!isInModal && (
+                  <DatePicker
+                    className={css.muiCalendar}
+                    slots={{ textField: TextField }}
+                    slotProps={{
+                      textField: {
+                        variant: 'standard',
+                        overflow: 'auto !important',
+                        border: 'none',
+                      },
+                    }}
+                    InputProps={{
+                      disableUnderline: true,
                       border: 'none',
-                    },
-                  }}
-                  InputProps={{
-                    disableUnderline: true,
-                    border: 'none',
-                  }}
-                  sx={{
-                    div: {
-                      border: 'transparent',
-                    },
-                    '& .MuiInputBase-root': {
-                      border: 'none',
-                    },
-                    '& .MuiInputBase-input': {
-                      border: 'none',
-                      fontSize: '34px',
-                      fontWeight: '700',
-                      lineHeight: '1.2',
-                      padding: '0',
-                    },
-                  }}
-                  format="dd.MM.yyyy"
-                  minDate={dayjs('2020-01-01')}
-                  maxDate={dayjs(new Date())}
-                  defaultValue={defaulDate}
-                  onChange={handleChangeDate}
-                  adapter={AdapterDateFns}
-                />
+                    }}
+                    sx={{
+                      div: {
+                        border: 'transparent',
+                      },
+                      '& .MuiInputBase-root': {
+                        border: 'none',
+                      },
+                      '& .MuiInputBase-input': {
+                        border: 'none',
+                        fontSize: '34px',
+                        fontWeight: '700',
+                        lineHeight: '1.2',
+                        padding: '0',
+                      },
+                    }}
+                    format="dd.MM.yyyy"
+                    minDate={dayjs('2020-01-01')}
+                    maxDate={dayjs(new Date())}
+                    defaultValue={defaulDate}
+                    onChange={handleChangeDate}
+                    adapter={AdapterDateFns}
+                  />
+                )}
               </DemoContainer>
             </LocalizationProvider>
           </div>
@@ -178,7 +189,7 @@ export default function DiaryAddProductForm({
 
               {products?.map(({ _id, title }) => (
                 <button
-                  // className={css.inputProductTwo}
+                  className={css.btnBtn}
                   type="button"
                   key={_id}
                   value={_id}
@@ -214,6 +225,108 @@ export default function DiaryAddProductForm({
               </button>
             </div>
           </div>
+        </form>
+      )}{' '}
+      {!shouldRender() && (
+        <form className={css.Form} autoComplete="off" onSubmit={handleSubmit}>
+          <div
+            style={({ width: '260px' }, { float: 'left' }, { border: 'none' })}
+          >
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DemoContainer components={['DatePicker']}>
+                {!isInModal && (
+                  <DatePicker
+                    className={css.muiCalendar}
+                    slots={{ textField: TextField }}
+                    slotProps={{
+                      textField: {
+                        variant: 'standard',
+                        overflow: 'auto !important',
+                        border: 'none',
+                      },
+                    }}
+                    InputProps={{
+                      disableUnderline: true,
+                      border: 'none',
+                    }}
+                    sx={{
+                      div: {
+                        border: 'transparent',
+                      },
+                      '& .MuiInputBase-root': {
+                        border: 'none',
+                      },
+                      '& .MuiInputBase-input': {
+                        border: 'none',
+                        fontSize: '34px',
+                        fontWeight: '700',
+                        lineHeight: '1.2',
+                        padding: '0',
+                      },
+                    }}
+                    format="dd.MM.yyyy"
+                    minDate={dayjs('2020-01-01')}
+                    maxDate={dayjs(new Date())}
+                    defaultValue={defaulDate}
+                    onChange={handleChangeDate}
+                    adapter={AdapterDateFns}
+                  />
+                )}
+              </DemoContainer>
+            </LocalizationProvider>
+          </div>
+          {isInModal && (
+            <div className={css.inputProductTwo}>
+              <label label="Product" className={css.inputProductLabel}>
+                <input
+                  className={css.inputProduct}
+                  list="listProducts"
+                  type="text"
+                  name="product"
+                  placeholder="Введіть назву продукту"
+                  value={product}
+                  onChange={handleChangeProduct}
+                />
+
+                {products?.map(({ _id, title }) => (
+                  <button
+                    className={css.btnBtn}
+                    type="button"
+                    key={_id}
+                    value={_id}
+                    style={{ display: 'block' }}
+                    onClick={() => {
+                      setProductId(_id);
+                      setProduct(title.ua);
+                      setProducts([]);
+                    }}
+                  >
+                    {title.ua}
+                  </button>
+                ))}
+              </label>
+              <label label="Grams">
+                <input
+                  className={css.inputGrams}
+                  type="text"
+                  name="weight"
+                  placeholder="Грами "
+                  value={weight}
+                  onChange={handleChangeWeight}
+                />
+              </label>
+              <div className={css.divAddProduct}>
+                <button className={css.btnAddProduct} type="submit">
+                  {width > 768 ? (
+                    // <IoIosAdd style={{ alignItems: "center" }} className={css.iconAddProduct} />
+                    <VscAdd className={css.iconAddProduct} />
+                  ) : (
+                    'Відправити'
+                  )}
+                </button>
+              </div>
+            </div>
+          )}
         </form>
       )}
       {!isInModal && <DiaryProductsList />}

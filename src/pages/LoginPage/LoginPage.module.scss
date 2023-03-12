@@ -1,7 +1,7 @@
 .formContainer {
     width: 100%;
     min-width: 280px;
-    height: 570px;
+    height: 100vh;
    
     margin: 0 auto;
     
@@ -9,7 +9,7 @@
 
     background-color: var(--btn-text-active-color);
     @media (min-width: 768px) {
-    height: 944px;
+        height: 100vh;
     padding-top: 160px;
     padding-left: 32px;
     background-image: 
@@ -18,13 +18,13 @@
     url('../../img/banan.png'),
     url('../../img/Vector3.jpeg');
     background-repeat: no-repeat, no-repeat, no-repeat;
-    background-position: bottom 300px right 1px, bottom 219px right -77px, bottom -100px right 1px, bottom -161px right -50px;
+    background-position: bottom 300px right 1px, bottom 219px right -77px, bottom -100px right -1px, bottom -161px right -50px;
     background-size: 746px 820px, 307px 302px, 480px 450px, 553px 750px;
 
     }
 
     @media (min-width: 1280px) {
-    height: 697px;
+    height: 100vh;
     padding-top: 153px;
     padding-left: 16px;
     background-image: 
@@ -34,6 +34,6 @@
     
     url('../../img/Vector3.jpeg');
     background-repeat: no-repeat, no-repeat, no-repeat;
-    background-position: top -56px right 131px, top 410px right -41px, top -32px right -1px, top 34px right 0px;
+    background-position: bottom -55px right 170px, bottom -20px right -5px, bottom 330px right 1px, bottom -31px right -1px;
     }
 }
