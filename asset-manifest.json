@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/health-app-project/static/css/main.15716817.css",
+    "main.css": "/health-app-project/static/css/main.c809fa66.css",
     "main.js": "/health-app-project/static/js/main.51ef2597.js",
     "static/css/675.7b5da361.chunk.css": "/health-app-project/static/css/675.7b5da361.chunk.css",
     "static/js/675.ceef7f47.chunk.js": "/health-app-project/static/js/675.ceef7f47.chunk.js",
@@ -28,7 +28,7 @@
     "static/media/leaves-tab-1x.png": "/health-app-project/static/media/leaves-tab-1x.3cf507fc5063b80c0790.png",
     "static/media/logoPCx2.png": "/health-app-project/static/media/logoPCx2.9d66d0971c757e8dd7e8.png",
     "index.html": "/health-app-project/index.html",
-    "main.15716817.css.map": "/health-app-project/static/css/main.15716817.css.map",
+    "main.c809fa66.css.map": "/health-app-project/static/css/main.c809fa66.css.map",
     "main.51ef2597.js.map": "/health-app-project/static/js/main.51ef2597.js.map",
     "675.7b5da361.chunk.css.map": "/health-app-project/static/css/675.7b5da361.chunk.css.map",
     "675.ceef7f47.chunk.js.map": "/health-app-project/static/js/675.ceef7f47.chunk.js.map",
@@ -49,7 +49,7 @@
     "529.251f0c1a.chunk.js.map": "/health-app-project/static/js/529.251f0c1a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.15716817.css",
+    "static/css/main.c809fa66.css",
     "static/js/main.51ef2597.js"
   ]
 }
