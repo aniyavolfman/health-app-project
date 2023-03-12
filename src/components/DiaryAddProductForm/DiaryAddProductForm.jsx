@@ -255,7 +255,7 @@ export default function DiaryAddProductForm({
                       },
                       '& .MuiInputBase-input': {
                         border: 'none',
-                        fontSize: '34px',
+                        fontSize: '24px',
                         fontWeight: '700',
                         lineHeight: '1.2',
                         padding: '0',
