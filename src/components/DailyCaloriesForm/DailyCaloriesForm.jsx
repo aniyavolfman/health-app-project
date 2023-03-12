@@ -9,12 +9,13 @@ import {
 } from 'redux/dailyRate/dailyRateOperations';
 import css from './DailyCaloriesForm.module.scss';
 import { selectId, selectIsLoggedIn } from 'redux/auth/authSelectors';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const DailyCaloriesForm = ({ handleOpenModal }) => {
   const dispatch = useDispatch();
   const userId = useSelector(selectId);
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const navigate = useNavigate();
 
   const onSubmit = (values, { resetForm }) => {
     values.bloodType = Number(values.bloodType);
@@ -24,6 +25,7 @@ export const DailyCaloriesForm = ({ handleOpenModal }) => {
       dispatch(getRecommendations(values));
     } else {
       dispatch(getAuthRecommendations({ ...values, userId }));
+      navigate('/diary', { replace: true });
     }
     resetForm();
   };
@@ -169,17 +171,10 @@ export const DailyCaloriesForm = ({ handleOpenModal }) => {
                 </div>
               </div>
             </div>
-            {isLoggedIn ? (
-              <Link to="/diary">
-                <button className={css.startBtn} type="submit">
-                  Розпочати схуднення
-                </button>
-              </Link>
-            ) : (
-              <button className={css.startBtn} type="submit">
-                Розпочати схуднення
-              </button>
-            )}
+
+            <button className={css.startBtn} type="submit">
+              Розпочати схуднення
+            </button>
           </Form>
         )}
       </Formik>

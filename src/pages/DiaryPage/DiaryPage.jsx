@@ -16,10 +16,12 @@ export default function DiaryPage() {
 
   const handleOpenModal = () => {
     setIsOpenModal(true);
+    document.body.classList.add('noScrool');
   };
 
   const onClose = () => {
     setIsOpenModal(false);
+    document.body.classList.remove('noScrool');
   };
 
   return (
