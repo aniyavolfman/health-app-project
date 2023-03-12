@@ -1,11 +1,13 @@
 .FormDiv {
   width: 100%;
   min-width: 280px;
+  min-height: 41vh;
   @media screen and (min-width: 768px) {
     width: 100%;
     display: inline-flex;
     justify-content: left;
     flex-direction: column;
+    min-height: 58vh;
   }
   @media screen and (min-width: 1280px) {
     width: 763px;
@@ -269,4 +271,29 @@
 :global .MuiStack-root {
   overflow: hidden;
   border-style: none;
+}
+
+.btnBtn {
+  display: flex;
+  background-color: #e0e0e0;
+}
+
+
+
+.muiCalendar {
+  font-size: 18px !important;
+  border: 1px solid transparent;
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+  background-color: transparent;
+  padding: 1px 1px;
+  width: 190px;
+  background: #fff;
+
+  @media screen and (min-width: 767px) {
+    font-size: 34px !important;
+    width: 290px;
+  }
 }

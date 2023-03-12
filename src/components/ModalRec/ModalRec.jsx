@@ -69,7 +69,7 @@ export function ModalRec({ onClose }) {
         </button>
 
         <h2 className={css.recTitle}>
-          Your recommended daily calorie intake is
+          Ваша денна норма калорій становить
         </h2>
         <p className={css.recElText}>
           {dailyCalories && (
@@ -78,7 +78,7 @@ export function ModalRec({ onClose }) {
           <span>ккал</span>
         </p>
 
-        <p className={css.recText}>Foods you should not eat</p>
+        <p className={css.recText}>Не рекомендовані продукти</p>
         <ol className={css.recList}>
           {notAllowedProducts.length > 0 &&
             notAllowedProducts.slice(0, 4).map(el => (
@@ -90,7 +90,7 @@ export function ModalRec({ onClose }) {
 
         <Link to="/register">
           <button type="submit" className={css.btnSubmit}>
-            Start losing weight
+            Розпочати схуднення
           </button>
         </Link>
       </div>

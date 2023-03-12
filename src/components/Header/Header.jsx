@@ -23,27 +23,44 @@ export default function Header() {
     }
   };
 
-
   return (
     <>
-      <header className={css.header}>
-        <div className={css.wrapper}>
-          <Link to={token ? '/diary' : '/'} className={css.logo}>
-            <img
-              src={getLogo()}
-              alt="logo"
-              className={
-                token && width < 768 ? css.logoSizeToken : css.logoSize
-              }
-            />
-          </Link>
+      {token ? (
+        <header className={css.header}>
+          <div className={css.wrapper}>
+            <Link to={token ? '/diary' : '/'} className={css.logo}>
+              <img
+                src={getLogo()}
+                alt="logo"
+                className={
+                  token && width < 768 ? css.logoSizeToken : css.logoSize
+                }
+              />
+            </Link>
+            <div className={css.navWrap}>
+              <Navigation />
+            </div>
+          </div>
+          <UserInfo />
+        </header>
+      ) : (
+        <header className={css.headerUnReg}>
+          <div className={css.wrapper}>
+            <Link to={token ? '/diary' : '/'} className={css.logo}>
+              <img
+                src={getLogo()}
+                alt="logo"
+                className={
+                  token && width < 768 ? css.logoSizeToken : css.logoSize
+                }
+              />
+            </Link>
+          </div>
           <div className={css.navWrap}>
             <Navigation />
           </div>
-        </div>
-
-        {token && <UserInfo />}
-      </header>
+        </header>
+      )}
     </>
   );
 }
