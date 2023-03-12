@@ -17,7 +17,7 @@ export const DailyCaloriesForm = ({ handleOpenModal }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const navigate = useNavigate();
 
-  const onSubmit = (values, { resetForm }) => {
+  async function onSubmit(values, { resetForm }) {
     values.bloodType = Number(values.bloodType);
 
     if (!isLoggedIn) {
@@ -25,10 +25,11 @@ export const DailyCaloriesForm = ({ handleOpenModal }) => {
       dispatch(getRecommendations(values));
     } else {
       dispatch(getAuthRecommendations({ ...values, userId }));
-      navigate('/diary', { replace: true });
+      setTimeout(()=>navigate('/diary', { replace: true }), 500);
     }
     resetForm();
-  };
+  }
+
 
   return (
     <div className={css.wrapper}>
