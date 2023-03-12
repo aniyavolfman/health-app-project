@@ -9,7 +9,9 @@ import {
 } from 'redux/dailyRate/dailyRateOperations';
 import css from './DailyCaloriesForm.module.scss';
 import { selectId, selectIsLoggedIn } from 'redux/auth/authSelectors';
+
 import { useNavigate } from 'react-router-dom';
+
 
 export const DailyCaloriesForm = ({ handleOpenModal }) => {
   const dispatch = useDispatch();
@@ -26,6 +28,7 @@ export const DailyCaloriesForm = ({ handleOpenModal }) => {
     } else {
       dispatch(getAuthRecommendations({ ...values, userId }));
       setTimeout(()=>navigate('/diary', { replace: true }), 500);
+
     }
     resetForm();
   }
@@ -173,9 +176,11 @@ export const DailyCaloriesForm = ({ handleOpenModal }) => {
               </div>
             </div>
 
+
             <button className={css.startBtn} type="submit">
               Розпочати схуднення
             </button>
+
           </Form>
         )}
       </Formik>
