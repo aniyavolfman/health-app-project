@@ -158,7 +158,7 @@
     padding-right: 10px;
   }
 }
-///
+
 .inputForm {
   width: 280px;
   height: 36px;
@@ -179,7 +179,6 @@
   }
 }
 
-//
 .inputForm:focus,
 .inputForm:hover {
   outline: 0;
@@ -188,7 +187,6 @@
   background-color: var(--input-bgcolor-white);
   border-color: var(--input-border-color);
 }
-///
 
 .btnAddProduct {
   transition: transform var(--btn-hover-transform),
@@ -196,8 +194,6 @@
   border-style: none;
   border-radius: 30px;
   background-color: #fc842d;
-  // width: 240px;
-  // height: 100%;
   padding: 13px 46px;
   color: var(--input-bgcolor-white);
   @media screen and (min-width: 768px) {

@@ -4,7 +4,6 @@ import {
   getAuthRecommendations,
   getRecommendations,
 } from './dailyRateOperations';
-//import { selectNotAllowedProduct, selectDailyRate } from './dailyRateSelectors';
 
 const initialState = {
   notAllowedProducts: [],

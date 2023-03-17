@@ -1,4 +1,4 @@
-@import '../node_modules/modern-normalize/modern-normalize.css'; /* bring in normalize.css styles */
+@import '../node_modules/modern-normalize/modern-normalize.css'; 
 
 @import '../src/styles/container';
 @import '../src/styles/vars';
@@ -91,12 +91,8 @@ body {
   width: 100%;
   padding: 0;
   border: none;
-  // font-size: 34px;
-  // font-weight: 700;
-  // line-height: 1.2;
 }
 .css-i4bv87-MuiSvgIcon-root {
-  // margin-right: 5px;
   flex-shrink: 0;
 }
 .css-i4bv87-MuiSvgIcon-root:hover,
