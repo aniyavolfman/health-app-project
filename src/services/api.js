@@ -27,23 +27,12 @@ export const token = {
 
 //реєстрація користувача
 
-// приклад тіла запиту {
-//       email: 'userbob@example.com',
-//       password: 'qwerty123',
-//       username: 'Emma',
-//     }
-
 export async function register(userData) {
   const { data } = await $publicHost.post(`/auth/register`, userData);
   return data;
 }
 
 //логінізація користувача
-
-// приклад тіла запиту {
-//       email: 'userbob@example.com',
-//       password: 'qwerty123',
-//     }
 
 export async function login(userData) {
   const { data } = await $publicHost.post(`/auth/login`, userData);
@@ -58,10 +47,6 @@ export async function logOut() {
 }
 
 // refresh користувача
-
-// приклад тіла запиту {
-//   "sid": "507f1f77bcf86cd799439011"
-// }
 
 export async function refresh(sid, refreshToken) {
   const { data } = await $privateHost({
@@ -82,14 +67,6 @@ export async function getUser() {
 
 // daily-rate
 
-// приклад тіла запиту  {
-//   "weight": 100,
-//   "height": 170,
-//   "age": 30,
-//   "desiredWeight": 60,
-//   "bloodType": 1
-// }
-
 export async function dailyRate(credentials) {
   try {
     const { data } = await $publicHost.post('/daily-rate', credentials);
@@ -100,14 +77,6 @@ export async function dailyRate(credentials) {
 }
 
 // daily-rate-id
-
-// приклад тіла запиту  {
-//   "weight": 100,
-//   "height": 170,
-//   "age": 30,
-//   "desiredWeight": 60,
-//   "bloodType": 1
-// }
 
 export async function dailyRateId(credentials) {
   
@@ -135,12 +104,6 @@ export async function productSearch(search) {
 
 // day
 
-// приклад тіла запиту  {
-//   "date": "2020-12-31",
-//   "productId": "5d51694802b2373622ff552c",
-//   "weight": 100
-// }
-
 export async function day(credentials) {
   try {
     const { data } = await $privateHost.post('/day', credentials);
@@ -153,10 +116,6 @@ export async function day(credentials) {
 
 // day delete
 
-// приклад тіла запиту  {
-//   "dayId": "507f1f77bcf86cd799439011",
-//   "eatenProductId": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"
-// }
 
 export async function dayDelete(dayId) {
   try {

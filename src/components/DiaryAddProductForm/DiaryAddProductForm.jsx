@@ -1,4 +1,3 @@
-
 import React, { useEffect, useMemo } from 'react';
 import { VscAdd } from 'react-icons/vsc';
 import { useState } from 'react';
@@ -34,29 +33,9 @@ export default function DiaryAddProductForm({
   const dispatch = useDispatch();
   const [product, setProduct] = useState('');
   const [weight, setWeight] = useState('');
-  // const [query, setQuery] = useState('');
   const [products, setProducts] = useState([]);
   const [productId, setProductId] = useState('');
   const date = useSelector(state => state.products.currentDate);
-
-  // const getProducts = useCallback(
-  //   debounce(query => {
-  //     if (!query) {
-  //       return;
-  //     }
-  //     productSearch(query).then(data => {
-  //       setProducts(data);
-  //     });
-  //   }, 500, []),
-  // );
-
-  // useEffect(() => {
-  //   if (product) {
-  //     productSearch(product).then(setProducts);
-  //   }
-  // }, [product]);
-
-
 
   const getProducts = useMemo(
     () =>
@@ -104,7 +83,9 @@ export default function DiaryAddProductForm({
       .unwrap()
       .then(() => {
         dispatch(fetchCurrentUser());
-        if(width < 768 && isInModal) { onClose();}
+        if (width < 768 && isInModal) {
+          onClose();
+        }
         dispatch(userDayInfoOperation({ date }));
       });
     reset();
@@ -117,13 +98,6 @@ export default function DiaryAddProductForm({
     }
     return false;
   };
-
-  // const shouldRender = () => {
-  //   if ((width < 768 && isInModal) || (width > 767 && !isInModal)) {
-  //     return true;
-  //   }
-  //   return false;
-  // };
 
   return (
     <div className={css.FormDiv}>
@@ -217,7 +191,6 @@ export default function DiaryAddProductForm({
             <div className={css.divAddProduct}>
               <button className={css.btnAddProduct} type="submit">
                 {width > 768 ? (
-                  // <IoIosAdd style={{ alignItems: "center" }} className={css.iconAddProduct} />
                   <VscAdd className={css.iconAddProduct} />
                 ) : (
                   'Відправити'
@@ -318,7 +291,6 @@ export default function DiaryAddProductForm({
               <div className={css.divAddProduct}>
                 <button className={css.btnAddProduct} type="submit">
                   {width > 768 ? (
-                    // <IoIosAdd style={{ alignItems: "center" }} className={css.iconAddProduct} />
                     <VscAdd className={css.iconAddProduct} />
                   ) : (
                     'Відправити'
