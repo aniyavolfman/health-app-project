@@ -62,8 +62,4 @@ export default function RightSideBar() {
   );
 }
 
-//  {
-//    !shortProducts && (
-//      <p className={css.userInfoDescription}>Your diet will be displayed here</p>
-//    );
-//  }
+

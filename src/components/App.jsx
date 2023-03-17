@@ -18,7 +18,6 @@ function App() {
   const sid = useSelector(selectSid);
 
   useEffect(() => {
-    //dispatch(refreshUserRequest(sid));
     dispatch(fetchCurrentUser());
   }, [dispatch, sid]);
 
