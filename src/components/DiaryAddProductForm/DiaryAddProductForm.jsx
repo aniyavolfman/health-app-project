@@ -64,7 +64,13 @@ export default function DiaryAddProductForm({
   };
 
   useEffect(() => {
-    dispatch(userDayInfoOperation({ date: moment(date).format('yyyy-MM-DD') }));
+    setTimeout(
+      () =>
+        dispatch(
+          userDayInfoOperation({ date: moment(date).format('yyyy-MM-DD') })
+        ),
+      1500
+    );
   }, [dispatch, date]);
   const newProduct = {
     date,
